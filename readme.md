@@ -1,2 +1,2 @@
 # GermyCMS Framework
-GermyCMS Framework Developed by Laravel
+GermyCMS Framework Based on Laravel Developed by Germy
