@@ -27,13 +27,14 @@ trait AuthenticatesUsers
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function postLogin(Request $request)
     {
         $this->validate($request, [
-            $this->loginUsername() => 'required', 'password' => 'required',
+            $this->loginUsername() => 'required',
+            'password' => 'required',
         ]);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -58,9 +59,7 @@ trait AuthenticatesUsers
             $this->incrementLoginAttempts($request);
         }
 
-        return redirect($this->loginPath())
-            ->withInput($request->only($this->loginUsername(), 'remember'))
-            ->withErrors([
+        return redirect($this->loginPath())->withInput($request->only($this->loginUsername(), 'remember'))->withErrors([
                 $this->loginUsername() => $this->getFailedLoginMessage(),
             ]);
     }
@@ -68,8 +67,8 @@ trait AuthenticatesUsers
     /**
      * Send the response after the user was authenticated.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  bool  $throttles
+     * @param  \Illuminate\Http\Request $request
+     * @param  bool $throttles
      * @return \Illuminate\Http\Response
      */
     protected function handleUserWasAuthenticated(Request $request, $throttles)
@@ -88,7 +87,7 @@ trait AuthenticatesUsers
     /**
      * Get the needed authorization credentials from the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     protected function getCredentials(Request $request)
@@ -103,9 +102,7 @@ trait AuthenticatesUsers
      */
     protected function getFailedLoginMessage()
     {
-        return Lang::has('manage.auth.failed')
-                ? Lang::get('manage.auth.failed')
-                : 'These credentials do not match our records.';
+        return Lang::has('manage.auth.failed') ? Lang::get('manage.auth.failed') : 'These credentials do not match our records.';
     }
 
     /**
@@ -147,8 +144,6 @@ trait AuthenticatesUsers
      */
     protected function isUsingThrottlesLoginsTrait()
     {
-        return in_array(
-            ThrottlesLogins::class, class_uses_recursive(get_class($this))
-        );
+        return in_array(ThrottlesLogins::class, class_uses_recursive(get_class($this)));
     }
 }
