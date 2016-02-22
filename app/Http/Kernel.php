@@ -29,6 +29,8 @@
             'auth' => \App\Http\Middleware\Authenticate::class,
             'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
             'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+            'auth.manage' => \App\Http\Middleware\AuthenticateManage::class,
+            'guest.manage' => \App\Http\Middleware\AdminRedirectIfAuthenticatedManage::class,
             'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
             'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
             'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,

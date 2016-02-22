@@ -17,11 +17,11 @@ trait AuthenticatesUsers
      */
     public function getLogin()
     {
-        if (view()->exists('auth.authenticate')) {
-            return view('auth.authenticate');
+        if (view()->exists('manage.auth.authenticate')) {
+            return view('manage.auth.authenticate');
         }
 
-        return view('auth.login');
+        return view('manage.auth.login');
     }
 
     /**
@@ -103,8 +103,8 @@ trait AuthenticatesUsers
      */
     protected function getFailedLoginMessage()
     {
-        return Lang::has('auth.failed')
-                ? Lang::get('auth.failed')
+        return Lang::has('manage.auth.failed')
+                ? Lang::get('manage.auth.failed')
                 : 'These credentials do not match our records.';
     }
 
@@ -127,7 +127,7 @@ trait AuthenticatesUsers
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : '/auth/login';
+        return property_exists($this, 'loginPath') ? $this->loginPath : '/manage/auth/login';
     }
 
     /**

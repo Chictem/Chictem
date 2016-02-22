@@ -14,3 +14,14 @@
     Route::get('/', function () {
         return view('welcome');
     });
+
+    Route::group(['prefix' => 'manage', 'middleware' => 'auth.admin', 'namespace' => 'Manage'], function() {
+
+    });
+
+    Route::group(['prefix' => 'manage', 'namespace' => 'Manage'], function() {
+        Route::controllers([
+            'auth' => 'AuthController',
+            'password' => 'PasswordController',
+        ]);
+    });
