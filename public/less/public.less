@@ -1,0 +1,110 @@
+@purple: #21122F;
+@pink: #D1005D;
+@pink-dark: #D2116F;
+@white: #F0E6F0;
+@white-hover: #FFF;
+@white-bg: #FFF;
+@purple-dark: #100718;
+@grey: #F1F1F1;
+@grey-bg: #F5F6F8;
+@a-first-rank: #333;
+@a-second-rank: #666;
+@a-third-rank: #999;
+@green: #2ABAA1;
+@yellow-dark: #D4CCB9;
+@banner-top: #898989;
+
+.noBorderRadius {
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+.borderRadius(@radius: 10px) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -o-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+
+.content {
+    padding: 20px 0;
+}
+
+.content-plain {
+    padding: 0;
+}
+
+/* alert */
+#alert {
+    position: fixed;
+    z-index: 100;
+    left: 1%;
+    right: 1%;
+}
+
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.inline {
+    display: inline-block;
+}
+
+.blur {
+    filter: url('/svg/blur.svg#blur'); /* FireFox, Chrome, Opera */
+    -webkit-filter: blur(8px); /* Chrome, Opera */
+    -moz-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+
+.flex {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    .flex-1 {
+        flex: 1;
+    }
+    .flex-2 {
+        flex: 2;
+    }
+    .flex-3 {
+        flex: 3;
+    }
+    .flex-4 {
+        flex: 4;
+    }
+}
+
+.pagination-content {
+    overflow: hidden;
+}
+
+.list-group {
+    .active {
+        a {
+            color: white;
+        }
+    }
+    a {
+        color: @a-first-rank;
+    }
+}
+
+.banner {
+    overflow: hidden;
+    border: 1px solid @grey-bg;
+    border-top: 1px solid @banner-top;
+}
+
+.none {
+    display: none;
+}

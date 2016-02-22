@@ -1,0 +1,48 @@
+.fa {
+  margin-right: 5px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+#page-wrapper {
+  position: relative;
+}
+#content-main {
+  overflow-y: auto;
+}
+.copy-msg {
+  margin-left: 10px;
+  color: #1ab394;
+  border: 1px solid #1ab394;
+  padding: 3px 6px 3px 6px;
+}
+.input-line {
+  line-height: 33px;
+}
+input[readonly] {
+  background-color: #FCFCFC !important;
+}
+.row .wrapper.left {
+  padding-right: 0;
+}
+.row .wrapper.right {
+  padding-left: 0;
+}
+.dl-horizontal dt,
+.dl-horizontal dd {
+  line-height: 23px;
+}
+.select2-container,
+.select2-drop {
+  width: 300px;
+}
+.img-responsive {
+  margin-left: auto;
+  margin-right: auto;
+}
+.error-input {
+  border: 1px solid #ED5565;
+}

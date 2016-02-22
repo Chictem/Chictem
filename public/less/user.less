@@ -1,0 +1,231 @@
+@import "public";
+
+#user-show {
+    background-color: @grey-bg;
+    .banner {
+        height: 300px;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        color: @white-bg;
+        position: relative;
+        .background {
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        .banner-content {
+            position: absolute;
+            z-index: 100;
+            left: 1%;
+            right: 1%;
+        }
+        .banner-image {
+            img {
+                width: 100px;
+                height: 100px;
+                border: 2px solid @white-bg;
+                .borderRadius(50%);
+            }
+        }
+        .banner-name {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .banner-brief {
+            font-size: 14px;
+        }
+        .banner-buttons {
+            margin: 20px 0;
+        }
+    }
+    .banner-plain {
+        margin-bottom: 0;
+    }
+    .navbar {
+        margin-bottom: 20px;
+        background-color: @white-bg;
+        ul.nav {
+            width: 100%;
+            li {
+                line-height: 50px;
+                text-align: center;
+                a {
+                    color: @a-second-rank;
+                }
+                &.active, &:hover {
+                    a {
+                        color: @white-bg;
+                        background-color: @yellow-dark;
+                    }
+                }
+            }
+        }
+    }
+    #user-info {
+        .left, .main, .right {
+            padding: 10px;
+        }
+        .main {
+            #info-panel {
+                .panel-heading {
+                    overflow: hidden;
+                    border-bottom: 1px solid #EEE;
+                    position: relative;
+                    .edit {
+                        position: absolute;
+                        right: 20px;
+                        top: 20px;
+                    }
+                }
+                .form-group {
+                    & > div {
+                        padding-top: 7px;
+                    }
+                }
+                .panel-body {
+                    padding-top: 0;
+                    .info-block {
+                        padding: 20px;
+                        border-bottom: 1px solid #EEE;
+                    }
+                }
+            }
+        }
+        .right-content {
+            background-color: @white-bg;
+            border: 1px solid #EEE;
+        }
+    }
+    #user-recruit {
+        .left, .main {
+            padding: 10px;
+        }
+        .main-content {
+            background-color: @white-bg;
+            border: 1px solid #EEE;
+            padding: 20px;
+            .company-name {
+                width: 100%;
+                img {
+                    width: 100%;
+                }
+            }
+            .item {
+                .item-content {
+                    .thumb {
+                        img {
+                            width: 100%;
+                            height: 150px;
+                        }
+                    }
+                    .title {
+                        padding: 8px 0;
+                        span {
+                            font-size: 16px;
+                            font-weight: bold;
+                            margin-right: 5px;
+                            a {
+                                color: @a-first-rank;
+                            }
+                        }
+                    }
+                    .tags {
+                        padding: 5px 0;
+                        .tag {
+                            padding: 2px 5px;
+                            background-color: @yellow-dark;
+                            cursor: pointer;
+                            a {
+                                color: @white-bg;
+                                &:hover {
+                                    color: @white;
+                                }
+                            }
+                        }
+                    }
+                    .brief {
+                        padding: 5px 0;
+                    }
+                }
+                .item-info {
+                    overflow: hidden;
+                    padding: 3px 0;
+                    background-color: @grey;
+                    margin: 10px 0;
+                    span {
+                        font-size: 12px;
+                        color: @a-second-rank;
+                        margin: 0 5px;
+                        i {
+                            margin: 0 4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #user-focus {
+        .main-content {
+            background-color: white;
+            .item {
+                background-color: white;
+                .thumb {
+                    img {
+                        width: 100%;
+                    }
+                }
+                .item-content {
+                    .name {
+                        a {
+                            color: @a-second-rank;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #user-publish {
+        .panel {
+            padding-top: 30px;
+            margin-bottom: 40px;
+            .upload {
+                .uploadify-queue {
+                    width: 100%;
+                    .uploadify-queue-item {
+                        overflow: hidden;
+                    }
+                }
+                img.pre-view {
+                    width: 100%;
+                }
+                .del-upload {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+    #user-work {
+        .main {
+            background-color: white;
+            .items {
+
+                .item {
+                    .image {
+                        img {
+                            width: 100%;
+                            height: 160px;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
