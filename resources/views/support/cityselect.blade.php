@@ -1,5 +1,5 @@
 <div id="support.cityselect">
-    {!! Html::script('/js/jquery.cityselect.js') !!}
+    {!! Html::script('/js/plugins/cityselect/jquery.cityselect.js') !!}
     <script>
         $(function() {
             if ($('.city-select').length > 0) {

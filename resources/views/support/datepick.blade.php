@@ -1,5 +1,5 @@
 <div id="support-datepick">
-    {!! Html::style('/css/datepicker.css') !!}
-    {!! Html::script('/js/bootstrap-datepicker.js') !!}
+    {!! Html::style('/css/plugins/datepicker/datepicker.css') !!}
+    {!! Html::script('/js/plugins/datepicker/datepicker.js') !!}
 </div>
 

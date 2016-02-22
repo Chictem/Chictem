@@ -30,6 +30,7 @@
                 <div class="logo-element">H+
                 </div>
             </li>
+            {{--
             @if($menu_items = Auth::user()->getGroup->menu)
                 @foreach($menu_items as $menu_item)
                     <li>
@@ -55,6 +56,7 @@
                     </li>
                 @endforeach
             @endif
+                   --}}
         </ul>
     </div>
 </nav>

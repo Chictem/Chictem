@@ -7,7 +7,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-    <title>{{ $configs['title'] }} | 管理界面</title>
+    <title></title>
     <!--[if lt IE 8]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->

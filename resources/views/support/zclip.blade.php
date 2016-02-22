@@ -1,5 +1,5 @@
 <div id="support-copy">
-    {!! Html::script('/js/jquery.zclip.min.js') !!}
+    {!! Html::script('/js/plugins/jquery.zclip.min.js') !!}
     <script>
         $(function() {
             $(".zclip").zclip({
