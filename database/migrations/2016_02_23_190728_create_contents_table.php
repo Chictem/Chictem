@@ -31,6 +31,7 @@ class CreateContentsTable extends Migration
             $table->string('password')->nullable();
             $table->integer('allow_comment')->default(1);
             $table->integer('allow_reprint')->default(1);
+            $table->integer('weight')->default(0);
             $table->timestamps();
         });
     }
