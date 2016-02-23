@@ -18,10 +18,7 @@ class CreateTagsTable extends Migration
             $table->integer('weight')->default(0);
             $table->integer('parent')->unsigned();
             $table->text('description')->nullable();
-            $table->integer('user_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
