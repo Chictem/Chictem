@@ -24,7 +24,4 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Manage'], function () {
         'auth' => 'AuthController',
         'password' => 'PasswordController',
     ]);
-    Route::get('/', function() {
-       return view('manage.index.welcome');
-    });
 });

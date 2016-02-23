@@ -28,11 +28,11 @@
             alert('{!! Session::get('flash_notification.message') !!}', '{{ $kind }}');
         </script>
     @endif
-    @if (count($errors) > 0)
+    @if(count($errors) > 0)
         @define $error_text = '<ul>'
-        @foreach ($errors->all() as $error)
-            @define $error_text.= ('<li>'.$error.'</li>')
-        @endforeach
+            @foreach($errors->all() as $error)
+                @define $error_text.= ('<li>'.$error.'</li>')
+            @endforeach
             @define $error_text .= '</ul>'
         <script>
             alert('{!! $error_text !!}', 'error');

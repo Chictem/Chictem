@@ -2,10 +2,12 @@
 
 namespace App\Foundation\Manage;
 
+use App\Model\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Laracasts\Flash\Flash;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait ResetsPasswords
@@ -38,10 +40,12 @@ trait ResetsPasswords
 
         switch ($response) {
             case Password::RESET_LINK_SENT:
-                return redirect()->back()->with('status', trans($response));
+                Flash::success('邮件发送成功!');
+                return redirect()->back();
 
             case Password::INVALID_USER:
-                return redirect()->back()->withErrors(['email' => trans($response)]);
+                Flash::error('无效的用户名!');
+                return redirect()->back();
         }
     }
 
@@ -52,7 +56,7 @@ trait ResetsPasswords
      */
     protected function getEmailSubject()
     {
-        return property_exists($this, 'subject') ? $this->subject : 'Your Password Reset Link';
+        return property_exists($this, 'subject') ? $this->subject : '重置密码链接';
     }
 
     /**
@@ -67,7 +71,13 @@ trait ResetsPasswords
             throw new NotFoundHttpException;
         }
 
-        return view('manage.auth.reset')->with('token', $token);
+        $reset_user = PasswordReset::where('token', $token)->first();
+        $email = $reset_user ? $reset_user->email : null;
+
+        return view('manage.auth.reset')->with([
+            'token' => $token,
+            'email' => $email,
+        ]);
     }
 
     /**
@@ -92,10 +102,12 @@ trait ResetsPasswords
 
         switch ($response) {
             case Password::PASSWORD_RESET:
-                return redirect($this->redirectPath())->with('status', trans($response));
+                Flash::success('重置成功!');
+                return redirect($this->redirectPath());
 
             default:
-                return redirect()->back()->withInput($request->only('email'))->withErrors(['email' => trans($response)]);
+                Flash::error('密码重置失败!');
+                return redirect()->back()->withInput($request->only('email'));
         }
     }
 
