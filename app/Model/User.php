@@ -34,10 +34,34 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
-
+    /**
+     * Get tags this user attaches to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
+        return $this->belongsToMany('App\Model\Tag', 'user_tag', 'user_id', 'tag_id')->withTimestamps();
+    }
 
+    /**
+     * Get contents this user publish.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contents()
+    {
+        return $this->hasMany('App\Model\Content');
+    }
+
+    /**
+     * Get pages this user publish.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pages()
+    {
+        return $this->hasMany('App\Model\Page');
     }
 
 

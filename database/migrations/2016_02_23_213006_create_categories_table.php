@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->unique();
             $table->string('display_name')->nullable();
             $table->text('description')->nullable();
-            $table->integer('parent')->index();
+            $table->integer('parent')->unsigned();
             $table->string('template')->nullable();
             $table->string('thumb')->nullable();
             $table->string('banner')->nullable();

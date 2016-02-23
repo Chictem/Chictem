@@ -14,11 +14,11 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->index();
+            $table->integer('category_id')->unsigned();
             $table->integer('kind')->default(1);
             $table->string('title');
             $table->string('subtitle')->nullable();
-            $table->string('alias');
+            $table->string('alias')->nullable();
             $table->text('summary')->nullable();
             $table->text('content')->nullable();
             $table->string('thumb')->nullable();
@@ -26,7 +26,7 @@ class CreateContentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('source_link')->nullable();
             $table->string('source_name')->nullable();
-            $table->string('external_link')->nullalbe();
+            $table->string('external_link')->nullable();
             $table->integer('secret')->default(0);
             $table->string('password')->nullable();
             $table->integer('allow_comment')->default(1);
@@ -35,6 +35,7 @@ class CreateContentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }
