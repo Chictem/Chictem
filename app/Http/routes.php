@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'manage', 'middleware' => 'auth.admin', 'namespace' => 'Manage'], function () {
-
+Route::group(['prefix' => 'manage', 'middleware' => 'auth.manage', 'namespace' => 'Manage'], function () {
+    Route::controller('home', 'HomeController');
 });
 
 Route::group(['prefix' => 'manage', 'namespace' => 'Manage'], function () {

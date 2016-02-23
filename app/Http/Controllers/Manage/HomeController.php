@@ -7,15 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class HomeController extends Controller
 {
     /**
      * View space.
      *
      * @var string
      */
-    protected $space = 'index';
-
+    protected $space = 'home';
 
     /**
      * Manage index page.
