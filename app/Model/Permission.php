@@ -1,9 +1,9 @@
 <?php
 
-    namespace App\Model;
+namespace App\Model;
 
-    use Zizaco\Entrust\EntrustPermission;
+use Zizaco\Entrust\EntrustPermission;
 
-    class Permission extends EntrustPermission
-    {
-    }
+class Permission extends EntrustPermission
+{
+}

@@ -23,12 +23,18 @@
                         <li><a class="J_menuItem" href="mailbox.html">信箱</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html">安全退出</a>
+                        <li><a href="{{ url('/manage/auth/logout') }}">安全退出</a>
                         </li>
                     </ul>
                 </div>
                 <div class="logo-element">H+
                 </div>
+            </li>
+            <li>
+                <a href="{{ url('/manage/role') }}">
+                    <i class="fa fa-users"></i>
+                    <span class="nav-label">角色管理</span>
+                </a>
             </li>
             {{--
             @if($menu_items = Auth::user()->getGroup->menu)

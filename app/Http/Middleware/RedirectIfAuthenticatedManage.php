@@ -35,7 +35,7 @@ class RedirectIfAuthenticatedManage
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect('/manage');
+            return redirect('/manage/home');
         }
 
         return $next($request);
