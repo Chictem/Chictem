@@ -7,12 +7,20 @@
         </div>
         <h3></h3>
 
-        <p>请输入密钥</p>
-        {!! Form::open(['url' => '/auth/', 'role' => 'form', 'class' => 'm-t form-horizontal']) !!}
+        <p>登录</p>
+        {!! Form::open(['url' => URL('/manage/auth/login'), 'role' => 'form', 'class' => 'm-t form-horizontal']) !!}
         <div class="form-group form-group-sm">
-            {!! Form::text('value', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '请输入管理密钥']) !!}
+            {!! Form::text('email', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '邮箱']) !!}
         </div>
-        <button type="submit" class="btn btn-primary block full-width">认证</button>
+        <div class="form-group form-group-sm">
+            {!! Form::password('password', ['class' => 'form-control', 'required' => 'required', 'placeholder' => '密码']) !!}
+        </div>
+        <button type="submit" class="btn btn-primary block full-width">登录</button>
+        <p class="text-muted text-center m-t-sm">
+            <a href="{{ url('/manage/password/email')}}">
+                <small>忘记密码？</small>
+            </a> | <a href="{{ url('/manage/auth/register') }}">注册账号</a>
+        </p>
         {!! Form::close() !!}
     </div>
 
