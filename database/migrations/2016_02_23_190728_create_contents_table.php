@@ -23,7 +23,7 @@ class CreateContentsTable extends Migration
             $table->text('content')->nullable();
             $table->string('thumb')->nullable();
             $table->string('banner')->nullable();
-            $table->integer('user_id')->index();
+            $table->integer('user_id')->unsigned();
             $table->string('source_link')->nullable();
             $table->string('source_name')->nullable();
             $table->string('external_link')->nullalbe();
@@ -33,6 +33,9 @@ class CreateContentsTable extends Migration
             $table->integer('allow_reprint')->default(1);
             $table->integer('weight')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
         });
     }
 
