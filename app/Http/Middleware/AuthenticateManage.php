@@ -38,7 +38,7 @@ class AuthenticateManage
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/manage/login');
+                return redirect()->guest('/manage/auth/login');
             }
         }
 
