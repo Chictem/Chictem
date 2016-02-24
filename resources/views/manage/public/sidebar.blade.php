@@ -36,6 +36,18 @@
                     <span class="nav-label">角色管理</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ url('/manage/option') }}">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">站点设置</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/manage/option/array') }}">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">全局数组</span>
+                </a>
+            </li>
             {{--
             @if($menu_items = Auth::user()->getGroup->menu)
                 @foreach($menu_items as $menu_item)

@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Option extends BaseModel
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
     /**
      * Unserialize variable to array.
      *
@@ -21,7 +29,7 @@ class Option extends BaseModel
     }
 
     /**
-     * If value is kind of array. Then to sequence.
+     * If value is kind of array, Then to sequence.
      *
      * @param $value
      */
@@ -32,5 +40,29 @@ class Option extends BaseModel
         } else {
             $this->attributes['value'] = $value;
         }
+    }
+
+    /**
+     * Get option item query.
+     *
+     * @param $query
+     * @param $key
+     * @return mixed
+     */
+    public function scopeItem($query, $key)
+    {
+        return $query->where('key', $key)->first();
+    }
+
+    /**
+     * Get kind query.
+     *
+     * @param $query
+     * @param $key
+     * @return mixed
+     */
+    public function scopeType($query, $key)
+    {
+        return $query->where('type', $key)->get();
     }
 }

@@ -205,6 +205,7 @@ return [
         'Html'		=> Illuminate\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Option'    => App\Model\Option::class,
 
     ],
 
