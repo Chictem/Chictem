@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Model\Menu;
 use Illuminate\Http\Request;
 use App\Model\Role;
 use App\Http\Requests;
@@ -51,12 +52,13 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Menu $menu
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+        return view($this->getManageView('show'))->withRole($role);
     }
 
     /**

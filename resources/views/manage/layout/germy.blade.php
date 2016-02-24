@@ -25,6 +25,7 @@
 @include('manage.public.sidebar')
 @yield('wrap')
 @include('manage.public.options')
+{!! Html::script('/js/common/content.min.js') !!}
 {!! Html::script('/js/plugins/metisMenu/jquery.metisMenu.js') !!}
 {!! Html::script('/js/plugins/slimscroll/jquery.slimscroll.min.js') !!}
 {!! Html::script('/js/plugins/layer/layer.min.js') !!}
