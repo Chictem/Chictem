@@ -36,7 +36,7 @@ class OptionController extends Controller
      */
     public function getIndex()
     {
-        return Redirect::to('manage/option/edit');
+        return $this->getEditUrl();
     }
 
     /**
@@ -64,10 +64,9 @@ class OptionController extends Controller
         foreach ($options as $key => $value) {
             Option::item($key)->update(['value' => $value]);
         }
-        Flash::success('修改成功！');
-        return Redirect::to('/manage/option/edit');
+        Flash::success('修改成功!');
+        return $this->getEditUrl();
     }
-
 
     /**
      * Edit array values.
@@ -89,20 +88,52 @@ class OptionController extends Controller
      */
     public function postArray(ArrayRequest $request)
     {
-        $this->validate($request, [
-            'key' => 'required|unique:options',
-            'value' => 'required',
-        ]);
-        dd($request->all());
-        $info = $request->only('key', 'display_name');
+        $info = $request->only('key', 'display_name', 'type');
         $array = $request->get('value');
         $array = assoc_to_index($array);
         foreach ($array as $item) {
             $result[$item['key']] = $item['value'];
         }
         Option::updateOrCreate(['id' => $request->get('id')], array_merge($info, ['value' => $result]));
-        Flash::success('修改成功！');
+        Flash::success('保存成功!');
+        return $this->getArrayUrl();
+    }
+
+    /**
+     * Delete array.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getDeleteArray($id) {
+        $option = Option::find($id);
+        if ($option->delete()){
+            Flash::success('删除成功!');
+        } else {
+            Flash::error('删除失败!');
+        }
+        return $this->getArrayUrl();
+    }
+
+    /**
+     * Get url manage url.
+     *
+     * @return mixed
+     */
+    private function getArrayUrl()
+    {
         return Redirect::to('/manage/option/array');
     }
+
+    /**
+     * Get manage url.
+     *
+     * @return mixed
+     */
+    private function getEditUrl()
+    {
+        return Redirect::to('/manage/option/edit');
+    }
+
 
 }

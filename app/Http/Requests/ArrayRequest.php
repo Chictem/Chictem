@@ -24,7 +24,7 @@ class ArrayRequest extends Request
     public function rules()
     {
         return [
-            'key' => 'required_with:id|unique:options',
+            'key' => 'required_with:id',
             'display_name' => 'required_with:id',
             'value' => 'required_with:id|array',
         ];
