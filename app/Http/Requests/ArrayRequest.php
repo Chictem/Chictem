@@ -13,7 +13,7 @@ class ArrayRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class ArrayRequest extends Request
     public function rules()
     {
         return [
-            //
+            'key' => 'required_with:id|unique:options',
+            'display_name' => 'required_with:id',
+            'value' => 'required_with:id|array',
         ];
     }
 }

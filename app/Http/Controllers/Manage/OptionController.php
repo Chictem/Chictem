@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Http\Requests\ArrayRequest;
 use App\Model\Option;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -83,10 +84,16 @@ class OptionController extends Controller
     /**
      * Update array values.
      *
+     * @param ArrayRequest $request
      * @return $this
      */
-    public function postArray(Request $request)
+    public function postArray(ArrayRequest $request)
     {
+        $this->validate($request, [
+            'key' => 'required|unique:options',
+            'value' => 'required',
+        ]);
+        dd($request->all());
         $info = $request->only('key', 'display_name');
         $array = $request->get('value');
         $array = assoc_to_index($array);

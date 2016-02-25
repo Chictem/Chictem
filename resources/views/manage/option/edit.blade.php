@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        {!! Form::open(['url' => url('/manage/option/update-array'), 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['url' => url('/manage/option/update'), 'class' => 'form-horizontal']) !!}
                         @foreach($option_items as $option_item)
                             @define $option = Option::item($option_item)
                             <div class="form-group">

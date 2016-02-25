@@ -50,14 +50,15 @@
                                     @foreach($array->value as $key => $value)
                                         <div class="row m-b-sm">
                                             <div class="col-sm-5">
-                                                {!! Form::text('value[key][]', $key, ['class' => 'form-control']) !!}
+                                                <input name="value[key][]" value="{{ $key }}" class="form-control">
+{{--                                                {!! Form::text('value[key][]', $key, ['class' => 'form-control']) !!}--}}
                                             </div>
                                             <div class="col-sm-1 p-l-md p-t-sm">
                                                 <i class="fa fa-angle-double-right">
                                                 </i>
                                             </div>
                                             <div class="col-sm-5">
-                                                {!! Form::text('value[value][]', $value, ['class' => 'form-control']) !!}
+                                                <input name="value[value][]" value="{{ $value }}" class="form-control">
                                             </div>
                                             <div class="col-sm-1 p-t-xs">
                                                 <div class="btn btn-danger btn-xs rm-row">删除</div>
