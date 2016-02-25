@@ -6,5 +6,10 @@ $(function() {
         var row = $(this).closest('.array-value').find('.row:first-child').clone();
         row.find('input').val('');
         row.insertBefore($(this).closest('.row'));
+    }).on('click', '.delete-array', function() {
+        var $delete_btn = $(this);
+        swalert('确认要删除吗?', '删除后无法恢复', 'warning', function() {
+            location.href = $delete_btn.attr('target');
+        });
     });
 });

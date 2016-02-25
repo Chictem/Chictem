@@ -62,10 +62,10 @@
                                             <button type="submit" class="btn btn-sm btn-primary"><i
                                                         class="fa fa-check"></i> 保存
                                             </button>
-                                            <a href="{{ url('/manage/option/delete-array/'.$array->id) }}"
-                                               class="btn btn-sm btn-danger">
+                                            <div href="#" target="{{ url('/manage/option/delete-array/'.$array->id) }}"
+                                               class="btn btn-sm btn-danger delete-array">
                                                 <i class="fa fa-remove"></i> 删除
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -139,4 +139,5 @@
             </div>
         </div>
     </div>
+    @include('support.swal')
 @endsection
