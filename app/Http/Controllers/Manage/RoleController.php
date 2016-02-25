@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Model\Role;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Laracasts\Flash\Flash;
 
 class RoleController extends Controller
 {
@@ -41,7 +43,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -64,7 +66,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +77,8 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,11 +89,28 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
     }
+
+    /**
+     * Update permissions of role.
+     *
+     * @param Request $request
+     */
+    public function postUpdatePerms(Request $request, $id)
+    {
+        $role = Role::find($id);
+        if($role->perms()->sync($request->get('permissions'))) {
+            Flash::success('修改成功!');
+        } else {
+            Flash::error('修改失败!');
+        }
+        return Redirect::to('/manage/role/'.$id);
+    }
+
 }

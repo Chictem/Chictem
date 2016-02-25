@@ -12,4 +12,7 @@ $(function() {
             location.href = $delete_btn.attr('target');
         });
     });
+    if ($(".i-checks").length > 0) {
+        $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green",})
+    }
 });

@@ -1,4 +1,4 @@
-<div id="support.nestable">
+<div id="support-nestable">
     {!! Html::script('/js/plugins/nestable/jquery.nestable.js') !!}
     <script>
         jQuery.fn.dragMenu = function() {

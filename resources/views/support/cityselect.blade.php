@@ -1,4 +1,4 @@
-<div id="support.cityselect">
+<div id="support-cityselect">
     {!! Html::script('/js/plugins/cityselect/jquery.cityselect.js') !!}
     <script>
         $(function() {

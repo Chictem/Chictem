@@ -1,4 +1,4 @@
-<div id="support.fullavatar">
+<div id="support-fullavatar">
     {!! Html::script('/js/plugins/fullavatar/swfobject.js') !!}
     {!! Html::script('/js/plugins/fullavatar/fullAvatarEditor.js') !!}
     <script>
