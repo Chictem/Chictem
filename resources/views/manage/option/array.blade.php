@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('value', '数组键值', ['class' => 'col-sm-2 control-label']) !!}
+                                {!! Form::label('value', '数组内容', ['class' => 'col-sm-2 control-label']) !!}
                                 <div class="col-sm-6 array-value">
                                     @foreach($array->value as $key => $value)
                                         <div class="row m-b-sm">

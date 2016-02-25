@@ -29,4 +29,18 @@ class ArrayRequest extends Request
             'value' => 'required_with:id|array',
         ];
     }
+
+    /**
+     * Get display_name of attributes.
+     *
+     * @return array
+     */
+    public function attributes() {
+        return [
+            'id' => '数组',
+            'key' => '数组键名',
+            'display_name' => '数组名称',
+            'value' => '数组内容',
+        ];
+    }
 }
