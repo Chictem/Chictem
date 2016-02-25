@@ -87,17 +87,13 @@ class OptionController extends Controller
      */
     public function postArray(Request $request)
     {
-        $arrays = $request->all();
-        foreach ($arrays as $key => $array) {
-            if (is_array($array)) {
-                $array = assoc_to_index($array);
-                $result = [];
-                foreach ($array as $item) {
-                    $result[$item['key']] = $item['value'];
-                }
-                Option::item($key)->update(['value' => $result]);
-            }
+        $info = $request->only('key', 'display_name');
+        $array = $request->get('value');
+        $array = assoc_to_index($array);
+        foreach ($array as $item) {
+            $result[$item['key']] = $item['value'];
         }
+        Option::updateOrCreate(['id' => $request->get('id')], array_merge($info, ['value' => $result]));
         Flash::success('修改成功！');
         return Redirect::to('/manage/option/array');
     }

@@ -17,7 +17,7 @@
     {!! Html::style('/css/plugins/font-awesome/font-awesome.min.css') !!}
     {!! Html::style('/css/common/animate.min.css') !!}
     {!! Html::style('/css/common/hplus.css') !!}
-    {!! Html::style('/css/common/hplus.css') !!}
+    {!! Html::style('/css/manage/main.css') !!}
     {!! Html::script('/js/common/jquery.min.js') !!}
     {!! Html::script('/js/common/bootstrap.min.js') !!}
     {!! Html::script('/js/common/functions.js') !!}

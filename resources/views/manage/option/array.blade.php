@@ -28,22 +28,36 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        {!! Form::open(['url' => url('/manage/option/array'), 'class' => 'form-horizontal array-form']) !!}
                         @foreach($arrays as $array)
+                            {!! Form::open(['url' => url('/manage/option/array'), 'class' => 'form-horizontal array-form']) !!}
+                            {!! Form::hidden('id', $array->id) !!}
+                            {!! Form::hidden('type', $array->type) !!}
                             <div class="form-group">
-                                {!! Form::label($array->key, $array->display_name, ['class' => 'col-sm-2 control-label']) !!}
-                                <div class="col-sm-6">
+                                {!! Form::label('key', '数组键名', ['class' => 'col-sm-2 control-label']) !!}
+                                <div class="col-sm-5">
+                                    {!! Form::text('key', $array->key, ['class' => 'form-control', 'placeholder' => '数组键值']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('key', '数组名称', ['class' => 'col-sm-2 control-label']) !!}
+                                <div class="col-sm-5">
+                                    {!! Form::text('display_name', $array->display_name, ['class' => 'form-control', 'placeholder' => '数组名称']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('value', '数组键值', ['class' => 'col-sm-2 control-label']) !!}
+                                <div class="col-sm-6 array-value">
                                     @foreach($array->value as $key => $value)
                                         <div class="row m-b-sm">
                                             <div class="col-sm-5">
-                                                {!! Form::text($array->key.'[key][]', $key, ['class' => 'form-control']) !!}
+                                                {!! Form::text('value[key][]', $key, ['class' => 'form-control']) !!}
                                             </div>
                                             <div class="col-sm-1 p-l-md p-t-sm">
                                                 <i class="fa fa-angle-double-right">
                                                 </i>
                                             </div>
                                             <div class="col-sm-5">
-                                                {!! Form::text($array->key.'[value][]', $value, ['class' => 'form-control']) !!}
+                                                {!! Form::text('value[value][]', $value, ['class' => 'form-control']) !!}
                                             </div>
                                             <div class="col-sm-1 p-t-xs">
                                                 <div class="btn btn-danger btn-xs rm-row">删除</div>
@@ -52,21 +66,19 @@
                                     @endforeach
                                     <div class="row m-b-sm">
                                         <div class="col-sm-6">
-                                            <button type="button" class="btn btn-sm btn-white"><i
+                                            <button type="button" class="btn btn-sm btn-white add-row"><i
                                                         class="fa fa-plus"></i> 添加
+                                            </button>
+                                            <button type="submit" class="btn btn-sm btn-primary"><i
+                                                        class="fa fa-check"></i> 保存
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
+                            {!! Form::close() !!}
                         @endforeach
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
