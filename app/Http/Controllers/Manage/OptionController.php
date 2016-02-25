@@ -88,13 +88,15 @@ class OptionController extends Controller
      */
     public function postArray(ArrayRequest $request)
     {
+        $id = $request->get('id');
+        $this->uniqueKey($request, $id);
         $info = $request->only('key', 'display_name', 'type');
         $array = $request->get('value');
         $array = assoc_to_index($array);
         foreach ($array as $item) {
             $result[$item['key']] = $item['value'];
         }
-        Option::updateOrCreate(['id' => $request->get('id')], array_merge($info, ['value' => $result]));
+        Option::updateOrCreate(['id' => $id], array_merge($info, ['value' => $result]));
         Flash::success('保存成功!');
         return $this->getArrayUrl();
     }
@@ -105,9 +107,10 @@ class OptionController extends Controller
      * @param $id
      * @return mixed
      */
-    public function getDeleteArray($id) {
+    public function getDeleteArray($id)
+    {
         $option = Option::find($id);
-        if ($option->delete()){
+        if ($option->delete()) {
             Flash::success('删除成功!');
         } else {
             Flash::error('删除失败!');
@@ -133,6 +136,23 @@ class OptionController extends Controller
     private function getEditUrl()
     {
         return Redirect::to('/manage/option/edit');
+    }
+
+    /**
+     * Confirm it is unique.
+     *
+     * @param ArrayRequest $request
+     * @param $id
+     */
+    private function uniqueKey(ArrayRequest $request, $id)
+    {
+        if (! Option::find($id) || Option::find($id)->key != $request->get('key')) {
+            $this->validate($request, [
+                'key' => 'unique:options',
+            ], [], [
+                'key' => '数组键名',
+            ]);
+        }
     }
 
 

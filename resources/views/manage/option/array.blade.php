@@ -8,6 +8,7 @@
                     <div class="ibox-title">
                         <h5>所有数组
                         </h5>
+
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -16,19 +17,21 @@
                     </div>
                     <div class="ibox-content">
                         @foreach($arrays as $array)
-                            {!! Form::model($array, ['url' => url('/manage/option/array'), 'class' => 'form-horizontal array-form']) !!}
+                            {!! Form::open(['url' => url('/manage/option/array'), 'class' => 'form-horizontal array-form']) !!}
                             {!! Form::hidden('id', $array->id) !!}
                             {!! Form::hidden('type', $array->type) !!}
                             <div class="form-group">
                                 {!! Form::label('key', '数组键名', ['class' => 'col-sm-2 control-label']) !!}
                                 <div class="col-sm-5">
-                                    {!! Form::text('key', null, ['class' => 'form-control', 'placeholder' => '数组键值']) !!}
+                                    <input type="text" value="{{ $array->key }}" name="key" class="form-control"
+                                           placeholder="数组键值">
                                 </div>
                             </div>
                             <div class="form-group">
                                 {!! Form::label('key', '数组名称', ['class' => 'col-sm-2 control-label']) !!}
                                 <div class="col-sm-5">
-                                    {!! Form::text('display_name', null, ['class' => 'form-control', 'placeholder' => '数组名称']) !!}
+                                    <input type="text" value="{{ $array->display_name }}" name="display_name"
+                                           class="form-control" placeholder="数组名称">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -76,6 +79,7 @@
                     <div class="ibox-title">
                         <h5>添加数组
                         </h5>
+
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -89,13 +93,13 @@
                         <div class="form-group">
                             {!! Form::label('key', '数组键名', ['class' => 'col-sm-2 control-label']) !!}
                             <div class="col-sm-5">
-                                {!! Form::text('key', null, ['class' => 'form-control', 'placeholder' => '数组键值']) !!}
+                                <input type="text" value="" name="key" class="form-control" placeholder="数组键值">
                             </div>
                         </div>
                         <div class="form-group">
                             {!! Form::label('key', '数组名称', ['class' => 'col-sm-2 control-label']) !!}
                             <div class="col-sm-5">
-                                {!! Form::text('display_name', null, ['class' => 'form-control', 'placeholder' => '数组名称']) !!}
+                                <input type="text" value="" name="display_name" class="form-control" placeholder="数组名称">
                             </div>
                         </div>
                         <div class="form-group">
