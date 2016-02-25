@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        {!! Form::open(['url' => url('/manage/option/array'), 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['url' => url('/manage/option/array'), 'class' => 'form-horizontal array-form']) !!}
                         @foreach($arrays as $array)
                             <div class="form-group">
                                 {!! Form::label($array->key, $array->display_name, ['class' => 'col-sm-2 control-label']) !!}
@@ -38,12 +38,25 @@
                                             <div class="col-sm-5">
                                                 {!! Form::text($array->key.'[key][]', $key, ['class' => 'form-control']) !!}
                                             </div>
-                                            {!! Form::label('arrow', '=>', ['class' => 'col-sm-1 control-label']) !!}
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-1 p-l-md p-t-sm">
+                                                <i class="fa fa-angle-double-right">
+                                                </i>
+                                            </div>
+                                            <div class="col-sm-5">
                                                 {!! Form::text($array->key.'[value][]', $value, ['class' => 'form-control']) !!}
+                                            </div>
+                                            <div class="col-sm-1 p-t-xs">
+                                                <div class="btn btn-danger btn-xs rm-row">删除</div>
                                             </div>
                                         </div>
                                     @endforeach
+                                    <div class="row m-b-sm">
+                                        <div class="col-sm-6">
+                                            <button type="button" class="btn btn-sm btn-white"><i
+                                                        class="fa fa-plus"></i> 添加
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>

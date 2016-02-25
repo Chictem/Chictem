@@ -17,6 +17,7 @@
     {!! Html::style('/css/plugins/font-awesome/font-awesome.min.css') !!}
     {!! Html::style('/css/common/animate.min.css') !!}
     {!! Html::style('/css/common/hplus.css') !!}
+    {!! Html::style('/css/common/hplus.css') !!}
     {!! Html::script('/js/common/jquery.min.js') !!}
     {!! Html::script('/js/common/bootstrap.min.js') !!}
     {!! Html::script('/js/common/functions.js') !!}
@@ -26,12 +27,13 @@
 @yield('wrap')
 @include('manage.public.options')
 {!! Html::script('/js/common/content.min.js') !!}
+{!! Html::script('/js/common/contabs.min.js') !!}
+{!! Html::script('/js/common/manage.js') !!}
 {!! Html::script('/js/plugins/metisMenu/jquery.metisMenu.js') !!}
 {!! Html::script('/js/plugins/slimscroll/jquery.slimscroll.min.js') !!}
 {!! Html::script('/js/plugins/layer/layer.min.js') !!}
-{!! Html::script('/js/common/hplus.min.js') !!}
-{!! Html::script('/js/common/contabs.min.js') !!}
 {!! Html::script('/js/plugins/pace/pace.min.js') !!}
+{!! Html::script('/js/common/hplus.min.js') !!}
 </body>
 
 </html>
