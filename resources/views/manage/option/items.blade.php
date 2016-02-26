@@ -25,7 +25,7 @@
                                         <div class="form-group">
                                             {!! Form::label($attr, $columns[$attr], ['class' => 'col-sm-3 control-label']) !!}
                                             <div class="col-sm-8">
-                                                <input type="text" value="{{ $item->$attr }}" name="type"
+                                                <input type="text" value="{{ $item->$attr }}" name="{{ $attr }}"
                                                        class="form-control"
                                                        placeholder="{{ $columns[$attr] }}">
                                             </div>
@@ -58,14 +58,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 {!! Form::open(['url' => url('/manage/option/items'), 'class' => 'form-horizontal item-form']) !!}
-                                {!! Form::hidden('id', $item->id) !!}
                                 @foreach($item->attrs() as $attr)
                                     <div class="form-group">
                                         {!! Form::label($attr, $columns[$attr], ['class' => 'col-sm-3 control-label']) !!}
                                         <div class="col-sm-8">
-                                            <input type="text" value="" name="type"
-                                                   class="form-control"
-                                                   placeholder="{{ $columns[$attr] }}">
+                                            {!! Form::text($attr, null, ['class' => 'form-control', 'placeholder' => $columns[$attr]]) !!}
                                         </div>
                                     </div>
                                 @endforeach

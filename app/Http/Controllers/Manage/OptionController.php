@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Requests\ArrayRequest;
+use App\Http\Requests\OptionRequest;
 use App\Model\Option;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -86,7 +87,7 @@ class OptionController extends Controller
      * @param ArrayRequest $request
      * @return $this
      */
-    public function postItems(Request $request)
+    public function postItems(OptionRequest $request)
     {
         $id = $request->get('id');
         $this->uniqueKey($request, $id);

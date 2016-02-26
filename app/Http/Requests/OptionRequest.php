@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ArrayRequest extends Request
+class OptionRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class ArrayRequest extends Request
     public function rules()
     {
         return [
-            'key' => 'required_with:id',
-            'display_name' => 'required_with:id',
-            'value' => 'required_with:id|array',
+            'type' => 'required',
+            'key' => 'required',
+            'value' => 'required',
+            'display_name' => 'required',
         ];
     }
 
@@ -37,10 +38,10 @@ class ArrayRequest extends Request
      */
     public function attributes() {
         return [
-            'id' => '数组',
-            'key' => '数组键名',
-            'display_name' => '数组名称',
-            'value' => '数组内容',
+            'key' => '配置键值',
+            'type' => '配置类型',
+            'value' => '配置键名',
+            'display_name' => '配置名称',
         ];
     }
 }
