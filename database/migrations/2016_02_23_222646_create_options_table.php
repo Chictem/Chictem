@@ -21,6 +21,7 @@ class CreateOptionsTable extends Migration
             $table->string('input')->nullable();
             $table->string('description')->nullable();
             $table->string('weight')->default(0);
+            $table->integer('deletable')->default(1);
             $table->timestamps();
         });
     }

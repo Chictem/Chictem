@@ -147,6 +147,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\PermissionServiceProvider::class,
+        App\Providers\ArrayServiceProvider::class,
+        App\Providers\InstanceProvider::class,
 
         /*
          * External Libs

@@ -50,7 +50,26 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div id="calendar"></div>
+                        {!! Form::open(['url' => url('/manage/role/update-perms/'.$role->id), 'class' => 'form-horizontal']) !!}
+                        <div class="form-group">
+                            {!! Form::label('title', '编辑权限', ['class' => 'control-label col-md-2']) !!}
+                            <div class="col-md-10 p-sm">
+                                <div class="row text-center">
+                                    @foreach($permissions as $permission)
+                                        <div class="col-md-3 i-checks">
+                                            {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
+                                            {{ $permission->display_name }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
                 <div class="ibox float-e-margins">
@@ -76,26 +95,7 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        {!! Form::open(['url' => url('/manage/role/update-perms/'.$role->id), 'class' => 'form-horizontal']) !!}
-                        <div class="form-group">
-                            {!! Form::label('title', '编辑权限', ['class' => 'control-label col-md-2']) !!}
-                            <div class="col-md-10 p-sm">
-                                <div class="row text-center">
-                                    @foreach($permissions as $permission)
-                                        <div class="col-md-3 i-checks">
-                                            {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
-                                            {{ $permission->display_name }}
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
+
                     </div>
                 </div>
             </div>

@@ -69,6 +69,33 @@ class OptionController extends Controller
     }
 
     /**
+     * Configure items.
+     *
+     * @return mixed
+     */
+    public function getItems()
+    {
+        return view($this->getManageView('items'))->with([
+            'items' => Option::where('type', '<>', 'array')->get(),
+        ]);
+    }
+
+    /**
+     * Update option items..
+     *
+     * @param ArrayRequest $request
+     * @return $this
+     */
+    public function postItems(Request $request)
+    {
+        $id = $request->get('id');
+        $this->uniqueKey($request, $id);
+        Option::updateOrCreate(['id' => $id], $request->all());
+        Flash::success('保存成功!');
+        return $this->getItemsUrl();
+    }
+
+    /**
      * Edit array values.
      *
      * @return $this
@@ -139,12 +166,23 @@ class OptionController extends Controller
     }
 
     /**
+     * Get items url.
+     *
+     * @return mixed
+     */
+    private function getItemsUrl()
+    {
+        return Redirect::to('/manage/option/items');
+    }
+
+
+    /**
      * Confirm it is unique.
      *
-     * @param ArrayRequest $request
+     * @param Request $request
      * @param $id
      */
-    private function uniqueKey(ArrayRequest $request, $id)
+    private function uniqueKey(Request $request, $id)
     {
         if (! Option::find($id) || Option::find($id)->key != $request->get('key')) {
             $this->validate($request, [

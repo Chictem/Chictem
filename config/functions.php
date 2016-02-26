@@ -172,3 +172,21 @@ if (! function_exists('is_json')) {
         return (json_last_error() == JSON_ERROR_NONE);
     }
 }
+
+
+if (! function_exists('array_excepts')) {
+    /**
+     * Delete element from array which in except.
+     *
+     * @param $array
+     * @param $except
+     * @return $array
+     */
+    function array_excepts($array, $except)
+    {
+        foreach ($except as $item) {
+            unset($array[array_search($item, $array)]);
+        }
+        return $array;
+    }
+}

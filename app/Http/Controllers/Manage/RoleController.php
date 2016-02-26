@@ -105,7 +105,7 @@ class RoleController extends Controller
     public function postUpdatePerms(Request $request, $id)
     {
         $role = Role::find($id);
-        if($role->perms()->sync($request->get('permissions'))) {
+        if($role->perms()->sync($request->get('permissions', []))) {
             Flash::success('修改成功!');
         } else {
             Flash::error('修改失败!');
