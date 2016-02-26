@@ -43,6 +43,17 @@ class Option extends BaseModel
     }
 
     /**
+     * Deletable default to 1.
+     *
+     * @param $deletable
+     */
+    public function setDeletableAttribute($deletable)
+    {
+        $deletable = $deletable === 0 ? $deletable : 1;
+        $this->attributes['deletable'] = $deletable;
+    }
+
+    /**
      * Get option item query.
      *
      * @param $query

@@ -27,7 +27,8 @@ class OptionController extends Controller
      */
     private $option_items = [
         'title',
-        'description'
+        'subtitle',
+        'description',
     ];
 
     /**
@@ -135,15 +136,19 @@ class OptionController extends Controller
      * @param $id
      * @return mixed
      */
-    public function getDeleteArray($id)
+    public function getDeleteItem($id)
     {
         $option = Option::find($id);
+        if (!$option->deletable) {
+            Flash::error('该配置项不能删除!');
+            return Redirect::back();
+        }
         if ($option->delete()) {
             Flash::success('删除成功!');
         } else {
             Flash::error('删除失败!');
         }
-        return $this->getArrayUrl();
+        return Redirect::back();
     }
 
     /**

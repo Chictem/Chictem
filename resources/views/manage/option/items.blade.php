@@ -19,7 +19,7 @@
                         <div class="row">
                             @foreach($items as $index => $item)
                                 <div class="col-md-6">
-                                    {!! Form::open(['url' => url('/manage/option/items'), 'class' => 'form-horizontal item-form']) !!}
+                                    {!! Form::open(['url' => url('/manage/option/items'), 'class' => 'form-horizontal option-form']) !!}
                                     {!! Form::hidden('id', $item->id) !!}
                                     @foreach($item->attrs() as $attr)
                                         <div class="form-group">
@@ -33,7 +33,13 @@
                                     @endforeach
                                     <div class="form-group">
                                         <div class="col-sm-8 col-sm-offset-3">
-                                            {!! Form::submit('保存', ['class' => 'btn btn-primary btn-sm']) !!}
+                                            <button type="submit" class="btn btn-sm btn-primary"><i
+                                                        class="fa fa-check"></i> 保存
+                                            </button>
+                                            <div target="{{ url('/manage/option/delete-item/'.$item->id) }}"
+                                                 class="btn btn-sm btn-danger delete-item">
+                                                <i class="fa fa-remove"></i> 删除
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="hr-line-dashed"></div>
@@ -68,7 +74,9 @@
                                 @endforeach
                                 <div class="form-group">
                                     <div class="col-sm-8 col-sm-offset-3">
-                                        {!! Form::submit('保存', ['class' => 'btn btn-primary btn-sm']) !!}
+                                        <button type="submit" class="btn btn-sm btn-primary"><i
+                                                    class="fa fa-check"></i> 保存
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>

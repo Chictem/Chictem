@@ -13,8 +13,7 @@ class BaseModel extends Model
      */
     public function attrs($except = ['id', 'created_at', 'updated_at']) {
         $attributes = $this->getAttributes();
-        $attributes = array_keys($attributes);
-        $attributes = array_excepts($attributes, $except);
+        $attributes = array_excepts(array_keys($attributes), $except);
         return $attributes;
     }
 

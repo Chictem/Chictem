@@ -62,8 +62,8 @@
                                             <button type="submit" class="btn btn-sm btn-primary"><i
                                                         class="fa fa-check"></i> 保存
                                             </button>
-                                            <div href="#" target="{{ url('/manage/option/delete-array/'.$array->id) }}"
-                                               class="btn btn-sm btn-danger delete-array">
+                                            <div target="{{ url('/manage/option/delete-item/'.$array->id) }}"
+                                               class="btn btn-sm btn-danger delete-item">
                                                 <i class="fa fa-remove"></i> 删除
                                             </div>
                                         </div>
