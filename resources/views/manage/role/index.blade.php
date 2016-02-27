@@ -7,7 +7,6 @@
                 <div class="ibox">
                     <div class="ibox-title">
                         <h5>所有角色</h5>
-
                         <div class="ibox-tools">
                         </div>
                     </div>
@@ -26,7 +25,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="project-list">
                             <table class="table table-hover">
                                 <tbody>

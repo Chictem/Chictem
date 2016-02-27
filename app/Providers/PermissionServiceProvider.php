@@ -36,8 +36,12 @@ class PermissionServiceProvider extends ServiceProvider
         View::composer([
             'manage.role.show',
         ], function ($view) {
+            $groups = Permission::distinct()->lists('group');
+            foreach ($groups as $group) {
+                $permission_groups[$group] = Permission::where('group', $group)->get();
+            }
             $view->with([
-                'permissions' => Permission::all()
+                'permission_groups' => $permission_groups
             ]);
         });
     }

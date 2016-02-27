@@ -15,62 +15,18 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div id='external-events'>
-                            <p>可拖动的活动</p>
+                        <h3>{{ $role->name }}
+                            <small>{{ $role->display_name }}</small>
+                        </h3>
+                        <p>
+                            <i class="fa fa-magic"></i>
+                            描述:<br> {{ $role->description }}
+                        </p>
 
-                            <div class='external-event navy-bg'>确定活动目标</div>
-                            <div class='external-event navy-bg'>各部门职责及分工</div>
-                            <div class='external-event navy-bg'>案例分享</div>
-                            <div class='external-event navy-bg'>xxx</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-9">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>权限管理</h5>
-
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="calendar.html#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="calendar.html#">选项1</a>
-                                </li>
-                                <li><a href="calendar.html#">选项2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        {!! Form::open(['url' => url('/manage/role/update-perms/'.$role->id), 'class' => 'form-horizontal']) !!}
-                        <div class="form-group">
-                            {!! Form::label('title', '编辑权限', ['class' => 'control-label col-md-1 text-center']) !!}
-                            <div class="col-md-10 col-md-offset-1 p-t-sm">
-                                <div class="row">
-                                    @foreach($permissions as $permission)
-                                        <div class="col-md-3 i-checks m-b-md">
-                                            {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
-                                            {{ $permission->display_name }}
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                        <div class="hr-line-dashed"></div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2 p-l-none">
-                                {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
+                        <p>
+                            <i class="fa fa-clock-o"></i>
+                            创建时间:<br> {{ $role->created_at }}
+                        </p>
                     </div>
                 </div>
                 <div class="ibox float-e-margins">
@@ -100,7 +56,67 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-9">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>权限管理</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="calendar.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="calendar.html#">选项1</a>
+                                </li>
+                                <li><a href="calendar.html#">选项2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {!! Form::open(['url' => url('/manage/role/update-perms/'.$role->id), 'class' => 'form-horizontal']) !!}
+                        <div class="form-group">
+                            {!! Form::label('title', '编辑', ['class' => 'control-label col-md-1 text-center']) !!}
+                            <div class="col-md-10 col-md-offset-1 p-t-sm">
+                                <div class="row">
+                                    @foreach($permission_groups as $group => $permissions)
+                                        <div class="col-md-12 m-b-sm">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center"><h3>{{ @$groups[$group] }}</h3></div>
+                                            </div>
+                                            <div class="hr-line-dashed"></div>
+                                            <div class="row m-l-xs text-center">
+                                                @foreach($permissions as $permission)
+                                                    <div class="col-sm-6 col-md-3 col-xs-12 i-checks m-t-sm m-b-sm">
+                                                        {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
+                                                        {{ $permission->display_name }}
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="hr-line-dashed"></div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-2 text-center">
+                                    {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
+    </div>
     </div>
     @include('support.icheck')
 @endsection

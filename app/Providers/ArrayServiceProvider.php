@@ -15,6 +15,7 @@ class ArrayServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->composeOptionsColumns();
+        $this->composePermissionGroups();
     }
 
     /**
@@ -37,6 +38,20 @@ class ArrayServiceProvider extends ServiceProvider
         ], function ($view) {
             $view->with([
                 'columns' => $this->getOptionValueByKey('options_columns')
+            ]);
+        });
+    }
+
+    /**
+     *  compose permission_groups variable.
+     */
+    private function composePermissionGroups()
+    {
+        View::composer([
+            'manage.role.show',
+        ], function ($view) {
+            $view->with([
+                'groups' => $this->getOptionValueByKey('permission_groups')
             ]);
         });
     }
