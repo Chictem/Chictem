@@ -155,6 +155,7 @@ return [
          * */
         Laracasts\Flash\FlashServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -181,6 +182,7 @@ return [
         'Cookie'    => Illuminate\Support\Facades\Cookie::class,
         'Crypt'     => Illuminate\Support\Facades\Crypt::class,
         'DB'        => Illuminate\Support\Facades\DB::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Eloquent'  => Illuminate\Database\Eloquent\Model::class,
         'Event'     => Illuminate\Support\Facades\Event::class,
         'File'      => Illuminate\Support\Facades\File::class,
@@ -191,6 +193,7 @@ return [
         'Lang'      => Illuminate\Support\Facades\Lang::class,
         'Log'       => Illuminate\Support\Facades\Log::class,
         'Mail'      => Illuminate\Support\Facades\Mail::class,
+        'Option'    => App\Model\Option::class,
         'Password'  => Illuminate\Support\Facades\Password::class,
         'Queue'     => Illuminate\Support\Facades\Queue::class,
         'Redirect'  => Illuminate\Support\Facades\Redirect::class,
@@ -208,7 +211,6 @@ return [
         'Html'		=> Illuminate\Html\HtmlFacade::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-        'Option'    => App\Model\Option::class,
 
     ],
 
