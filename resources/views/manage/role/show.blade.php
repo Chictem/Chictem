@@ -81,35 +81,34 @@
                     </div>
                     <div class="ibox-content">
                         {!! Form::open(['url' => url('/manage/role/update-perms/'.$role->id), 'class' => 'form-horizontal']) !!}
-                        <div class="form-group">
-                            {!! Form::label('title', '编辑', ['class' => 'control-label col-md-1 text-center']) !!}
-                            <div class="col-md-10 col-md-offset-1 p-t-sm">
+                        @foreach($permission_groups as $group => $permissions)
+                            <div class="form-group">
                                 <div class="row">
-                                    @foreach($permission_groups as $group => $permissions)
-                                        <div class="col-md-12 m-b-sm">
-                                            <div class="row">
-                                                <div class="col-md-12 text-center"><h3>{{ @$groups[$group] }}</h3></div>
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
-                                            <div class="row m-l-xs text-center">
-                                                @foreach($permissions as $permission)
-                                                    <div class="col-sm-6 col-md-3 col-xs-12 i-checks m-t-sm m-b-sm">
-                                                        {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
-                                                        {{ $permission->display_name }}
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <div class="hr-line-dashed"></div>
+                                    <div class="col-md-2">
+                                        <div class="row m-t-xs">
+                                            <div class="col-md-12 text-center"><h3>{{ @$groups[$group] }}</h3></div>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="row m-l-xs text-center">
+                                            @foreach($permissions as $permission)
+                                                <div class="col-sm-6 col-md-3 col-xs-12 i-checks m-t-sm m-b-sm">
+                                                    {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
+                                                    {{ $permission->display_name }}
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-10 col-sm-offset-2 text-center">
-                                    {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
-                                </div>
+                            <div class="hr-line-dashed"></div>
+                        @endforeach
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2 text-center">
+                                {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}
                             </div>
                         </div>
+
                     </div>
                     <div class="hr-line-dashed"></div>
                     {!! Form::close() !!}
