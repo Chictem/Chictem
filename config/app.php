@@ -158,6 +158,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -190,6 +191,7 @@ return [
         'File'      => Illuminate\Support\Facades\File::class,
         'Gate'      => Illuminate\Support\Facades\Gate::class,
         'Hash'      => Illuminate\Support\Facades\Hash::class,
+        'Image'     => Intervention\Image\Facades\Image::class,
         'Input'     => Illuminate\Support\Facades\Input::class,
         'Inspiring' => Illuminate\Foundation\Inspiring::class,
         'Lang'      => Illuminate\Support\Facades\Lang::class,
