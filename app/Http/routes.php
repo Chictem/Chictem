@@ -23,6 +23,7 @@ Route::group(['prefix' => 'manage', 'middleware' => 'auth.manage', 'namespace' =
     Route::resource('role', 'RoleController');
     Route::controller('role', 'RoleController');
     Route::controller('option', 'OptionController');
+    Route::resource('menu', 'MenuController');
 });
 
 Route::group(['prefix' => 'manage', 'namespace' => 'Manage'], function () {

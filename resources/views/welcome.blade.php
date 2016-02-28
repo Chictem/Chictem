@@ -24,7 +24,7 @@
                 display: table-cell;
                 vertical-align: middle;
             }
-            
+
 
             .content {
                 text-align: center;

@@ -64,5 +64,15 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
         return $this->hasMany('App\Model\Page');
     }
 
+    /**
+     * Return menus which belong to this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menus()
+    {
+        return $this->hasMany('App\Model\Menu');
+    }
+
 
 }

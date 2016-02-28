@@ -43,6 +43,12 @@
                 </a>
             </li>
             <li>
+                <a href="{{ url('/manage/menu') }}">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">菜单设置</span>
+                </a>
+            </li>
+            <li>
                 <a href="#">
                     <i class="fa fa-home"></i>
                     <span class="nav-gears">高级配置</span>
