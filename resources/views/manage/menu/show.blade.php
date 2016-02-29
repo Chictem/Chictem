@@ -6,7 +6,13 @@
             <div class="col-sm-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5><i class="fa fa-fire"></i>菜单详情</h5>
+                        <h5>菜单详情</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="ibox-content">
                         <h5>菜单默认图</h5>
@@ -27,19 +33,24 @@
             <div class="col-sm-9">
                 <div class="ibox animate">
                     <div class="ibox-title">
-                        <h5><i class="fa fa-map-o"></i>菜单目录</h5>
-                        {!! Form::submit('保存', ['class' => 'btn btn-primary btn-xs pull-right', 'form' => 'menu-menu-form']) !!}
+                        <h5>菜单目录</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="ibox-content">
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="m-b-lg">
-                                    每个列表可以自定义标准的CSS样式。每个单元响应所以你可以给它添加其他元素来改善功能列表。
+                                    可以通过拖拽来改变菜单的顺序,同时可以调节菜单层级关系
                                 </p>
                                 
                                 <div class="dd drag-menu" id="nestable-personal">
                                     <ol class="dd-list">
-                                        @if (is_array($menu->content))
+                                        @if(is_array($menu->content))
                                             @foreach($menu->content as $item)
                                                 <li class="dd-item" data-id="{{ @$item->id }}"
                                                     data-icon="{{ @$item->icon }}" data-name="{{ @$item->name }}"
@@ -82,27 +93,34 @@
                                 </div>
                                 @include('manage.menu.item')
                                 <form role="form" class="form-inline m-t-sm">
-                                    <div class="form-menu">
+                                    <div class="form-group">
                                         <label class="sr-only">图标</label>
                                         <input type="text" placeholder="请输入图标" name="icon" class="form-control"
                                                required>
                                     </div>
-                                    <div class="form-menu">
+                                    <div class="form-group">
                                         <label class="sr-only">名称</label>
                                         <input type="text" placeholder="请输入名称" name="name" class="form-control"
                                                required>
                                     </div>
-                                    <div class="form-menu">
+                                    <div class="form-group">
                                         <label class="sr-only">链接</label>
                                         <input type="text" placeholder="请输入链接" name="link" class="form-control"
                                                required>
                                     </div>
-                                    <div class="form-menu">
+                                    <div class="form-group">
                                         <button class="btn btn-primary btn-xs add-dd-list" type="button">添加</button>
                                     </div>
                                 </form>
-                                {!! Form::open(['url' => url('/manage/menu/'.$menu->id), 'method' => 'PUT', 'id' => 'menu-menu-form']) !!}
+                                {!! Form::open(['url' => url('/manage/menu/'.$menu->id), 'class' => 'form-horizontal', 'method' => 'PUT', 'id' => 'menu-menu-form']) !!}
                                 {!! Form::hidden('content', null, ['id' => 'menu-output']) !!}
+                                <div class="form-group m-t-md">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check"></i>
+                                            保存
+                                        </button>
+                                    </div>
+                                </div>
                                 {!! Form::close() !!}
                             </div>
                         </div>

@@ -1,6 +1,7 @@
 <div id="support-nestable">
     {!! Html::script('/js/plugins/nestable/jquery.nestable.js') !!}
     <script>
+        var $item = $('#item-template');
         jQuery.fn.dragMenu = function() {
             var ele = $(this);
             var updateOutput = function(e) {
@@ -16,11 +17,10 @@
                 $.each(data, function(key, value) {
                     var e = $('input[name="' + value + '"]');
                     if (!e.val()) {
-                        e.addClass('error-input');
+                        e.closest('.form-group').addClass('has-error');
                         return -1;
                     }
                     if (key == data.length - 1) {
-                        $('.error-input').removeClass('error-input');
                         callback();
                     }
                 });
@@ -45,7 +45,7 @@
             updateOutput(ele.data("output", '#menu-output'));
             ele.siblings('form').on('click', '.add-dd-list', function() {
                 validate(['icon', 'name', 'link'], function() {
-                    var dd_item = $('#item-template').clone().removeClass('hidden').attr('id', '');
+                    var dd_item = $item.clone().removeClass('hidden').removeAttr('id');
                     var icon = $('input[name="icon"]').val();
                     var name = $('input[name="name"]').val();
                     var link = $('input[name="link"]').val();
@@ -53,6 +53,10 @@
                     dd_item.appendTo(ele.children('ol'));
                     ele.trigger('change');
                 });
+            }).on('input', 'input', function() {
+                if ($(this).val()) {
+                    $(this).closest('.form-group').removeClass('has-error');
+                }
             });
             ele.on('mouseenter', '.drop-down', function() {
                 $(this).parents('.dd-handle').siblings('.option-panel').slideDown();

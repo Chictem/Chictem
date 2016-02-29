@@ -1,7 +1,7 @@
 <div class="option-panel none">
-    <form role="form" class="form-inline">
+    <form role="form" class="form-inline form-group-sm">
         <input type="text" placeholder="请输入图标"
-               class="form-control edit-icon"
+               class="form-control form-control-sm edit-icon"
                value="{{ $icon }}">
         <input type="text" placeholder="请输入名称"
                class="form-control edit-name"
