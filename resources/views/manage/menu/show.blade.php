@@ -15,18 +15,51 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <h5>菜单默认图</h5>
-                        <img src="{{ $menu->banner }}" class="img-responsive">
-                        <h5>菜单标识</h5>
-                        
-                        <p>{{ $menu->type }}</p>
-                        <h5>菜单名称</h5>
-                        
-                        <p>{{ $menu->title }}</p>
-                        <h5>菜单简介</h5>
-                        
-                        <p>{{ $menu->describe }}</p>
-                    
+                        <h3>{{ $menu->name }}
+                            <small>{{ $menu->display_name }}</small>
+                        </h3>
+                        <p>
+                            <i class="fa fa-magic"></i>
+                            描述<br> {{ $menu->description }}
+                        </p>
+                        <p>
+                            <i class="fa fa-clock-o"></i>
+                            创建时间<br> {{ $menu->created_at }}
+                        </p>
+                        <p>
+                            <i class="fa fa-user"></i>
+                            创建用户<br> {{ $menu->user->name }}
+                        </p>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>菜单修改</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        {!! Form::model($menu, ['url' => url('/manage/menu/'.$menu->id), 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+                        @foreach($menu->attrs(['content', 'user_id']) as $attr)
+                            <div class="form-group form-group-sm">
+                                {!! Form::label($attr, $columns[$attr], ['class' => 'col-sm-4 control-label']) !!}
+                                <div class="col-sm-7">
+                                    {!! Form::text($attr, null, ['class' => 'form-control', 'placeholder' => $columns[$attr]]) !!}
+                                </div>
+                            </div>
+                        @endforeach
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-xs btn-primary"><i class="fa fa-check"></i>
+                                    保存
+                                </button>
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -91,7 +124,27 @@
                                         @endif
                                     </ol>
                                 </div>
-                                @include('manage.menu.item')
+                                <li class="dd-item hidden" data-id="" data-icon="" data-name="" data-link="" id="item-template">
+                                    <div class="dd-handle">
+                                        <span class="label label-primary"></span>
+                                        <span class="handle-name"></span>
+                                        <span class="handle-link"></span>
+                                        <span class="pull-right drop-down"><i class="fa fa-chevron-down"></i></span>
+                                    </div>
+                                    <div class="option-panel none">
+                                        <form role="form" class="form-inline">
+                                            <input type="text" placeholder="请输入图标" class="form-control edit-icon" value="">
+                                            <input type="text" placeholder="请输入名称" class="form-control edit-name" value="">
+                                            <input type="text" placeholder="请输入链接" class="form-control edit-link" value="">
+                                            <button class="btn btn-primary btn-xs change-dd-list" type="button">修改
+                                            </button>
+                                            <button class="btn btn-danger btn-xs del-dd-list" type="button">删除
+                                            </button>
+                                            <button class="btn btn-primary btn-xs up-dd-list" type="button">收起
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
                                 <form role="form" class="form-inline m-t-sm">
                                     <div class="form-group">
                                         <label class="sr-only">图标</label>

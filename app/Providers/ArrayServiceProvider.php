@@ -16,6 +16,7 @@ class ArrayServiceProvider extends ServiceProvider
     {
         $this->composeOptionsColumns();
         $this->composePermissionGroups();
+        $this->composeMenuColumns();
     }
 
     /**
@@ -38,6 +39,20 @@ class ArrayServiceProvider extends ServiceProvider
         ], function ($view) {
             $view->with([
                 'columns' => $this->getOptionValueByKey('options_columns')
+            ]);
+        });
+    }
+
+    /**
+     *  compose menu_columns variable.
+     */
+    private function composeMenuColumns()
+    {
+        View::composer([
+            'manage.menu.show',
+        ], function ($view) {
+            $view->with([
+                'columns' => $this->getOptionValueByKey('menu_columns')
             ]);
         });
     }

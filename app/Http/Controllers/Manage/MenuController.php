@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
+use App\Http\Requests\MenuRequest;
 use App\Model\Menu;
 use Illuminate\Http\Request;
 
@@ -80,7 +81,7 @@ class MenuController extends Controller
      * @param  Menu $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(MenuRequest $request, Menu $menu)
     {
         if ($menu->update($request->all())) {
             Flash::success('保存成功!');

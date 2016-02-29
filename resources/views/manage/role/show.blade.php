@@ -20,15 +20,16 @@
                         </h3>
                         <p>
                             <i class="fa fa-magic"></i>
-                            描述:<br> {{ $role->description }}
+                            描述<br> {{ $role->description }}
                         </p>
 
                         <p>
                             <i class="fa fa-clock-o"></i>
-                            创建时间:<br> {{ $role->created_at }}
+                            创建时间<br> {{ $role->created_at }}
                         </p>
                     </div>
                 </div>
+
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>后台菜单管理</h5>
