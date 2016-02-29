@@ -149,13 +149,13 @@ return [
         App\Providers\PermissionServiceProvider::class,
         App\Providers\ArrayServiceProvider::class,
         App\Providers\InstanceProvider::class,
+        App\Providers\EntrustCustomServiceProvider::class,
 
         /*
          * External Libs
          * */
         Laracasts\Flash\FlashServiceProvider::class,
         Laracasts\Generators\GeneratorsServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
