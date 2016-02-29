@@ -44,11 +44,12 @@
             }).on("change", updateOutput);
             updateOutput(ele.data("output", '#menu-output'));
             ele.siblings('form').on('click', '.add-dd-list', function() {
-                validate(['icon', 'name', 'link'], function() {
+                var $form = $(this).parents('form');
+                validate(['_icon', '_name', '_link'], function() {
                     var dd_item = $item.clone().removeClass('hidden').removeAttr('id');
-                    var icon = $('input[name="icon"]').val();
-                    var name = $('input[name="name"]').val();
-                    var link = $('input[name="link"]').val();
+                    var icon = $form.find('input[name="_icon"]').val();
+                    var name = $form.find('input[name="_name"]').val();
+                    var link = $form.find('input[name="_link"]').val();
                     updateItem(dd_item, icon, name, link);
                     dd_item.appendTo(ele.children('ol'));
                     ele.trigger('change');
