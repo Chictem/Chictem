@@ -66,7 +66,6 @@ class MenuController extends Controller
         return view($this->getManageView('show'))->withMenu($menu);
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -87,11 +86,16 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  Menu $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Menu $menu)
     {
-        //
+        if ($menu->delete()) {
+            Flash::success('删除成功!');
+        } else {
+            Flash::error('删除失败!');
+        }
+        return Redirect::back();
     }
 }

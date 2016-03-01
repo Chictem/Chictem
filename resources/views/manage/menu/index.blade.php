@@ -7,6 +7,7 @@
                 <div class="ibox">
                     <div class="ibox-title">
                         <h5>所有菜单</h5>
+
                         <div class="ibox-tools">
                             @permission('add-menu')
                             <a href="{{ url('/manage/menu/create') }}" class="btn btn-xs btn-primary">新建菜单</a>
@@ -48,6 +49,9 @@
                                         <td class="project-actions">
                                             <a href="{{ url('/manage/menu/'.$menu->id) }}" class="btn btn-white btn-sm"><i
                                                         class="fa fa-angle-double-right"></i>详情</a>
+                                            {!! Form::open(['url' => url('/manage/menu/'.$menu->id), 'class' => 'form-inline', 'method' => 'DELETE']) !!}
+                                            <button type="button" class="btn btn-sm btn-danger delete-check"><i class="fa fa-remove"></i>删除</button>
+                                            {!! Form::close() !!}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -59,4 +63,5 @@
             </div>
         </div>
     </div>
+    @include('support.swal')
 @endsection
