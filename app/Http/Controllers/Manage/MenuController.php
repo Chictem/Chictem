@@ -14,6 +14,15 @@ use Laracasts\Flash\Flash;
 
 class MenuController extends Controller
 {
+
+    /**
+     * Controller construct method.
+     */
+    public function __construct()
+    {
+        $this->middleware('permission:add-menu', ['only' => ['create', 'store']]);
+    }
+
     /**
      * View space.
      *
