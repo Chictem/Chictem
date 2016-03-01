@@ -56,6 +56,12 @@ class Handler extends ExceptionHandler
         return parent::render($request, $e);
     }
 
+    /**
+     * Get manage or front views.
+     *
+     * @param $request
+     * @return mixed
+     */
     public function getViewSpace($request)
     {
         $spaces = ['manage', 'front'];
