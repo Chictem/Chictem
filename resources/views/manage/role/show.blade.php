@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-10">
-                                        <div class="row m-l-xs text-center">
+                                        <div class="row m-l-xs">
                                             @foreach($permissions as $permission)
                                                 <div class="col-sm-6 col-md-3 col-xs-12 i-checks m-t-sm m-b-sm">
                                                     {!! Form::checkbox('permissions[]', $permission->id, $role->hasPerm($permission)) !!}
