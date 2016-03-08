@@ -20,8 +20,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'manage', 'middleware' => 'auth.manage', 'namespace' => 'Manage'], function () {
     Route::controller('home', 'HomeController');
-    Route::resource('role', 'RoleController');
     Route::controller('role', 'RoleController');
+    Route::resource('role', 'RoleController');
     Route::controller('option', 'OptionController');
     Route::resource('menu', 'MenuController');
 });

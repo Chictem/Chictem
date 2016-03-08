@@ -25,7 +25,21 @@ class AppServiceProvider extends ServiceProvider
             $value = preg_replace('/(?<=\s)@endcase(?=\s)/', '<?php break; ?>', $value);
             return $value;
         });
-
+        Blade::extend(function ($value) {
+            $value = preg_replace('/(?<=\s)@me\((.*)\)(?=\s)/', '<?php if(is_me(${1})) { ?>', $value);
+            $value = preg_replace('/(?<=\s)@endme(?=\s)/', '<?php } ?>', $value);
+            return $value;
+        });
+        Blade::extend(function ($value) {
+            $value = preg_replace('/(?<=\s)@auth(?=\s)/', '<?php if(Auth::user()) { ?>', $value);
+            $value = preg_replace('/(?<=\s)@endauth(?=\s)/', '<?php } ?>', $value);
+            return $value;
+        });
+        Blade::extend(function ($value) {
+            $value = preg_replace('/(?<=\s)@guest(?=\s)/', '<?php if(!Auth::user()) { ?>', $value);
+            $value = preg_replace('/(?<=\s)@endguest(?=\s)/', '<?php } ?>', $value);
+            return $value;
+        });
     }
 
     /**
