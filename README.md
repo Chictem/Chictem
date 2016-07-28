@@ -1,2 +1,2 @@
-# chictem
-Chictem is a PHP CMS based on Laravel develped by Germey
+# Chictem
+Chictem is a PHP CMS based on Laravel developed by Germey

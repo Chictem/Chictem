@@ -4,3 +4,6 @@ Homestead.yaml
 Homestead.json
 .env
 /.idea
+/public/manage
+/public/vendor
+/public/themes
