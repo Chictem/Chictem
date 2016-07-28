@@ -1,9 +1,11 @@
 {
-  "name": "laravel/laravel",
-  "description": "The Laravel Framework.",
+  "name": "chictem/chictem",
+  "description": "The Chictem CMS",
   "keywords": [
     "framework",
-    "laravel"
+    "chictem",
+    "cms",
+    "germey"
   ],
   "license": "MIT",
   "type": "project",
