@@ -1,18 +1,21 @@
 import gulp from 'gulp';
 import less from 'gulp-less';
 import rename from "gulp-rename";
-import del from 'del';
+import minifycss from 'gulp-minify-css';
+import clean from 'gulp-clean';
 import gulpLoadPlugins from 'gulp-load-plugins';
 const $ = gulpLoadPlugins();
 
 const bower_components_path = 'vendor/bower_components/';
 const asset_components_path = 'resources/assets/';
+const vendor_path = bower_components_path + '/**/*.*';
 const images_suffix = 'jpg,png,jpeg,bmp,gif,tiff';
 const fonts_suffix = 'eot,svg,ttf,woff,woff2';
 const scripts_path = asset_components_path + '**/*.js';
 const images_path = asset_components_path + '**/*.{' + images_suffix + '}';
 const fonts_path = asset_components_path + '**/*.{' + fonts_suffix + '}';
 const extra_path = [asset_components_path + '**/*', '!' + asset_components_path + '**/*.{scss,sass,less,js,' + images_suffix + ',' + fonts_suffix + '}'];
+const clean_path = ['public/vendor', 'public/manage/', 'public/themes'];
 var sass_path = [];
 var less_path = [];
 
@@ -31,12 +34,8 @@ if (themes) {
 }
 
 gulp.task('vendor', () => {
-    return gulp.src(bower_components_path + '/*/dist/**')
+    return gulp.src(vendor_path)
         .pipe($.plumber())
-        .pipe(rename((path) => {
-            path.dirname = path.dirname.replace(/\/dist/g, '');
-            path.basename = path.basename.replace(/^dist$/, '');
-        }))
         .pipe(gulp.dest('public/vendor'));
 });
 
@@ -101,7 +100,10 @@ gulp.task('extra', () => {
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('clean', del.bind(null, ['/public/vendor', '/public/manage', '/public/themes']));
+gulp.task('clean', () => {
+    return gulp.src(clean_path, {read: false})
+        .pipe(clean());
+});
 
 gulp.task('build', ['vendor', 'sass', 'less', 'images', 'fonts', 'scripts', 'extra']);
 

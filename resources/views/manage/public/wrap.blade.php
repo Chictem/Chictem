@@ -1,4 +1,4 @@
-@extends('manage.layout.germy')
+@extends('manage.layout.app')
 @section('wrap')
 <div id="page-wrapper" class="gray-bg dashbard-1">
     <div class="row border-bottom">

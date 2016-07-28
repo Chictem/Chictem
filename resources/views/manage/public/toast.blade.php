@@ -1,6 +1,6 @@
 <div id="toast">
-    {!! Html::style('/css/plugins/toastr/toastr.min.css') !!}
-    {!! Html::script('/js/plugins/toastr/toastr.min.js') !!}
+    {!! Html::style(plugins('/toastr/css/toastr.min.css')) !!}
+    {!! Html::script(plugins('/toastr/js/toastr.min.js')) !!}
     <script>
         toastr.options = {
             "closeButton": true,

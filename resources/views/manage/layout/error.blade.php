@@ -12,17 +12,17 @@
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
     <link rel="shortcut icon" href="favicon.ico">
-    {!! Html::style('/css/common/bootstrap.min.css') !!}
-    {!! Html::style('/css/plugins/font-awesome/font-awesome.min.css') !!}
-    {!! Html::style('/css/common/animate.min.css') !!}
-    {!! Html::style('/css/common/hplus.css') !!}
+    {!! Html::style(vendor('bootstrap/dist/css/bootstrap.min.css')) !!}
+    {!! Html::style(vendor('font-awesome/css/font-awesome.min.css')) !!}
+    {!! Html::style(manage('css/animate.min.css')) !!}
+    {!! Html::style(manage('css/hplus.css')) !!}
+
 </head>
 
 <body class="gray-bg">
 @yield('main')
-
-{!! Html::script('/js/common/jquery.min.js') !!}
-{!! Html::script('/js/common/bootstrap.min.js') !!}
+{!! Html::script(vendor('jquery/dist/jquery.min.js')) !!}
+{!! Html::script(vendor('bootstrap/dist/js/bootstrap.min.js')) !!}
 </body>
 
 </html>

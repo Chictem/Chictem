@@ -3,7 +3,7 @@
 @section('main')
     <div>
         <div class="m-b-md">
-            <img alt="image" class="img-circle circle-border" src="/img/a1.jpg">
+            <img alt="image" class="img-circle circle-border" src="/manage/img/a1.jpg">
         </div>
         <h3></h3>
 

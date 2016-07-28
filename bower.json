@@ -20,6 +20,8 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "jquery-ui": "1.12.0",
+    "font-awesome": "~4.4.0"
   }
 }
