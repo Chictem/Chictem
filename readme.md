@@ -1,2 +1,2 @@
-# GermyCMS Framework
-GermyCMS Framework Based on Laravel Developed by Germy
+# Chictem
+Chictem is a PHP CMS based on Laravel developed by Germey
