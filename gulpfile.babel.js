@@ -117,3 +117,4 @@ gulp.task('watch', () => {
     gulp.watch(fonts_path, ['fonts']);
     gulp.watch(extra_path, ['extra']);
 });
+
