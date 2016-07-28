@@ -2,7 +2,7 @@
 
 namespace App\Foundation\Manage;
 
-use App\Model\PasswordReset;
+use App\Models\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;

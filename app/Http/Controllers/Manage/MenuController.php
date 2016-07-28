@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Requests\MenuRequest;
-use App\Model\Menu;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

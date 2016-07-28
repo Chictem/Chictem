@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Manage;
 
 use App\Http\Requests\ArrayRequest;
 use App\Http\Requests\OptionRequest;
-use App\Model\Option;
+use App\Models\Option;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;

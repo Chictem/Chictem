@@ -11,8 +11,8 @@
 |
 */
 
-Route::model('menu', 'App\Model\Menu');
-Route::model('role', 'App\Model\Role');
+Route::model('menu', 'App\Models\Menu');
+Route::model('role', 'App\Models\Role');
 
 Route::get('/', function () {
     return view('welcome');

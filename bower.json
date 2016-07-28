@@ -1,0 +1,25 @@
+{
+  "name": "Chictem",
+  "description": "Front Packages of Chictem",
+  "main": "",
+  "authors": [
+    "Germey cqc@cuiqingcai.com"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "chictem"
+  ],
+  "homepage": "http://chictem.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}

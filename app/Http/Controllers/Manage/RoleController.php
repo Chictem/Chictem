@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Model\Menu;
+use App\Models\Menu;
 use Illuminate\Http\Request;
-use App\Model\Role;
+use App\Models\Role;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;

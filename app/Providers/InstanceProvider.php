@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Model\Option;
+use App\Models\Option;
 use Illuminate\Support\ServiceProvider;
 use View;
 

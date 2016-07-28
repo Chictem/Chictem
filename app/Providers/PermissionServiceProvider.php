@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Model\Permission;
+use App\Models\Permission;
 use Illuminate\Support\ServiceProvider;
 use View;
 
