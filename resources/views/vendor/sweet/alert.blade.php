@@ -1,7 +1,7 @@
 {!! Html::style(plugins('sweetalert/css/sweetalert.css')) !!}
 {!! Html::script(plugins('sweetalert/js/sweetalert.min.js')) !!}
 
-@if(Session::has('sweet_alert'))
+@if(Session::has('sweet_alert.alert'))
     <script>
         swal({
             text: "{!! Session::get('sweet_alert.text') !!}",

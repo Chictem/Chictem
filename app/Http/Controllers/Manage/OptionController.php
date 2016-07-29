@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
+use UxWeb\SweetAlert\SweetAlert;
 
 class OptionController extends Controller
 {
@@ -66,6 +67,7 @@ class OptionController extends Controller
         foreach ($options as $key => $value) {
             Option::item($key)->update(['value' => $value]);
         }
+	    SweetAlert::success('提示信息', '修改成功');
         Flash::success('修改成功!');
         return $this->getEditUrl();
     }

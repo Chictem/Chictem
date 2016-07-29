@@ -22,8 +22,6 @@
         }
     </script>
     @if(Session::has('flash_notification.message'))
-
-        {{--{{ session()->get('flash_notification.message') }}--}}
         @define $kind = Session::get('flash_notification.level')
         @define $kind = $kind == 'danger'?'error':$kind
         <script>

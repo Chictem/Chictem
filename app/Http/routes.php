@@ -11,10 +11,13 @@
 |
 */
 
+use Laracasts\Flash\Flash;
+
 Route::model('menu', 'App\Models\Menu');
 Route::model('role', 'App\Models\Role');
 
 Route::get('/', function () {
+	Flash::success('ssss');
     return view('welcome');
 });
 

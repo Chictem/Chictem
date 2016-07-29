@@ -106,6 +106,7 @@
     <div class="row J_mainContent" id="content-main">
         <div class="main">
             @include('manage.public.toast')
+            @include('sweet::alert')
             @yield('main')
         </div>
     </div>
