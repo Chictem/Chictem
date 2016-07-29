@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "af9c782bfbc338e560c298ef398c4b0d",
-    "content-hash": "4af707fd13be2ff10de7111b8e75b5e2",
+    "hash": "f0a16aaa5188bda162d78c349260652f",
+    "content-hash": "5976e34b24f581a0f61ec392816a0b3f",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -675,21 +675,25 @@
         },
         {
             "name": "germey/geetest",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Germey/LaravelGeetest.git",
-                "reference": "e690cc5d5e8f212ead902fe7ee4a9162ed10f205"
+                "reference": "89777de509afeb3c9503fa5bd1cf015edb331607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/Germey/LaravelGeetest/e690cc5d5e8f212ead902fe7ee4a9162ed10f205.zip",
-                "reference": "e690cc5d5e8f212ead902fe7ee4a9162ed10f205",
+                "url": "https://packagist.phpcomposer.com/files/Germey/LaravelGeetest/89777de509afeb3c9503fa5bd1cf015edb331607.zip",
+                "reference": "89777de509afeb3c9503fa5bd1cf015edb331607",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "5.0.*|5.1.*|5.2.*|5.3.*",
                 "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "~4.1"
             },
             "type": "library",
             "extra": {
@@ -718,7 +722,7 @@
                 "geetest",
                 "laravel"
             ],
-            "time": "2016-07-25 17:14:49"
+            "time": "2016-07-26 14:14:27"
         },
         {
             "name": "graham-campbell/markdown",
@@ -2840,6 +2844,52 @@
                 "dump"
             ],
             "time": "2016-06-28 06:24:06"
+        },
+        {
+            "name": "uxweb/sweet-alert",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uxweb/sweet-alert.git",
+                "reference": "45177ff359982a327387ba7fb11e0309ea43187e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/uxweb/sweet-alert/45177ff359982a327387ba7fb11e0309ea43187e.zip",
+                "reference": "45177ff359982a327387ba7fb11e0309ea43187e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/session": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "UxWeb\\SweetAlert\\": "src/SweetAlert/"
+                },
+                "files": [
+                    "src/SweetAlert/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Uziel Bueno",
+                    "email": "ux.webs@gmail.com"
+                }
+            ],
+            "description": "A simple PHP package to show Sweet Alerts with the Laravel Framework",
+            "keywords": [
+                "alert",
+                "laravel",
+                "sweet"
+            ],
+            "time": "2016-07-10 21:08:39"
         },
         {
             "name": "vlucas/phpdotenv",

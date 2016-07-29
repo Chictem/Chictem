@@ -1,6 +1,6 @@
 <div id="toast">
-    {!! Html::style(plugins('/toastr/css/toastr.min.css')) !!}
-    {!! Html::script(plugins('/toastr/js/toastr.min.js')) !!}
+    {!! Html::style(plugins('toastr/css/toastr.min.css')) !!}
+    {!! Html::script(plugins('toastr/js/toastr.min.js')) !!}
     <script>
         toastr.options = {
             "closeButton": true,
@@ -22,10 +22,12 @@
         }
     </script>
     @if(Session::has('flash_notification.message'))
+
+        {{--{{ session()->get('flash_notification.message') }}--}}
         @define $kind = Session::get('flash_notification.level')
         @define $kind = $kind == 'danger'?'error':$kind
         <script>
-            alert('{!! Session::get('flash_notification.message') !!}', '{{ $kind }}');
+            alert('{!! session()->get('flash_notification.message') !!}', '{{ $kind }}');
         </script>
     @endif
     @if(count($errors) > 0)

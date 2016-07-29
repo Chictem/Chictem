@@ -94,7 +94,7 @@ class OptionController extends Controller
         $this->uniqueKey($request, $id);
         Option::updateOrCreate(['id' => $id], $request->all());
         Flash::success('保存成功!');
-        return $this->getItemsUrl();
+        return redirect()->back();
     }
 
     /**

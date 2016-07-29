@@ -103,7 +103,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a1.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a1.jpg">
 
                                 <div class="m-t-xs">
                                     <i class="fa fa-star text-warning"></i>
@@ -121,7 +121,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a2.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a2.jpg">
                             </div>
                             <div class="media-body">
                                 HCY48之音乐大魔王会员专属皮肤已上线，快来一键换装拥有他，宣告你对华晨宇的爱吧！
@@ -133,7 +133,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a3.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a3.jpg">
 
                                 <div class="m-t-xs">
                                     <i class="fa fa-star text-warning"></i>
@@ -151,7 +151,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a4.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a4.jpg">
                             </div>
 
                             <div class="media-body">
@@ -164,7 +164,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a8.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a8.jpg">
                             </div>
                             <div class="media-body">
 
@@ -177,7 +177,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a7.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a7.jpg">
                             </div>
                             <div class="media-body">
                                 这哥们的新视频又来了，创意杠杠滴，帅炸了！
@@ -189,7 +189,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a3.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a3.jpg">
 
                                 <div class="m-t-xs">
                                     <i class="fa fa-star text-warning"></i>
@@ -207,7 +207,7 @@
                     <div class="sidebar-message">
                         <a href="#">
                             <div class="pull-left text-center">
-                                <img alt="image" class="img-circle message-avatar" src="/img/a4.jpg">
+                                <img alt="image" class="img-circle message-avatar" src="/manage/img/a4.jpg">
                             </div>
                             <div class="media-body">
                                 我发起了一个投票 【你认为下午大盘会翻红吗？】
