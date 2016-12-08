@@ -10,7 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
-use UxWeb\SweetAlert\SweetAlert;
+use Germey\SweetAlert\SweetAlert;
 
 class OptionController extends Controller
 {
