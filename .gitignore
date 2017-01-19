@@ -1,9 +1,10 @@
-/vendor
 /node_modules
-Homestead.yaml
-Homestead.json
+/vendor
 .env
+/public/build
+/public/js
+/public/css
+/public/storage
+/storage
 /.idea
-/public/manage
-/public/vendor
-/public/themes
+composer.lock

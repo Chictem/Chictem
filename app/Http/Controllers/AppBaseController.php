@@ -18,12 +18,22 @@ use Response;
  */
 class AppBaseController extends Controller
 {
-    public function sendResponse($result, $message)
+	/**
+	 * @param $result
+	 * @param $message
+	 * @return mixed
+	 */
+	public function sendResponse($result, $message)
     {
         return Response::json(ResponseUtil::makeResponse($message, $result));
     }
 
-    public function sendError($error, $code = 404)
+	/**
+	 * @param $error
+	 * @param int $code
+	 * @return mixed
+	 */
+	public function sendError($error, $code = 404)
     {
         return Response::json(ResponseUtil::makeError($error), $code);
     }
