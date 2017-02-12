@@ -1,10 +1,9 @@
 /node_modules
-/vendor
-.env
-/public/build
-/public/js
-/public/css
 /public/storage
-/storage
+/public/hot
+/storage/*.key
+/vendor
 /.idea
-composer.lock
+Homestead.json
+Homestead.yaml
+.env
