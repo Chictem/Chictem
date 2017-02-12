@@ -9,15 +9,15 @@ return [
 			'message' => '有 :number 位注册用户, 点击查看所有用户列表',
 			'button' => '查看所有用户'
 		],
-		'course' => [
-			'display' => '课程',
-			'message' => '有 :number 门课程, 点击查看所有课程列表',
-			'button' => '查看所有课程'
+		'post' => [
+			'display' => '内容',
+			'message' => '有 :number 篇内容, 点击查看所有内容列表',
+			'button' => '查看所有内容'
 		],
-		'teacher' => [
-			'display' => '讲师',
-			'message' => '有 :number 位讲师, 点击查看所有讲师',
-			'button' => '查看所有讲师'
+		'page' => [
+			'display' => '页面',
+			'message' => '有 :number 个页面, 点击查看所有页面',
+			'button' => '查看所有页面'
 		],
 	],
 
@@ -43,15 +43,14 @@ return [
 		]
 
 	],
-	
+
 	'menu_builder' => [
-		'name' => '菜单设置'
-	    ,
-	    'message' => [
-		    'arrange' => '拖拽菜单可以重新排序',
-	    ]
+		'name' => '菜单设置',
+		'message' => [
+			'arrange' => '拖拽菜单可以重新排序',
+		]
 	],
-	
+
 	'menu' => [
 		'message' => [
 			'use' => '你可以在程序中调用 :usage 来使用菜单'
@@ -59,8 +58,7 @@ return [
 	],
 
 	'banner_builder' => [
-		'name' => '图文设置'
-		,
+		'name' => '图文设置',
 		'message' => [
 			'arrange' => '拖拽图文可以重新排序',
 		]

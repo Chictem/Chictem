@@ -6,19 +6,17 @@ use App\Models\Role;
 
 class PermissionRoleTableSeeder extends Seeder
 {
-    /**
-     * Auto generated seed file.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $role = Role::where('name', 'admin')->firstOrFail();
+	/**
+	 * Auto generated seed file.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		$role = Role::where('name', 'admin')->firstOrFail();
 
-        $permissions = Permission::all();
+		$permissions = Permission::all();
 
-        $role->permissions()->sync(
-            $permissions->pluck('id')->all()
-        );
-    }
+		$role->permissions()->sync($permissions->pluck('id')->all());
+	}
 }

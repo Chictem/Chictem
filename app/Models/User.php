@@ -31,8 +31,8 @@ class User extends AuthUser
 	public function save(array $options = [])
 	{
 		// If no avatar has been set, set it to the default
-		if (! $this->avatar) {
-			$this->avatar = 'users/default.png';
+		if (! $this->image) {
+			$this->image = 'users/default.png';
 		}
 
 		parent::save();
@@ -42,5 +42,5 @@ class User extends AuthUser
 	{
 		return ucwords($value);
 	}
-	
+
 }

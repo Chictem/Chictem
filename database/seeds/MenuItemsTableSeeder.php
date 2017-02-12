@@ -18,20 +18,20 @@ class MenuItemsTableSeeder extends Seeder
 
             $menu = Menu::where('name', 'admin')->firstOrFail();
 
-            $menuItem = MenuItem::firstOrNew([
-                'menu_id'    => $menu->id,
-                'title'      => '控制台',
-                'url'        => route('voyager.dashboard', [], false),
-            ]);
-            if (!$menuItem->exists) {
-                $menuItem->fill([
-                    'target'     => '_self',
-                    'icon_class' => 'voyager-boat',
-                    'color'      => null,
-                    'parent_id'  => null,
-                    'order'      => 1,
-                ])->save();
-            }
+	        $menuItem = MenuItem::firstOrNew([
+		        'menu_id' => $menu->id,
+		        'title' => '控制台',
+		        'url' => route('voyager.dashboard', [], false),
+	        ]);
+	        if (! $menuItem->exists) {
+		        $menuItem->fill([
+			        'target' => '_self',
+			        'icon_class' => 'voyager-boat',
+			        'color' => null,
+			        'parent_id' => null,
+			        'order' => 1,
+		        ])->save();
+	        }
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
@@ -107,52 +107,7 @@ class MenuItemsTableSeeder extends Seeder
                     'order'      => 7,
                 ])->save();
             }
-
-	        $menuItem = MenuItem::firstOrNew([
-		        'menu_id'    => $menu->id,
-		        'title'      => '课程',
-		        'url'        => route('voyager.courses.index', [], false),
-	        ]);
-	        if (!$menuItem->exists) {
-		        $menuItem->fill([
-			        'target'     => '_self',
-			        'icon_class' => 'voyager-file-text',
-			        'color'      => null,
-			        'parent_id'  => null,
-			        'order'      => 4,
-		        ])->save();
-	        }
-
-	        $menuItem = MenuItem::firstOrNew([
-		        'menu_id'    => $menu->id,
-		        'title'      => '讲师',
-		        'url'        => route('voyager.teachers.index', [], false),
-	        ]);
-	        if (!$menuItem->exists) {
-		        $menuItem->fill([
-			        'target'     => '_self',
-			        'icon_class' => 'voyager-file-text',
-			        'color'      => null,
-			        'parent_id'  => null,
-			        'order'      => 14,
-		        ])->save();
-	        }
-
-	        $menuItem = MenuItem::firstOrNew([
-		        'menu_id'    => $menu->id,
-		        'title'      => '公司',
-		        'url'        => route('voyager.companies.index', [], false),
-	        ]);
-	        if (!$menuItem->exists) {
-		        $menuItem->fill([
-			        'target'     => '_self',
-			        'icon_class' => 'voyager-file-text',
-			        'color'      => null,
-			        'parent_id'  => null,
-			        'order'      => 15,
-		        ])->save();
-	        }
-
+	        
             $menuItem = MenuItem::firstOrNew([
                 'menu_id'    => $menu->id,
                 'title'      => '角色',
@@ -212,6 +167,21 @@ class MenuItemsTableSeeder extends Seeder
                     'order'      => 12,
                 ])->save();
             }
+
+	        $menuItem = MenuItem::firstOrNew([
+		        'menu_id'    => $menu->id,
+		        'title'      => '结构',
+		        'url'        => route('voyager.data_rows.index', [], false),
+	        ]);
+	        if (!$menuItem->exists) {
+		        $menuItem->fill([
+			        'target'     => '_self',
+			        'icon_class' => 'voyager-settings',
+			        'color'      => null,
+			        'parent_id'  => null,
+			        'order'      => 12,
+		        ])->save();
+	        }
         }
     }
 }

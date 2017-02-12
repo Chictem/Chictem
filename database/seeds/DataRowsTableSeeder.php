@@ -13,14 +13,1365 @@ class DataRowsTableSeeder extends Seeder
 	 */
 	public function run()
 	{
-		$postDataType = DataType::where('slug', 'posts')->firstOrFail();
-		$pageDataType = DataType::where('slug', 'pages')->firstOrFail();
-		$userDataType = DataType::where('slug', 'users')->firstOrFail();
-		$categoryDataType = DataType::where('slug', 'categories')->firstOrFail();
-		$menuDataType = DataType::where('slug', 'menus')->firstOrFail();
-		$roleDataType = DataType::where('slug', 'roles')->firstOrFail();
-		$dataRowDataType = DataType::where('slug', 'data_rows')->firstOrFail();
+		$this->seedPostsDataRow();
+		$this->seedPagesDataRow();
+		$this->seedUsersDataRow();
+		$this->seedCategoriesDataRow();
+		$this->seedMenusDataRow();
+		$this->seedRolesDataRow();
+		$this->seedDataRowsDataRow();
+		$this->seedBannersDataRow();
+		$this->seedSettingsDataRow();
+	}
 
+
+	public function seedPostsDataRow()
+	{
+		$postDataType = DataType::where('slug', 'posts')->firstOrFail();
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'PRI',
+				'display_name' => 'ID',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'user_id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'select_dropdown',
+				'display_name' => '发布者',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"relationship": {
+						"key": "id",
+						"label": "name"
+					}
+				}'
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'category_id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '分类',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"relationship": {
+						"key": "id",
+						"label": "name"
+					}
+				}'
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'title',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '标题',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'seo_title',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => 'SEO标题',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'excerpt',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text_area',
+				'display_name' => '摘要',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'body',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'rich_text_box',
+				'display_name' => '正文',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'image',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '特色图像',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'banner',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '头图',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'slug',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '别名',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'meta_description',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text_area',
+				'display_name' => 'SEO描述',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'meta_keywords',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text_area',
+				'display_name' => 'SEO关键字',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'status',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'select_dropdown',
+				'display_name' => '状态',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '{
+					"default": "DRAFT",
+					"options": {
+						"PUBLISHED": "published",
+						"DRAFT": "draft",
+						"PENDING": "pending"
+					}
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'featured',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'checkbox',
+				'display_name' => '特色',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'created_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '创建时间',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $postDataType->id,
+			'field' => 'updated_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '更新时间',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+	}
+
+	public function seedPagesDataRow()
+	{
+		$pageDataType = DataType::where('slug', 'pages')->firstOrFail();
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'PRI',
+				'display_name' => 'ID',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'user_id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'select_dropdown',
+				'display_name' => '发布者',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"relationship": {
+						"key": "id",
+						"label": "name"
+					}
+				}'
+			])->save();
+		}
+
+		$dataRow = DataRow::firstorNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'title',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '标题',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'excerpt',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text_area',
+				'display_name' => '摘要',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'body',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'rich_text_box',
+				'display_name' => '正文',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'image',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '特色图像',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'banner',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '头图',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'slug',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '别名',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'meta_description',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => 'SEO描述',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'meta_keywords',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => 'SEO关键字',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'status',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'select_dropdown',
+				'display_name' => '状态',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '{
+					"default": "INACTIVE",
+					"options": {
+						"INACTIVE": "INACTIVE",
+						"ACTIVE": "ACTIVE"
+					}
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'created_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '创建时间',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $pageDataType->id,
+			'field' => 'updated_at',
+		]);
+
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '更新时间',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+	}
+
+	public function seedUsersDataRow()
+	{
+		$userDataType = DataType::where('slug', 'users')->firstOrFail();
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'PRI',
+				'display_name' => 'ID',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'name',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '用户名',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'email',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '邮箱',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'phone',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '手机',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'password',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'password',
+				'display_name' => '密码',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 0,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'remember_token',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '秘钥',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'image',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '头像',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'banner',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '头图',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'created_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '创建时间',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'updated_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '更新时间',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $userDataType->id,
+			'field' => 'role_id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '角色',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 0,
+				'show' => 0,
+				'details' => '{
+					"relationship": {
+						"key": "id",
+						"label": "name"
+					}
+				}'
+			])->save();
+		}
+	}
+
+	public function seedCategoriesDataRow()
+	{
+		$categoryDataType = DataType::where('slug', 'categories')->firstOrFail();
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'PRI',
+				'display_name' => 'ID',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'parent_id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'select_dropdown',
+				'display_name' => '父ID',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'order',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '顺序',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'name',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '名称',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'slug',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '别名',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'image',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '缩略图',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'banner',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'image',
+				'display_name' => '头图',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '{
+					"resize": {
+						"width": "1000",
+						"height": "null"
+					},
+					"quality": "70%",
+					"upsize": true,
+					"thumbnails": [
+						{
+							"name": "medium",
+							"scale": "50%"
+						},
+						{
+							"name": "small",
+							"scale": "25%"
+						},
+						{
+							"name": "cropped",
+							"crop": {
+							"width": "300",
+							"height": "250"
+						}
+						}
+					]
+				}',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'created_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '创建时间',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $categoryDataType->id,
+			'field' => 'updated_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '更新时间',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+	}
+
+	public function seedMenusDataRow()
+	{
+		$menuDataType = DataType::where('slug', 'menus')->firstOrFail();
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $menuDataType->id,
+			'field' => 'id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'PRI',
+				'display_name' => 'ID',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $menuDataType->id,
+			'field' => 'name',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '名称',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $menuDataType->id,
+			'field' => 'created_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '创建时间',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 0,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $menuDataType->id,
+			'field' => 'updated_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '更新时间',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 10,
+				'details' => '',
+			])->save();
+		}
+	}
+
+	public function seedRolesDataRow()
+	{
+
+		$roleDataType = DataType::where('slug', 'roles')->firstOrFail();
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $roleDataType->id,
+			'field' => 'id',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'PRI',
+				'display_name' => 'ID',
+				'required' => 1,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $roleDataType->id,
+			'field' => 'name',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '名称',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $roleDataType->id,
+			'field' => 'created_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '创建时间',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $roleDataType->id,
+			'field' => 'updated_at',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'timestamp',
+				'display_name' => '更新时间',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
+				'add' => 0,
+				'delete' => 0,
+				'show' => 0,
+				'details' => '',
+			])->save();
+		}
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $roleDataType->id,
+			'field' => 'display_name',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '展示名称',
+				'required' => 1,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 1,
+				'details' => '',
+			])->save();
+		}
+
+	}
+
+	public function seedDataRowsDataRow()
+	{
+		$dataRowDataType = DataType::where('slug', 'data_rows')->firstOrFail();
 
 		$dataRow = DataRow::firstOrNew([
 			'data_type_id' => $dataRowDataType->id,
@@ -36,6 +1387,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 0,
 				'delete' => 1,
+				'show' => 1,
 				'details' => '',
 			])->save();
 		}
@@ -54,6 +1406,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 					"relationship": {
 						"key": "id",
@@ -77,6 +1430,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 1,
 				'details' => ''
 			])->save();
 		}
@@ -96,6 +1450,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 1,
 				'details' => '{
 				    "default" : "text",
 				    "options" : {
@@ -130,6 +1485,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 1,
 				'details' => ''
 			])->save();
 		}
@@ -148,6 +1504,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -170,6 +1527,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -192,6 +1550,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -214,6 +1573,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -236,6 +1596,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -259,6 +1620,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -275,12 +1637,13 @@ class DataRowsTableSeeder extends Seeder
 			$dataRow->fill([
 				'type' => 'radio_btn',
 				'display_name' => '是否展示',
-				'required' => 1,
+				'required' => 0,
 				'browse' => 1,
 				'read' => 1,
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => '{
 				    "on" : "是",
 				    "off" : "否",
@@ -297,21 +1660,25 @@ class DataRowsTableSeeder extends Seeder
 			$dataRow->fill([
 				'type' => 'text_area',
 				'display_name' => '扩展配置',
-				'required' => 1,
-				'browse' => 1,
+				'required' => 0,
+				'browse' => 0,
 				'read' => 1,
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
+				'show' => 0,
 				'details' => ''
 			])->save();
 		}
 
 
+	}
 
-
+	public function seedBannersDataRow()
+	{
+		$bannerDataType = DataType::where('slug', 'banners')->firstOrFail();
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
+			'data_type_id' => $bannerDataType->id,
 			'field' => 'id',
 		]);
 		if (! $dataRow->exists) {
@@ -320,251 +1687,75 @@ class DataRowsTableSeeder extends Seeder
 				'display_name' => 'ID',
 				'required' => 1,
 				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
+				'read' => 0,
+				'edit' => 0,
 				'add' => 0,
-				'delete' => 1,
+				'delete' => 0,
 				'details' => '',
 			])->save();
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'author_id',
+			'data_type_id' => $bannerDataType->id,
+			'field' => 'name',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
 				'type' => 'text',
-				'display_name' => '作者',
+				'display_name' => '名称',
 				'required' => 1,
-				'browse' => 0,
+				'browse' => 1,
 				'read' => 1,
 				'edit' => 1,
-				'add' => 0,
+				'add' => 1,
 				'delete' => 1,
 				'details' => '',
 			])->save();
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
+			'data_type_id' => $bannerDataType->id,
 			'field' => 'title',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
 				'type' => 'text',
 				'display_name' => '标题',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'excerpt',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text_area',
-				'display_name' => '摘要',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'body',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'rich_text_box',
-				'display_name' => '正文',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'image',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '特色图像',
 				'required' => 0,
 				'browse' => 1,
 				'read' => 1,
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
-				'details' => '{
-					"resize": {
-						"width": "1000",
-						"height": "null"
-					},
-					"quality": "70%",
-					"upsize": true,
-					"thumbnails": [
-						{
-							"name": "medium",
-							"scale": "50%"
-						},
-						{
-							"name": "small",
-							"scale": "25%"
-						},
-						{
-							"name": "cropped",
-							"crop": {
-							"width": "300",
-							"height": "250"
-						}
-						}
-					]
-				}',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'banner',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '头图',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '{
-					"resize": {
-						"width": "1000",
-						"height": "null"
-					},
-					"quality": "70%",
-					"upsize": true,
-					"thumbnails": [
-						{
-							"name": "medium",
-							"scale": "50%"
-						},
-						{
-							"name": "small",
-							"scale": "25%"
-						},
-						{
-							"name": "cropped",
-							"crop": {
-							"width": "300",
-							"height": "250"
-						}
-						}
-					]
-				}',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'slug',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '别名',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
 				'details' => '',
 			])->save();
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'meta_description',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text_area',
-				'display_name' => 'SEO描述',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'meta_keywords',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text_area',
-				'display_name' => 'SEO关键字',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'status',
+			'data_type_id' => $bannerDataType->id,
+			'field' => 'user_id',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
 				'type' => 'select_dropdown',
-				'display_name' => '状态',
-				'required' => 1,
+				'display_name' => '创建者',
+				'required' => 0,
 				'browse' => 1,
 				'read' => 1,
 				'edit' => 1,
 				'add' => 1,
 				'delete' => 1,
 				'details' => '{
-					"default": "DRAFT",
-					"options": {
-						"PUBLISHED": "published",
-						"DRAFT": "draft",
-						"PENDING": "pending"
+					"relationship": {
+						"key": "id",
+						"label": "name"
 					}
-				}',
+				}'
 			])->save();
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
+			'data_type_id' => $bannerDataType->id,
 			'field' => 'created_at',
 		]);
 		if (! $dataRow->exists) {
@@ -572,17 +1763,18 @@ class DataRowsTableSeeder extends Seeder
 				'type' => 'timestamp',
 				'display_name' => '创建时间',
 				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
+				'browse' => 0,
+				'read' => 0,
+				'edit' => 0,
 				'add' => 0,
-				'delete' => 1,
+				'delete' => 0,
+				'show' => 1,
 				'details' => '',
 			])->save();
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
+			'data_type_id' => $bannerDataType->id,
 			'field' => 'updated_at',
 		]);
 		if (! $dataRow->exists) {
@@ -591,16 +1783,22 @@ class DataRowsTableSeeder extends Seeder
 				'display_name' => '更新时间',
 				'required' => 0,
 				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
+				'read' => 0,
+				'edit' => 0,
 				'add' => 0,
-				'delete' => 1,
+				'delete' => 0,
+				'show' => 0,
 				'details' => '',
 			])->save();
 		}
 
+	}
+
+	public function seedSettingsDataRow()
+	{
+		$settingDataType = DataType::where('slug', 'settings')->firstOrFail();
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
+			'data_type_id' => $settingDataType->id,
 			'field' => 'id',
 		]);
 		if (! $dataRow->exists) {
@@ -618,31 +1816,13 @@ class DataRowsTableSeeder extends Seeder
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'author_id',
+			'data_type_id' => $settingDataType->id,
+			'field' => 'key',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
 				'type' => 'text',
-				'display_name' => '作者',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstorNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'title',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '标题',
+				'display_name' => '键名',
 				'required' => 1,
 				'browse' => 1,
 				'read' => 1,
@@ -654,712 +1834,13 @@ class DataRowsTableSeeder extends Seeder
 		}
 
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'excerpt',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text_area',
-				'display_name' => '摘要',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'body',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'rich_text_box',
-				'display_name' => '正文',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'slug',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '别名',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'meta_description',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => 'SEO描述',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'meta_keywords',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => 'SEO关键字',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'status',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'select_dropdown',
-				'display_name' => '状态',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '{
-					"default": "INACTIVE",
-					"options": {
-						"INACTIVE": "INACTIVE",
-						"ACTIVE": "ACTIVE"
-					}
-				}',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'created_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '创建时间',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 0,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'updated_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '更新时间',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'image',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '特色图像',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $pageDataType->id,
-			'field' => 'banner',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '头图',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '{
-					"resize": {
-						"width": "1000",
-						"height": "null"
-					},
-					"quality": "70%",
-					"upsize": true,
-					"thumbnails": [
-						{
-							"name": "medium",
-							"scale": "50%"
-						},
-						{
-							"name": "small",
-							"scale": "25%"
-						},
-						{
-							"name": "cropped",
-							"crop": {
-							"width": "300",
-							"height": "250"
-						}
-						}
-					]
-				}',
-			])->save();
-		}
-		
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'id',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'PRI',
-				'display_name' => 'ID',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'name',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '姓名',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'email',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '邮箱',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'password',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'password',
-				'display_name' => '密码',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'remember_token',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '秘钥',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'created_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '创建时间',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 0,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'updated_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '更新时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'avatar',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '头像',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'banner',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '头图',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '{
-					"resize": {
-						"width": "1000",
-						"height": "null"
-					},
-					"quality": "70%",
-					"upsize": true,
-					"thumbnails": [
-						{
-							"name": "medium",
-							"scale": "50%"
-						},
-						{
-							"name": "small",
-							"scale": "25%"
-						},
-						{
-							"name": "cropped",
-							"crop": {
-							"width": "300",
-							"height": "250"
-						}
-						}
-					]
-				}',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $menuDataType->id,
-			'field' => 'id',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'PRI',
-				'display_name' => 'ID',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $menuDataType->id,
-			'field' => 'name',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '名称',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $menuDataType->id,
-			'field' => 'created_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '创建时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 1,
-				'add' => 0,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $menuDataType->id,
-			'field' => 'updated_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '更新时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'id',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'PRI',
-				'display_name' => 'ID',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'parent_id',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '父ID',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'order',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '顺序',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'name',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '名称',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'slug',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '别名',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'banner',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'image',
-				'display_name' => '头图',
-				'required' => 0,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '{
-					"resize": {
-						"width": "1000",
-						"height": "null"
-					},
-					"quality": "70%",
-					"upsize": true,
-					"thumbnails": [
-						{
-							"name": "medium",
-							"scale": "50%"
-						},
-						{
-							"name": "small",
-							"scale": "25%"
-						},
-						{
-							"name": "cropped",
-							"crop": {
-							"width": "300",
-							"height": "250"
-						}
-						}
-					]
-				}',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'created_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '创建时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 1,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $categoryDataType->id,
-			'field' => 'updated_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '更新时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $roleDataType->id,
-			'field' => 'id',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'PRI',
-				'display_name' => 'ID',
-				'required' => 1,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $roleDataType->id,
-			'field' => 'name',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => '名称',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $roleDataType->id,
-			'field' => 'created_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '创建时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $roleDataType->id,
-			'field' => 'updated_at',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'timestamp',
-				'display_name' => '更新时间',
-				'required' => 0,
-				'browse' => 0,
-				'read' => 0,
-				'edit' => 0,
-				'add' => 0,
-				'delete' => 0,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $roleDataType->id,
+			'data_type_id' => $settingDataType->id,
 			'field' => 'display_name',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
 				'type' => 'text',
 				'display_name' => '展示名称',
-				'required' => 1,
-				'browse' => 1,
-				'read' => 1,
-				'edit' => 1,
-				'add' => 1,
-				'delete' => 1,
-				'details' => '',
-			])->save();
-		}
-		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'seo_title',
-		]);
-		if (! $dataRow->exists) {
-			$dataRow->fill([
-				'type' => 'text',
-				'display_name' => 'SEO标题',
 				'required' => 0,
 				'browse' => 1,
 				'read' => 1,
@@ -1369,15 +1850,16 @@ class DataRowsTableSeeder extends Seeder
 				'details' => '',
 			])->save();
 		}
+
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $postDataType->id,
-			'field' => 'featured',
+			'data_type_id' => $settingDataType->id,
+			'field' => 'value',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
-				'type' => 'checkbox',
-				'display_name' => '特色',
-				'required' => 1,
+				'type' => 'text',
+				'display_name' => '键值',
+				'required' => 0,
 				'browse' => 1,
 				'read' => 1,
 				'edit' => 1,
@@ -1386,20 +1868,57 @@ class DataRowsTableSeeder extends Seeder
 				'details' => '',
 			])->save();
 		}
+
 		$dataRow = DataRow::firstOrNew([
-			'data_type_id' => $userDataType->id,
-			'field' => 'role_id',
+			'data_type_id' => $settingDataType->id,
+			'field' => 'details',
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
 				'type' => 'text',
-				'display_name' => '角色',
-				'required' => 1,
+				'display_name' => '更多',
+				'required' => 0,
 				'browse' => 0,
-				'read' => 0,
+				'read' => 1,
 				'edit' => 1,
 				'add' => 1,
-				'delete' => 0,
+				'delete' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $settingDataType->id,
+			'field' => 'type',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '类型',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'details' => '',
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $settingDataType->id,
+			'field' => 'order',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'text',
+				'display_name' => '顺序',
+				'required' => 0,
+				'browse' => 0,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
 				'details' => '',
 			])->save();
 		}

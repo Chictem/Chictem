@@ -67,11 +67,12 @@ class BannerItem extends Model
 
 
 	public $fillable = [
-		'title',
+		'name',
 		'banner_id',
 		'description',
 		'url',
-		'image'
+		'image',
+	    'image_url'
 	];
 
 	/**
@@ -80,11 +81,12 @@ class BannerItem extends Model
 	 * @var array
 	 */
 	protected $casts = [
-		'title' => 'string',
+		'name' => 'string',
 		'banner_id' => 'integer',
 		'description' => 'string',
 		'url' => 'string',
-		'image' => 'string'
+		'image' => 'string',
+		'image_url' => 'string'
 	];
 
 	/**
@@ -93,7 +95,7 @@ class BannerItem extends Model
 	 * @var array
 	 */
 	public static $rules = [
-		'title' => 'required',
+		'name' => 'required',
 		'banner_id' => 'required'
 	];
 

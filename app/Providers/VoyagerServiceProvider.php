@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Commands\SeedCommand;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\View;
@@ -168,6 +169,7 @@ class VoyagerServiceProvider extends ServiceProvider
 		$this->commands(InstallCommand::class);
 		$this->commands(ControllersCommand::class);
 		$this->commands(AdminCommand::class);
+		$this->commands(SeedCommand::class);
 	}
 
 	/**

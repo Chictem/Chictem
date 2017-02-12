@@ -37,19 +37,7 @@ class SettingsTableSeeder extends Seeder
                 'order'        => 2,
             ])->save();
         }
-
-        $setting = Setting::firstOrNew([
-            'key'          => 'logo',
-        ]);
-        if (!$setting->exists) {
-            $setting->fill([
-                'display_name' => '站点LOGO',
-                'value'        => '',
-                'details'      => '',
-                'type'         => 'image',
-                'order'        => 3,
-            ])->save();
-        }
+	    
 
         $setting = Setting::firstOrNew([
             'key'          => 'admin_bg_image',
