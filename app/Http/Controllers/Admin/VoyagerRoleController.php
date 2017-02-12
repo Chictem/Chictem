@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Facades\Voyager;
+use Illuminate\Http\Request;
+use App\Models\DataType;
+
+class VoyagerRoleController extends VoyagerBreadController
+{
+    // POST BR(E)AD
+    public function update(Request $request, $id)
+    {
+        Voyager::can('edit_roles');
+
+        $slug = $this->getSlug($request);
+
+        $dataType = DataType::where('slug', '=', $slug)->first();
+
+        $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
+        $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+        $data->permissions()->sync($request->input('permissions', []));
+
+        return redirect()
+            ->back()
+            ->with([
+                'message'    => "Successfully Updated {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
+    }
+
+    // POST BRE(A)D
+    public function store(Request $request)
+    {
+        Voyager::can('add_roles');
+
+        $slug = $this->getSlug($request);
+
+        $dataType = DataType::where('slug', '=', $slug)->first();
+
+        if (function_exists('voyager_add_post')) {
+            voyager_add_post($request);
+        }
+
+        $data = new $dataType->model_name();
+        $this->insertUpdateData($request, $slug, $dataType->addRows, $data);
+
+        $data->permissions()->sync($request->input('permissions', []));
+
+        return redirect()
+            ->route("voyager.{$dataType->slug}.index")
+            ->with([
+                'message'    => "Successfully Added New {$dataType->display_name_singular}",
+                'alert-type' => 'success',
+            ]);
+    }
+}

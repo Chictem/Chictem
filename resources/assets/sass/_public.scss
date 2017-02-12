@@ -1,0 +1,20 @@
+$background: #EEF1F6;
+$main-with: 1185px;
+
+body {
+    background-color: $background;
+}
+
+a {
+    text-decoration: none;
+
+    &:link,&:visited,&:hover,&:active {
+        text-decoration: none;
+    }
+}
+
+.content-wrapper {
+    margin: auto;
+    width: $main-with;
+}
+

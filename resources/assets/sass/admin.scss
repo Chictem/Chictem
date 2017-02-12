@@ -1,0 +1,18 @@
+#banner-items {
+    $height: 200px;
+    .dd-placeholder {
+        float: left;
+        width: 50%;
+    }
+    .dd-item {
+        float: left;
+        width: 50%;
+        .dd-handle {
+            height: $height;
+            .thumb {
+                max-width: 90%;
+                max-height: 90%;
+            }
+        }
+    }
+}

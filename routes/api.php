@@ -13,6 +13,25 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
-});
+})->middleware('auth:api');
+
+
+Route::resource('courses', 'CourseAPIController');
+
+Route::resource('tags', 'TagAPIController');
+
+
+
+Route::resource('experts', 'ExpertAPIController');
+
+Route::resource('teachers', 'TeacherAPIController');
+
+Route::resource('settings', 'SettingAPIController');
+
+Route::resource('menus', 'MenuAPIController');
+
+Route::resource('banners', 'BannerAPIController');
+
+Route::resource('banner_items', 'BannerItemAPIController');
