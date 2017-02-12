@@ -18,8 +18,11 @@ class CreateCategoriesTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->integer('order')->default(1);
             $table->string('name');
+            $table->string('image')->nullable();
+            $table->string('banner')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
+	        $table->softDeletes();
         });
     }
 

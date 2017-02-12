@@ -16,6 +16,7 @@ class CreateMenuTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->timestamps();
+	        $table->softDeletes();
         });
 
         Schema::create('menu_items', function (Blueprint $table) {
@@ -29,6 +30,7 @@ class CreateMenuTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->integer('order');
             $table->timestamps();
+	        $table->softDeletes();
         });
 
         Schema::table('menu_items', function (Blueprint $table) {
