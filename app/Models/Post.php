@@ -12,17 +12,22 @@ class Post extends Model
 
 	protected $guarded = [];
 
+	/**
+	 * @param array $options
+	 */
 	public function save(array $options = [])
 	{
-		// If no author has been assigned, assign the current user's id as the author of the post
-		if (! $this->author_id && Auth::user()) {
-			$this->author_id = Auth::user()->id;
+		if (! $this->user_id && Auth::user()) {
+			$this->user_id = Auth::user()->id;
 		}
 
 		parent::save();
 	}
 
-	public function author_id()
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}

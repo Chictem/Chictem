@@ -10,6 +10,9 @@ class Category extends Model
 
 	protected $fillable = ['slug', 'name'];
 
+	/**
+	 * @return mixed
+	 */
 	public function posts()
 	{
 		return $this->hasMany(Post::class)->published()->orderBy('created_at', 'DESC');

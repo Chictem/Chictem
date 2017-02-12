@@ -6,56 +6,6 @@ use App\Facades\Voyager;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @SWG\Definition(
- *      definition="BannerItem",
- *      required={"title", "banner_id"},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="title",
- *          description="title",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="banner_id",
- *          description="banner_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="description",
- *          description="description",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="url",
- *          description="url",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="image",
- *          description="image",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
- *      )
- * )
- */
 class BannerItem extends Model
 {
 	use SoftDeletes;

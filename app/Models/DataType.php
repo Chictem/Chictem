@@ -17,46 +17,74 @@ class DataType extends Model
 		return $this->hasMany(DataRow::class);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function browseRows()
 	{
 		return $this->rows()->where('browse', '=', 1);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function readRows()
 	{
 		return $this->rows()->where('read', '=', 1);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function editRows()
 	{
 		return $this->rows()->where('edit', '=', 1);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function addRows()
 	{
 		return $this->rows()->where('add', '=', 1);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function deleteRows()
 	{
 		return $this->rows()->where('delete', '=', 1);
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function showRows()
 	{
 		return $this->rows()->where('show', '=', 1);
 	}
 
+	/**
+	 * @param $value
+	 */
 	public function setGeneratePermissionsAttribute($value)
 	{
 		$this->attributes['generate_permissions'] = $value ? 1 : 0;
 	}
 
+	/**
+	 * @param $value
+	 */
 	public function setServerSideAttribute($value)
 	{
 		$this->attributes['server_side'] = $value ? 1 : 0;
 	}
 
+	/**
+	 * @param $requestData
+	 * @return bool
+	 */
 	public function updateDataType($requestData)
 	{
 		$success = true;
@@ -104,6 +132,9 @@ class DataType extends Model
 		return $success !== false;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function fields()
 	{
 		$fields = Schema::getColumnListing($this->name);
@@ -117,6 +148,9 @@ class DataType extends Model
 		return $fields;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function fieldOptions()
 	{
 		$table = $this->name;
@@ -132,6 +166,9 @@ class DataType extends Model
 		return $fieldOptions;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function extraFields()
 	{
 		$model = app($this->model_name);

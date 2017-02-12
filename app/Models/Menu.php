@@ -21,6 +21,9 @@ class Menu extends Model
 	private static $dataTypes;
 	private static $prefix;
 
+	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
 	public function items()
 	{
 		return $this->hasMany(MenuItem::class);

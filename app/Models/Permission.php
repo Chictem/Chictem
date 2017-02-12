@@ -13,6 +13,9 @@ class Permission extends Model
 		return $this->hasMany(Role::class);
 	}
 
+	/**
+	 * @param $table_name
+	 */
 	public static function generateFor($table_name)
 	{
 		self::firstOrCreate(['key' => 'browse_' . $table_name, 'table_name' => $table_name]);
@@ -22,6 +25,9 @@ class Permission extends Model
 		self::firstOrCreate(['key' => 'delete_' . $table_name, 'table_name' => $table_name]);
 	}
 
+	/**
+	 * @param $table_name
+	 */
 	public static function removeFrom($table_name)
 	{
 		self::where(['table_name' => $table_name])->delete();
