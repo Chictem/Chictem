@@ -48,9 +48,7 @@
                                                     {{ $options->options->{($data->{$row->field})} }}
                                                 @endif
                                             @elseif($row->type=='radio_btn')
-                                                @if(isset($data->{$row->field}) && isset($options->options))
-                                                    {{ $options->options->{($data->{$row->field})} }}
-                                                @endif
+                                                {{ $options->options->{($data->{$row->field})} }}
                                             @else
                                                 {{ $data->{$row->field} }}
                                             @endif

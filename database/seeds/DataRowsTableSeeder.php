@@ -1265,7 +1265,7 @@ class DataRowsTableSeeder extends Seeder
 				'edit' => 0,
 				'add' => 0,
 				'delete' => 0,
-				'show' => 10,
+				'show' => 0,
 				'details' => '',
 			])->save();
 		}
@@ -1505,11 +1505,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
@@ -1528,11 +1531,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
@@ -1551,11 +1557,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
@@ -1574,11 +1583,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
@@ -1597,11 +1609,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
@@ -1621,11 +1636,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
@@ -1644,11 +1662,14 @@ class DataRowsTableSeeder extends Seeder
 				'add' => 1,
 				'delete' => 1,
 				'show' => 0,
-				'details' => '{
-				    "on" : "是",
-				    "off" : "否",
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
 				    "checked" : "true"
-				}'
+	            }'
 			])->save();
 		}
 
