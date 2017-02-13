@@ -33,7 +33,7 @@
                                 <tr>
                                     @foreach($dataType->browseRows as $row)
                                         <td>
-                                            <?php $options = json_decode($row->details); ?>
+                                            @php $options = json_decode($row->details); @endphp
                                             @if($row->type == 'image')
                                                 <img src="@if( strpos($data->{$row->field}, 'http://') === false && strpos($data->{$row->field}, 'https://') === false){{ Voyager::image( $data->{$row->field} ) }}@else{{ $data->{$row->field} }}@endif"
                                                      style="width:100px">

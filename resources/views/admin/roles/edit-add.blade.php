@@ -75,12 +75,12 @@
                                         @endif
                                         <input type="file" name="{{ $row->field }}">
                                     @elseif($row->type == "select_dropdown")
-                                        <?php $options = json_decode($row->details); ?>
+                                        @php $options = json_decode($row->details); @endphp
                                         <?php $selected_value = (isset($dataTypeContent->{$row->field}) && !empty(old($row->field,
                                                         $dataTypeContent->{$row->field}))) ? old($row->field,
                                                 $dataTypeContent->{$row->field}) : old($row->field); ?>
                                         <select class="form-control" name="{{ $row->field }}">
-                                            <?php $default = (isset($options->default) && !isset($dataTypeContent->{$row->field})) ? $options->default : NULL; ?>
+                                            @php $default = (isset($options->default) && !isset($dataTypeContent->{$row->field})) ? $options->default : NULL; @endphp
                                             @if(isset($options->options))
                                                 @foreach($options->options as $key => $option)
                                                     <option value="{{ $key }}" @if($default == $key && $selected_value === NULL){{ 'selected="selected"' }}@endif @if($selected_value == $key){{ 'selected="selected"' }}@endif>{{ $option }}</option>
@@ -89,11 +89,11 @@
                                         </select>
 
                                     @elseif($row->type == "radio_btn")
-                                        <?php $options = json_decode($row->details); ?>
+                                        @php $options = json_decode($row->details); @endphp
                                         <?php $selected_value = (isset($dataTypeContent->{$row->field}) && !empty(old($row->field,
                                                         $dataTypeContent->{$row->field}))) ? old($row->field,
                                                 $dataTypeContent->{$row->field}) : old($row->field); ?>
-                                        <?php $default = (isset($options->default) && !isset($dataTypeContent->{$row->field})) ? $options->default : NULL; ?>
+                                        @php $default = (isset($options->default) && !isset($dataTypeContent->{$row->field})) ? $options->default : NULL; @endphp
                                         <ul class="radio">
                                             @if(isset($options->options))
                                                 @foreach($options->options as $key => $option)
@@ -111,7 +111,7 @@
                                     @elseif($row->type == "checkbox")
 
                                         <br>
-                                        <?php $options = json_decode($row->details); ?>
+                                        @php $options = json_decode($row->details); @endphp
                                         <?php $checked = (isset($dataTypeContent->{$row->field}) && old($row->field,
                                                         $dataTypeContent->{$row->field}) == 1) ? true : old($row->field); ?>
                                         @if(isset($options->on) && isset($options->off))

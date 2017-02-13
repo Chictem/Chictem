@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label for="role">{{ trans('admin.user.attribute.role') }}</label>
                                 <select name="role_id" id="role" class="form-control">
-                                    <?php $roles = Role::all(); ?>
+                                    @php $roles = Role::all(); @endphp
                                     @foreach($roles as $role)
                                         <option value="{{$role->id}}"
                                                 @if(isset($dataTypeContent) && $dataTypeContent->role_id == $role->id) selected @endif>{{$role->display_name}}</option>

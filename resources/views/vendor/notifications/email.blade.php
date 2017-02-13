@@ -60,7 +60,7 @@ $style = [
 ];
 ?>
 
-<?php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; ?>
+@php $fontFamily = 'font-family: Arial, \'Helvetica Neue\', Helvetica, sans-serif;'; @endphp
 
 <body style="{{ $style['body'] }}">
     <table width="100%" cellpadding="0" cellspacing="0">

@@ -14,10 +14,10 @@
 @section('content')
 
     @if(isset($dataType->name))
-        <?php $table = $dataType->name ?>
+        @php $table = $dataType->name @endphp
     @endif
 
-    <?php $fieldOptions = isset($dataType) ? $dataType->fieldOptions() : DB::select("DESCRIBE `${table}`"); ?>
+    @php $fieldOptions = isset($dataType) ? $dataType->fieldOptions() : DB::select("DESCRIBE `${table}`"); @endphp
 
     <div class="page-content container-fluid">
         <div class="row">
@@ -242,13 +242,13 @@
                             <div class="row clearfix">
                                 <div class="col-md-6 form-group">
                                     <label for="generate_permissions">Generate Permissions</label><br>
-                                    <?php $checked = (isset($dataType->generate_permissions) && $dataType->generate_permissions == 1) ? true : (isset($generate_permissions) && $generate_permissions) ? true : false; ?>
+                                    @php $checked = (isset($dataType->generate_permissions) && $dataType->generate_permissions == 1) ? true : (isset($generate_permissions) && $generate_permissions) ? true : false; @endphp
                                     <input type="checkbox" name="generate_permissions" class="toggleswitch"
                                            @if($checked) checked @endif>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <label for="server_side">Server-side Pagination</label><br>
-                                    <?php $checked = (isset($dataType->server_side) && $dataType->server_side == 1) ? true : (isset($server_side) && $server_side) ? true : false; ?>
+                                    @php $checked = (isset($dataType->server_side) && $dataType->server_side == 1) ? true : (isset($server_side) && $server_side) ? true : false; @endphp
                                     <input type="checkbox" name="server_side" class="toggleswitch"
                                            @if($checked) checked @endif>
                                 </div>

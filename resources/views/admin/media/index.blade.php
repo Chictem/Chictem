@@ -108,7 +108,7 @@
                                 </ul>
 
                                 <div id="file_loader">
-                                    <?php $admin_loader_img = Voyager::setting('admin_loader', ''); ?>
+                                    @php $admin_loader_img = Voyager::setting('admin_loader', ''); @endphp
                                     @if($admin_loader_img == '')
                                         <img src="{{ config('voyager.assets_path') . '/images/logo-icon.png' }}" alt="Voyager Loader">
                                     @else

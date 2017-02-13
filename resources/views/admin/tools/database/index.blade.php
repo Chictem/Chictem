@@ -21,10 +21,10 @@
         <div class="row">
             <div class="col-md-12">
 
-                <?php $dataTypes = DataType::all(); ?>
-                <?php $dataTypeNames = []; ?>
+                @php $dataTypes = DataType::all(); @endphp
+                @php $dataTypeNames = []; @endphp
                 @foreach($dataTypes as $type)
-                    <?php array_push($dataTypeNames, $type->name); ?>
+                    @php array_push($dataTypeNames, $type->name); @endphp
                 @endforeach
 
                 <table class="table table-striped database-tables">
@@ -36,9 +36,9 @@
                     </tr>
                     </thead>
 
-                    <?php $arr = DBSchema::tables(); ?>
+                    @php $arr = DBSchema::tables(); @endphp
                     @foreach($arr as $a)
-                        <?php $table = current($a); ?>
+                        @php $table = current($a); @endphp
                         <?php if (in_array($table, config('voyager.database.tables.hidden', [])))
                             continue; ?>
                         <?php $active = in_array($table, $dataTypeNames);

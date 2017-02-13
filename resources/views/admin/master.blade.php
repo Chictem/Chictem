@@ -51,7 +51,7 @@
 <body class="flat-blue">
 
 <div id="voyager-loader">
-    <?php $admin_loader_img = Voyager::setting('admin_loader', ''); ?>
+    @php $admin_loader_img = Voyager::setting('admin_loader', ''); @endphp
     @if($admin_loader_img == '')
         <img src="{{ config('voyager.assets_path') . '/images/logo-icon.png' }}" alt="Voyager Loader">
     @else
@@ -84,9 +84,9 @@ $menuExpanded = isset($_COOKIE['expandedMenu']) && $_COOKIE['expandedMenu'] == 1
                                 <a href="{{ route('voyager.dashboard')}}"><i class="voyager-boat"></i> Dashboard</a>
                             </li>
                         @endif
-                        <?php $breadcrumb_url = ''; ?>
+                        @php $breadcrumb_url = ''; @endphp
                         @for($i = 1; $i <= count(Request::segments()); $i++)
-                            <?php $breadcrumb_url .= '/' . Request::segment($i); ?>
+                            @php $breadcrumb_url .= '/' . Request::segment($i); @endphp
                             @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
 
                                 @if($i < count(Request::segments()) & $i > 0)
@@ -146,7 +146,7 @@ $menuExpanded = isset($_COOKIE['expandedMenu']) && $_COOKIE['expandedMenu'] == 1
                     <div class="navbar-header">
                         <a class="navbar-brand" href="{{ route('voyager.dashboard') }}">
                             <div class="logo-icon-container">
-                                <?php $admin_logo_img = Voyager::setting('admin_icon_image', ''); ?>
+                                @php $admin_logo_img = Voyager::setting('admin_icon_image', ''); @endphp
                                 @if($admin_logo_img == '')
                                     <img src="{{ config('voyager.assets_path') }}/images/logo-icon-light.png"
                                          alt="Logo Icon">

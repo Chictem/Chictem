@@ -210,7 +210,7 @@
     <div id="bgdim"></div>
 
     <div id="title_section">
-        <?php $admin_logo_img = Voyager::setting('admin_icon_image', ''); ?>
+        @php $admin_logo_img = Voyager::setting('admin_icon_image', ''); @endphp
         @if($admin_logo_img == '')
             <img class="logo-img" src="{{ config('voyager.assets_path') }}/images/logo-icon-light.png" alt="Logo Icon">
         @else
@@ -238,7 +238,7 @@
                         <i class="voyager-lock"></i> Logging in...
                     </span>
                 </button>
-                    <?php $admin_loader_img = Voyager::setting('admin_loader', ''); ?>
+                    @php $admin_loader_img = Voyager::setting('admin_loader', ''); @endphp
                     @if($admin_loader_img == '')
                         <img class="btn-loading" src="{{ config('voyager.assets_path') . '/images/logo-icon.png' }}" alt="Voyager Loader">
                     @else

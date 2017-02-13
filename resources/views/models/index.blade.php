@@ -31,7 +31,7 @@
                                     <img src="{{ Voyager::image($item->{$row->field}) }}">
                                 </div>
                             @elseif($row->type=='select_dropdown')
-                                <?php $options = json_decode($row->details); ?>
+                                @php $options = json_decode($row->details); @endphp
                                 @if(isset($options->relationship))
                                     @if(!method_exists( $dataType->model_name, camel_case(str_replace('_id', '', $row->field))) )
                                         <p class="label label-warning"><i class="voyager-warning"></i> Make sure
@@ -41,7 +41,7 @@
                                             of
                                             the {{ $dataType->model_name }} class.</p>
                                     @else
-                                        <?php $relationship = $item->{camel_case(str_replace('_id', '', $row->field))} ?>
+                                        @php $relationship = $item->{camel_case(str_replace('_id', '', $row->field))} @endphp
                                         @if ($relationship)
                                             <p>{{ $relationship->{$options->relationship->label} }}</p>
                                         @endif
