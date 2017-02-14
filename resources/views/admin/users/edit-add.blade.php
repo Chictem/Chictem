@@ -71,12 +71,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="avatar">{{ trans('admin.user.attribute.avatar') }}</label>
-                                @if(isset($dataTypeContent->avatar))
-                                    <img src="{{ Voyager::image( $dataTypeContent->avatar ) }}"
+                                <label for="image">{{ trans('admin.user.attribute.image') }}</label>
+                                @if(isset($dataTypeContent->image))
+                                    <img src="{{ Voyager::image( $dataTypeContent->image ) }}"
                                          style="width:200px; height:auto; clear:both; display:block; padding:2px; border:1px solid #ddd; margin-bottom:10px;">
                                 @endif
-                                <input type="file" name="avatar">
+                                <input type="file" name="image">
                             </div>
                             <div class="form-group">
                                 <label for="banner">{{ trans('admin.user.attribute.banner') }}</label>

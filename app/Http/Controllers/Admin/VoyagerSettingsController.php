@@ -10,7 +10,10 @@ use App\Facades\Voyager;
 
 class VoyagerSettingsController extends Controller
 {
-    public function index()
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function index()
     {
         // Check permission
         Voyager::can('browse_settings');
@@ -20,7 +23,11 @@ class VoyagerSettingsController extends Controller
         return view('voyager::settings.index', compact('settings'));
     }
 
-    public function store(Request $request)
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function store(Request $request)
     {
         // Check permission
         Voyager::can('browse_settings');
@@ -44,7 +51,11 @@ class VoyagerSettingsController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function update(Request $request)
     {
         // Check permission
         Voyager::can('visit_settings');
@@ -72,7 +83,11 @@ class VoyagerSettingsController extends Controller
         ]);
     }
 
-    public function delete($id)
+	/**
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function delete($id)
     {
         Voyager::can('browse_settings');
 
@@ -87,7 +102,11 @@ class VoyagerSettingsController extends Controller
         ]);
     }
 
-    public function move_up($id)
+	/**
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function move_up($id)
     {
         $setting = Setting::find($id);
         $swapOrder = $setting->order;
@@ -112,7 +131,11 @@ class VoyagerSettingsController extends Controller
         return back()->with($data);
     }
 
-    public function delete_value($id)
+	/**
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function delete_value($id)
     {
         // Check permission
         Voyager::can('browse_settings');

@@ -33,6 +33,14 @@ class Post extends Model
 	}
 
 	/**
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function category()
+	{
+		return $this->belongsTo(Category::class);
+	}
+
+	/**
 	 * Scope a query to only published scopes.
 	 *
 	 * @param \Illuminate\Database\Eloquent\Builder $query

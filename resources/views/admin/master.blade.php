@@ -60,9 +60,9 @@
 </div>
 
 <?php
-$user_avatar = Voyager::image(Auth::user()->avatar);
-if ((substr(Auth::user()->avatar, 0, 7) == 'http://') || (substr(Auth::user()->avatar, 0, 8) == 'https://')) {
-    $user_avatar = Auth::user()->avatar;
+$user_avatar = Voyager::image(Auth::user()->image);
+if ((substr(Auth::user()->image, 0, 7) == 'http://') || (substr(Auth::user()->image, 0, 8) == 'https://')) {
+    $user_avatar = Auth::user()->image;
 }
 $menuExpanded = isset($_COOKIE['expandedMenu']) && $_COOKIE['expandedMenu'] == 1;
 ?>

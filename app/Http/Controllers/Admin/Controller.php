@@ -106,7 +106,6 @@ abstract class Controller extends BaseController
                     $filename = Str::random(20);
                     $path = $slug.'/'.date('F').date('Y').'/';
                     $fullPath = $path.$filename.'.'.$file->getClientOriginalExtension();
-
                     $request->file($row->field)->storeAs(config('voyager.storage.subfolder').$path, $filename.'.'.$file->getClientOriginalExtension());
 
                     return $fullPath;
@@ -131,7 +130,6 @@ abstract class Controller extends BaseController
 
                     $path = $slug.'/'.date('F').date('Y').'/';
                     $fullPath = $path.$filename.'.'.$file->getClientOriginalExtension();
-
                     $options = json_decode($row->details);
 
                     if (isset($options->resize) && isset($options->resize->width) && isset($options->resize->height)) {
@@ -147,7 +145,6 @@ abstract class Controller extends BaseController
                             $constraint->aspectRatio();
                             $constraint->upsize();
                         })->encode($file->getClientOriginalExtension(), 75);
-
                     Storage::put(config('voyager.storage.subfolder').$fullPath, (string) $image, 'public');
 
                     if (isset($options->thumbnails)) {

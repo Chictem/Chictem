@@ -25,7 +25,7 @@
                                     <th>{{ trans('admin.user.attribute.name') }}</th>
                                     <th>{{ trans('admin.user.attribute.email') }}</th>
                                     <th>{{ trans('admin.user.attribute.created_at') }}</th>
-                                    <th>{{ trans('admin.user.attribute.avatar') }}</th>
+                                    <th>{{ trans('admin.user.attribute.image') }}</th>
                                     <th>{{ trans('admin.user.attribute.role') }}</th>
                                     <th class="actions">{{ trans('common.button.action') }}</th>
                                 </tr>
@@ -37,7 +37,7 @@
                                     <td>{{$data->email}}</td>
                                     <td>{{$data->created_at}}</td>
                                     <td>
-                                        <img src="@if( strpos($data->avatar, 'http://') === false && strpos($data->avatar, 'https://') === false){{ Voyager::image( $data->avatar ) }}@else{{ $data->avatar }}@endif" style="width:40px;border-radius: 50%">
+                                        <img src="@if( strpos($data->image, 'http://') === false && strpos($data->image, 'https://') === false){{ Voyager::image( $data->image ) }}@else{{ $data->image }}@endif" style="width:40px;border-radius: 50%">
                                     </td>
                                     <td>{{ $data->role ? $data->role->display_name : '' }}</td>
                                     <td class="no-sort no-click">

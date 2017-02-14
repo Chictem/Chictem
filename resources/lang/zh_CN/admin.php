@@ -33,7 +33,7 @@ return [
 			'name' => '姓名',
 			'email' => '电子邮件',
 			'password' => '密码',
-			'avatar' => '头像',
+			'image' => '头像',
 			'banner' => '头图',
 			'role' => '管理员',
 			'created_at' => '创建时间',
