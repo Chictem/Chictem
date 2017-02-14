@@ -20,7 +20,12 @@ return [
 		'logout' => '退出',
 		'register' => '注册',
 		'reset' => '重置',
-	    'build' => '构建'
+	    'build' => '构建',
+	    'move' => '移动',
+	    'upload' => '上传',
+	    'rename' => '重命名',
+	    'close' => '关闭',
+	    'click' => '点击',
 	],
 	
 	'alert' => [

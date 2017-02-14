@@ -44,6 +44,29 @@ return [
 
 	],
 
+	'media' => [
+		'name' => '媒体库',
+		'button' => [
+			'add_folder' => '新建文件夹',
+		    'destination' => '目标文件夹',
+		    'title' => '名称',
+		    'type' => '类型',
+		    'size' => '大小',
+		    'url' => '链接',
+		    'updated_at' => '修改时间',
+		],
+	    'message' => [
+		    'empty' => '没有文件',
+	        'unselected' => '没有选择文件或文件夹',
+	        'unsupported' => '不支持该媒体类型',
+		    'delete' => '您确定要删除:name吗?',
+	        'confirm' => '您确定吗？',
+	        'drag_upload' => '拖动至此上传文件',
+	        'loading' => '正在加载',
+	        'new_folder' => '新文件夹'
+	    ]
+	],
+
 	'menu_builder' => [
 		'name' => '菜单设置',
 		'message' => [
