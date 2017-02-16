@@ -35,6 +35,17 @@ return [
 		'delete' => '您确定要删除:name吗?'
 	],
     
+    'type' => [
+	    'text' => '文本',
+        'text_area' => '长文本',
+        'rich_text_box' => '富文本',
+        'checkbox' => '复选框',
+        'radio_btn' => '单选框',
+        'select_dropdown' => '下拉选择',
+        'file' => '文件',
+        'image' => '图片'
+    ]
+    
     
     
     

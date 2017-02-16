@@ -122,8 +122,17 @@ return [
 
 	'setting' => [
 		'name' => '配置',
+		'attribute' => [
+			'name' => '名称',
+		    'key' => '键值',
+		    'type' => '类型',
+		    'option' => '选项',
+		    'valid' => '有效格式',
+		    'invalid' => '无效格式'
+		],
 		'message' => [
-			'use' => '你可以在程序中调用 :usage 来使用菜单'
+			'use' => '你可以在程序中调用 :usage 来使用菜单',
+		    'option' => '高级配置，适用于下拉框、复选框的高级配置'
 		]
 	]
 

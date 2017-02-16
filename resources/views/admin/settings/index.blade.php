@@ -268,7 +268,7 @@
                     @endif
                 @endforeach
             </div>
-            <button type="submit" class="btn btn-primary pull-right">Save Settings</button>
+            <button type="submit" class="btn btn-primary pull-right">{{ trans('common.button.save') }}</button>
         </form>
 
         <div style="clear:both"></div>
@@ -276,42 +276,45 @@
         <div class="panel" style="margin-top:10px;">
             <div class="panel-heading new-setting">
                 <hr>
-                <h3 class="panel-title"><i class="voyager-plus"></i> New Setting</h3>
+                <h3 class="panel-title"><i class="voyager-plus"></i> {{ trans('common.button.new') }}</h3>
             </div>
             <div class="panel-body">
                 <form action="{{ route('voyager.settings.store') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="col-md-4">
-                        <label for="display_name">Name</label>
-                        <input type="text" class="form-control" name="display_name">
+                        <label for="display_name">{{ trans('admin.setting.attribute.name') }}</label>
+                        <input type="text" class="form-control" name="display_name" required="required">
                     </div>
                     <div class="col-md-4">
-                        <label for="key">Key</label>
-                        <input type="text" class="form-control" name="key">
+                        <label for="key">{{ trans('admin.setting.attribute.key') }}</label>
+                        <input type="text" class="form-control" name="key" required="required">
                     </div>
                     <div class="col-md-4">
-                        <label for="asdf">Type</label>
+                        <label for="type">{{ trans('admin.setting.attribute.type') }}</label>
                         <select name="type" class="form-control">
-                            <option value="text">Text Box</option>
-                            <option value="text_area">Text Area</option>
-                            <option value="rich_text_box">Rich Textbox</option>
-                            <option value="checkbox">Check Box</option>
-                            <option value="radio_btn">Radio Button</option>
-                            <option value="select_dropdown">Select Dropdown</option>
-                            <option value="file">File</option>
-                            <option value="image">Image</option>
+                            <option value="text">{{ trans('common.type.text') }}</option>
+                            <option value="text_area">{{ trans('common.type.text_area') }}</option>
+                            <option value="rich_text_box">{{ trans('common.type.rich_text_box') }}</option>
+                            <option value="checkbox">{{ trans('common.type.checkbox') }}</option>
+                            <option value="radio_btn">{{ trans('common.type.radio_btn') }}</option>
+                            <option value="select_dropdown">{{ trans('common.type.select_dropdown') }}</option>
+                            <option value="file">{{ trans('common.type.file') }}</option>
+                            <option value="image">{{ trans('common.type.image') }}</option>
                         </select>
                     </div>
                     <div class="col-md-12">
-                        <a id="toggle_options"><i class="voyager-double-down"></i> OPTIONS</a>
+                        <a id="toggle_options"><i
+                                    class="voyager-double-down"></i> {{ trans('admin.setting.attribute.option') }}</a>
                         <div class="new-settings-options">
-                            <label for="options">Options
-                                <small>(optional, only applies to certain types like dropdown box or radio button)
+                            <label for="options">{{ trans('admin.setting.attribute.option') }}
+                                <small>{{ trans('admin.setting.message.option') }}
                                 </small>
                             </label>
                             <textarea name="details" id="options_textarea" class="form-control"></textarea>
-                            <div id="valid_options" class="alert-success alert" style="display:none">Valid Json</div>
-                            <div id="invalid_options" class="alert-danger alert" style="display:none">Invalid Json</div>
+                            <div id="valid_options" class="alert-success alert"
+                                 style="display:none">{{ trans('admin.setting.attribute.valid') }}</div>
+                            <div id="invalid_options" class="alert-danger alert"
+                                 style="display:none">{{ trans('admin.setting.attribute.invalid') }}</div>
                         </div>
                     </div>
                     <script>
@@ -355,11 +358,11 @@
                             });
                         });
                     </script>
-                    <div style="clear:both"></div>
+                    <div class="clearfix"></div>
                     <button type="submit" class="btn btn-primary pull-right new-setting-btn">
-                        <i class="voyager-plus"></i> Add New Setting
+                        <i class="voyager-plus"></i> {{ trans('common.button.new') }}
                     </button>
-                    <div style="clear:both"></div>
+                    <div class="clearfix"></div>
                 </form>
             </div>
         </div>
@@ -373,8 +376,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">
-                        <i class="voyager-trash"></i> Are you sure you want to delete the <span
-                                id="delete_setting_title"></span> Setting?
+                        <i class="voyager-trash"></i>
+                        {!! trans('common.alert.delete', ['name' => ' <span
+                                id="delete_setting_title"></span> 设置' ]) !!}
                     </h4>
                 </div>
                 <div class="modal-footer">
@@ -383,9 +387,9 @@
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
-                               value="Yes, Delete This Setting">
+                               value="{{ trans('common.button.delete') }}">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
                 </div>
             </div>
         </div>
