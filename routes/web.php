@@ -47,7 +47,7 @@ Route::resource('bannerItems', 'BannerItemController');
 try {
 	foreach (Page::all() as $page) {
 		if (! start_with_digit($page->slug)) {
-			Route::get($page->slug, 'PageController@index');
+			Route::get($page->slug, ['as' => 'page.' . $page->slug, 'use' => 'PageController@index']);
 		}
 	}
 } catch (\InvalidArgumentException $e) {

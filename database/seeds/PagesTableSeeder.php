@@ -27,5 +27,20 @@ class PagesTableSeeder extends Seeder
 				'status' => 'ACTIVE',
 			])->save();
 		}
+
+		$page = Page::firstOrNew([
+			'slug' => 'about',
+		]);
+		if (! $page->exists) {
+			$page->fill([
+				'title' => 'About Page',
+				'excerpt' => 'This is a page about Chictem',
+				'body' => 'This is page body of Chictem',
+				'image' => '',
+				'meta_description' => 'Chictem CMS based on Laravel',
+				'meta_keywords' => 'chictem',
+				'status' => 'ACTIVE',
+			])->save();
+		}
 	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 if (! function_exists('is_url')) {
 	/**
 	 * @param $string
@@ -31,5 +33,51 @@ if (! function_exists('start_with_digit')) {
 	function start_with_digit($string)
 	{
 		return preg_match('/^\d/', $string) === 1;
+	}
+}
+
+if (! function_exists('in_str')) {
+	/**
+	 * Judge if target in string.
+	 *
+	 * @param $string
+	 * @param $target
+	 * @return bool
+	 */
+	function in_str($string, $target)
+	{
+		if (is_array($target)) {
+			foreach ($target as $item) {
+				if (strpos($string, $item) !== false)
+					return true;
+			}
+			return false;
+		} else {
+			if (strpos($string, $target) !== false) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+	}
+}
+
+
+if (! function_exists('is_active')) {
+	/**
+	 * @param Request $request
+	 * @param $target
+	 * @return string
+	 */
+	function is_active($target, $except = null)
+	{
+		$path_info = Request::capture()->getPathInfo();
+		if ($target && in_str($path_info, $except)) {
+			return '';
+		}
+		if (in_str($path_info, $target)) {
+			return 'active';
+		}
 	}
 }

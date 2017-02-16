@@ -17,7 +17,7 @@ class Menu extends Model
 	protected $guarded = [];
 
 	private static $permissions;
-	private static $user_permissions;
+	private static $userPermissions;
 	private static $dataTypes;
 	private static $prefix;
 
@@ -26,15 +26,39 @@ class Menu extends Model
 	 */
 	public function items()
 	{
-		return $this->hasMany(MenuItem::class);
+		return $this->hasMany(MenuItem::class)->orderBy('order');
+	}
+
+	/**
+	 * <ul class="nav navbar-nav">
+	 * <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+	 * <li><a href="#">Link</a></li>
+	 * <li class="dropdown">
+	 * <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+	 * aria-expanded="false">Dropdown <span class="caret"></span></a>
+	 * <ul class="dropdown-menu">
+	 * <li><a href="#">Action</a></li>
+	 * <li><a href="#">Another action</a></li>
+	 * <li><a href="#">Something else here</a></li>
+	 * <li role="separator" class="divider"></li>
+	 * <li><a href="#">Separated link</a></li>
+	 * <li role="separator" class="divider"></li>
+	 * <li><a href="#">One more separated link</a></li>
+	 * </ul>
+	 * </li>
+	 * </ul>
+	 */
+	public static function render($menuName, $class = 'nav navbar-nav')
+	{
+		return Menu::display($menuName, 'bootstrap', ['class' => $class]);
 	}
 
 	/**
 	 * Display menu.
 	 *
-	 * @param string $menuName
+	 * @param string      $menuName
 	 * @param string|null $type
-	 * @param array $options
+	 * @param array       $options
 	 *
 	 * @return string
 	 */
@@ -58,7 +82,7 @@ class Menu extends Model
 		if (! Auth::guest()) {
 			$user = User::find(Auth::id());
 
-			self::$user_permissions = $user->role->permissions->pluck('key')->toArray();
+			self::$userPermissions = $user->role->permissions->pluck('key')->toArray();
 		}
 
 		self::$dataTypes = DataType::all();
@@ -83,9 +107,9 @@ class Menu extends Model
 	 * Create bootstrap menu.
 	 *
 	 * @param \Illuminate\Support\Collection|array $menuItems
-	 * @param string $output
-	 * @param object $options
-	 * @param \Illuminate\Http\Request $request
+	 * @param string                               $output
+	 * @param object                               $options
+	 * @param \Illuminate\Http\Request             $request
 	 *
 	 * @return string
 	 */
@@ -104,7 +128,11 @@ class Menu extends Model
 		$parentItems = $parentItems->sortBy('order');
 
 		if (empty($output)) {
-			$output = '<ul class="nav navbar-nav">';
+			if (isset($options->class) && $options->class == true) {
+				$output = '<ul class="' . $options->class . '">';
+			} else {
+				$output = '<ul class="nav navbar-nav">';
+			}
 		} else {
 			$output .= '<ul class="dropdown-menu">';
 		}
@@ -167,9 +195,9 @@ class Menu extends Model
 	 * Create custom menu based on supplied view.
 	 *
 	 * @param \Illuminate\Support\Collection|array $menuItems
-	 * @param string $view
-	 * @param object $options
-	 * @param \Illuminate\Http\Request $request
+	 * @param string                               $view
+	 * @param object                               $options
+	 * @param \Illuminate\Http\Request             $request
 	 *
 	 * @return string
 	 */
@@ -182,9 +210,9 @@ class Menu extends Model
 	 * Create default menu.
 	 *
 	 * @param \Illuminate\Support\Collection|array $menuItems
-	 * @param string $output
-	 * @param object $options
-	 * @param \Illuminate\Http\Request $request
+	 * @param string                               $output
+	 * @param object                               $options
+	 * @param \Illuminate\Http\Request             $request
 	 *
 	 * @return string
 	 */
@@ -253,9 +281,9 @@ class Menu extends Model
 	 * Create admin menu.
 	 *
 	 * @param \Illuminate\Support\Collection|array $menuItems
-	 * @param string $output
-	 * @param object $options
-	 * @param \Illuminate\Http\Request $request
+	 * @param string                               $output
+	 * @param object                               $options
+	 * @param \Illuminate\Http\Request             $request
 	 *
 	 * @return string
 	 */
@@ -320,7 +348,7 @@ class Menu extends Model
 
 				if ($exist) {
 					// Check if current user has access
-					if (! in_array($exist->key, self::$user_permissions)) {
+					if (! in_array($exist->key, self::$userPermissions)) {
 						continue;
 					}
 				}
@@ -360,8 +388,8 @@ class Menu extends Model
 	 * Build admin menu.
 	 *
 	 * @param \Illuminate\Support\Collection|array $menuItems
-	 * @param string $output
-	 * @param object $options
+	 * @param string                               $output
+	 * @param object                               $options
 	 *
 	 * @return string
 	 */
