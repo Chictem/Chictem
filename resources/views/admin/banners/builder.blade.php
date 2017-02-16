@@ -76,27 +76,31 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-plus"></i> Create a New Banner Item</h4>
+                    <h4 class="modal-title"><i
+                                class="voyager-plus"></i> {{ trans('admin.banner_builder.message.create') }}</h4>
                 </div>
                 <form action="{{ route('voyager.banners.item.add', ['banner' => $banner->id]) }}"
                       method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <label for="title">名称</label>
-                        <input type="text" class="form-control" name="title" placeholder="名称"><br>
-                        <label for="description">描述</label>
-                        <input type="text" class="form-control" name="description" placeholder="描述"><br>
-                        <label for="url">链接</label>
-                        <input type="text" class="form-control" name="url" placeholder="链接"><br>
-                        <label for="image">上传图片</label>
+                        <label for="name">{{ trans('admin.banner_builder.attribute.name') }}</label>
+                        <input type="text" class="form-control" name="name"
+                               placeholder="{{ trans('admin.banner_builder.attribute.name') }}"><br>
+                        <label for="description">{{ trans('admin.banner_builder.attribute.description') }}</label>
+                        <input type="text" class="form-control" name="description"
+                               placeholder="{{ trans('admin.banner_builder.attribute.description') }}"><br>
+                        <label for="url">{{ trans('admin.banner_builder.attribute.url') }}</label>
+                        <input type="text" class="form-control" name="url"
+                               placeholder="{{ trans('admin.banner_builder.attribute.url') }}"><br>
+                        <label for="image">{{ trans('admin.banner_builder.attribute.image') }}</label>
                         <input type="file" name="image"><br>
-                        <label for="image">图片链接，会覆盖上传图片</label>
+                        <label for="image">{{ trans('admin.banner_builder.attribute.image_url') }}</label>
                         <input type="text" name="image_url" class="form-control"><br>
                         <input type="hidden" name="banner_id" value="{{ $banner->id }}">
                     </div>
                     {{ csrf_field() }}
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success pull-right" value="Add New Item">
+                        <input type="submit" class="btn btn-success pull-right" value="{{ trans('admin.banner_builder.message.create') }}">
                         <button type="button" class="btn btn-default pull-right"
                                 data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
                     </div>
@@ -111,30 +115,33 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-edit"></i> Edit Banner Item</h4>
+                    <h4 class="modal-title"><i
+                                class="voyager-edit"></i> {{ trans('admin.banner_builder.message.edit') }}</h4>
                 </div>
                 <form action="{{ route('voyager.banners.item.update', ['banner' => $banner->id]) }}" id="edit_form"
                       method="POST" enctype="multipart/form-data">
                     {{ method_field("PUT") }}
                     {{ csrf_field() }}
                     <div class="modal-body">
-                        <label for="title">名称</label>
-                        <input type="text" class="form-control" id="edit_title" name="title" placeholder="名称"><br>
-                        <label for="description">描述</label>
+                        <label for="name">{{ trans('admin.banner_builder.attribute.name') }}</label>
+                        <input type="text" class="form-control" id="edit_name" name="name"
+                               placeholder="{{ trans('admin.banner_builder.attribute.name') }}"><br>
+                        <label for="description">{{ trans('admin.banner_builder.attribute.description') }}</label>
                         <input type="text" class="form-control" id="edit_description" name="description"
-                               placeholder="描述"><br>
-                        <label for="url">链接</label>
-                        <input type="text" class="form-control" id="edit_url" name="url" placeholder="URL"><br>
+                               placeholder="{{ trans('admin.banner_builder.attribute.description') }}"><br>
+                        <label for="url">{{ trans('admin.banner_builder.attribute.url') }}</label>
+                        <input type="text" class="form-control" id="edit_url" name="url"
+                               placeholder="{{ trans('admin.banner_builder.attribute.url') }}"><br>
                         <img src="" style="max-width: 300px; " id="pre_image">
-                        <label for="image">上传图片</label>
+                        <label for="image">{{ trans('admin.banner_builder.attribute.image') }}</label>
                         <input type="file" name="image"><br>
-                        <label for="image">图片链接，会覆盖上传图片</label>
+                        <label for="image">{{ trans('admin.banner_builder.attribute.image_url') }}</label>
                         <input type="text" name="image_url" id="edit_image_url" class="form-control"><br>
                         <input type="hidden" name="id" id="edit_id" value="">
                     </div>
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success pull-right delete-confirm" value="Update">
+                        <input type="submit" class="btn btn-success pull-right delete-confirm" value="{{ trans('common.button.update') }}">
                         <button type="button" class="btn btn-default pull-right"
                                 data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
                     </div>
@@ -159,7 +166,7 @@
 
             $('.item_actions').on('click', '.edit', function(e) {
                 id = $(e.currentTarget).data('id');
-                $('#edit_title').val($(e.currentTarget).data('title'));
+                $('#edit_name').val($(e.currentTarget).data('name'));
                 $('#edit_url').val($(e.currentTarget).data('url'));
                 $('#edit_description').val($(e.currentTarget).data('description'));
                 $('#pre_image').attr('src', $(e.currentTarget).data('image'));
@@ -177,7 +184,7 @@
                     order: JSON.stringify($('.dd').nestable('serialize')),
                     _token: '{{ csrf_token() }}'
                 }, function(data) {
-                    toastr.success("Successfully updated banner order.");
+                    toastr.success("{{ trans('flash.edit', ['name' => trans('common.model.banner_item')]) }}");
                 });
 
             });

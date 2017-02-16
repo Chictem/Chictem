@@ -48,57 +48,66 @@ return [
 		'name' => '媒体库',
 		'button' => [
 			'add_folder' => '新建文件夹',
-		    'destination' => '目标文件夹',
-		    'title' => '名称',
-		    'type' => '类型',
-		    'size' => '大小',
-		    'url' => '链接',
-		    'updated_at' => '修改时间',
+			'destination' => '目标文件夹',
+			'title' => '名称',
+			'type' => '类型',
+			'size' => '大小',
+			'url' => '链接',
+			'updated_at' => '修改时间',
 		],
-	    'message' => [
-		    'empty' => '没有文件',
-	        'unselected' => '没有选择文件或文件夹',
-	        'unsupported' => '不支持该媒体类型',
-		    'delete' => '您确定要删除:name吗?',
-	        'confirm' => '您确定吗？',
-	        'drag_upload' => '拖动至此上传文件',
-	        'loading' => '正在加载',
-	        'new_folder' => '新文件夹',
-	        'exist' => '文件或文件夹已存在',
-	        'permission' => '操作失败，请检查权限'
-	    ]
+		'message' => [
+			'empty' => '没有文件',
+			'unselected' => '没有选择文件或文件夹',
+			'unsupported' => '不支持该媒体类型',
+			'delete' => '您确定要删除:name吗?',
+			'confirm' => '您确定吗？',
+			'drag_upload' => '拖动至此上传文件',
+			'loading' => '正在加载',
+			'new_folder' => '新文件夹',
+			'exist' => '文件或文件夹已存在',
+			'permission' => '操作失败，请检查权限'
+		]
 	],
 
 	'menu_builder' => [
 		'name' => '菜单设置',
 		'attribute' => [
 			'title' => '标题',
-		    'url' => '链接',
-		    'icon' => '图标',
-		    'color' => '颜色',
-		    'open' => '打开方式',
-		    'self' => '当前页面',
-		    'new' => '新页面',
-		    'class' => '图标参考'
+			'url' => '链接',
+			'icon' => '图标',
+			'color' => '颜色',
+			'open' => '打开方式',
+			'self' => '当前页面',
+			'new' => '新页面',
+			'class' => '图标参考'
 		],
 		'message' => [
 			'arrange' => '拖拽菜单可以重新排序',
 			'create' => '创建菜单项',
-		    'edit' => '编辑菜单项'
+			'edit' => '编辑菜单项'
 		]
 	],
-	
+
 	'menu' => [
 		'name' => '菜单',
 		'message' => [
 			'use' => '你可以在程序中调用 :usage 来使用菜单',
- 		]
+		]
 	],
 
 	'banner_builder' => [
 		'name' => '图文设置',
+		'attribute' => [
+			'name' => '标题',
+			'url' => '链接',
+			'description' => '描述',
+			'image' => '图片',
+			'image_url' => '图片链接'
+		],
 		'message' => [
 			'arrange' => '拖拽图文可以重新排序',
+			'create' => '创建图文项',
+			'edit' => '编辑图文项'
 		]
 	],
 
@@ -127,15 +136,15 @@ return [
 		'name' => '配置',
 		'attribute' => [
 			'name' => '名称',
-		    'key' => '键值',
-		    'type' => '类型',
-		    'option' => '选项',
-		    'valid' => '有效格式',
-		    'invalid' => '无效格式'
+			'key' => '键值',
+			'type' => '类型',
+			'option' => '选项',
+			'valid' => '有效格式',
+			'invalid' => '无效格式'
 		],
 		'message' => [
 			'use' => '你可以在程序中调用 :usage 来使用菜单',
-		    'option' => '高级配置，适用于下拉框、复选框的高级配置'
+			'option' => '高级配置，适用于下拉框、复选框的高级配置'
 		]
 	]
 

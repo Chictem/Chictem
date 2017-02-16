@@ -141,6 +141,7 @@ abstract class Controller extends BaseController
 
             /********** IMAGE TYPE **********/
             case 'image':
+
                 if ($request->hasFile($row->field)) {
                     $file = $request->file($row->field);
                     $filename = Str::random(20);

@@ -37,7 +37,7 @@ class VoyagerBannerController extends Controller
 		$item->destroy($id);
 
 		return redirect()->route('voyager.banners.builder', [$banner])->with([
-			'message' => trans('alert.delete', ['name' => trans('common.model.banner_item')]),
+			'message' => trans('flash.delete', ['name' => trans('common.model.banner_item')]),
 			'alert-type' => 'success',
 		]);
 	}
@@ -48,24 +48,18 @@ class VoyagerBannerController extends Controller
 	 */
 	public function add_item(Request $request)
 	{
-
 		$slug = 'banner_items';
 
 		$dataType = DataType::where('slug', '=', $slug)->first();
 		// Check permission
 		Voyager::can('add_' . $dataType->name);
 
-		if (function_exists('voyager_add_post')) {
-			$url = $request->url();
-			voyager_add_post($request);
-		}
-
 		$data = new $dataType->model_name();
 
 		$result = $this->insertUpdateData($request, $slug, $dataType->addRows, $data);
 
 		return redirect()->route('voyager.banners.builder', [$result->banner_id])->with([
-			'message' => trans('alert.add', ['name' => trans('common.model.banner_item')]),
+			'message' => trans('flash.add', ['name' => trans('common.model.banner_item')]),
 			'alert-type' => 'success',
 		]);
 	}
@@ -76,6 +70,7 @@ class VoyagerBannerController extends Controller
 	 */
 	public function update_item(Request $request)
 	{
+
 		$id = $request->get('id');
 		//dd($request);
 		$slug = 'banner_items';
@@ -89,7 +84,7 @@ class VoyagerBannerController extends Controller
 		$bannerItem = $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
 		return redirect()->route('voyager.banners.builder', [$bannerItem->banner_id])->with([
-			'message' => trans('alert.edit', ['name' => trans('common.model.banner_item')]),
+			'message' => trans('flash.edit', ['name' => trans('common.model.banner_item')]),
 			'alert-type' => 'success',
 		]);
 	}

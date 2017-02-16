@@ -88,6 +88,21 @@ class DataTypesTableSeeder extends Seeder
 		}
 
 		$dataType = DataType::firstOrNew([
+			'slug' => 'menu_items',
+		]);
+		if (! $dataType->exists) {
+			$dataType->fill([
+				'name' => 'menu_items',
+				'display_name_singular' => '菜单项',
+				'display_name_plural' => '菜单项',
+				'icon' => 'voyager-list',
+				'model_name' => 'App\\Models\\MenuItem',
+				'generate_permissions' => 1,
+				'description' => '',
+			])->save();
+		}
+
+		$dataType = DataType::firstOrNew([
 			'slug' => 'roles',
 		]);
 		if (! $dataType->exists) {

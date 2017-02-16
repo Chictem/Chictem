@@ -158,7 +158,7 @@ class Banner extends Model
 				$styles = ' style="background-color:' . $item->color . '"';
 			}
 
-			$output .= '<li' . $li_class . '><a ' . $a_attrs . ' href="' . $item->url . '" target="' . $item->target . '"' . $styles . '>' . $icon . '<span>' . $item->title . '</span>' . $caret . '</a>';
+			$output .= '<li' . $li_class . '><a ' . $a_attrs . ' href="' . $item->url . '" target="' . $item->target . '"' . $styles . '>' . $icon . '<span>' . $item->name . '</span>' . $caret . '</a>';
 
 			if ($children_banner_items->count() > 0) {
 				$output = self::buildBootstrapOutput($bannerItems, $output, $options, $request, $item->id);
@@ -244,7 +244,7 @@ class Banner extends Model
 				$styles = ' style="background-color:' . $item->color . '"';
 			}
 
-			$output .= '<li' . $li_class . '><a href="' . $item->url . '" target="' . $item->target . '"' . $styles . '>' . $icon . '<span>' . $item->title . '</span></a>';
+			$output .= '<li' . $li_class . '><a href="' . $item->url . '" target="' . $item->target . '"' . $styles . '>' . $icon . '<span>' . $item->name . '</span></a>';
 
 			if ($children_banner_items->count() > 0) {
 				$output = self::buildOutput($bannerItems, $output, $options, $request, $item->id);
@@ -301,7 +301,7 @@ class Banner extends Model
 					$li_class = ' class="dropdown"';
 				}
 
-				$collapse_id = Str::slug($item->title, '-') . '-dropdown-element';
+				$collapse_id = Str::slug($item->name, '-') . '-dropdown-element';
 				$a_attrs = 'data-toggle="collapse" href="#' . $collapse_id . '"';
 			} else {
 				$a_attrs = 'href="' . $item->url . '"';
@@ -345,7 +345,7 @@ class Banner extends Model
 				}
 			}
 
-			$output .= '<li' . $li_class . '><a ' . $a_attrs . ' target="' . $item->target . '">' . '<span class="icon ' . $item->icon_class . '"></span>' . '<span class="title">' . $item->title . '</span></a>';
+			$output .= '<li' . $li_class . '><a ' . $a_attrs . ' target="' . $item->target . '">' . '<span class="icon ' . $item->icon_class . '"></span>' . '<span class="name">' . $item->name . '</span></a>';
 
 			if (! is_null($children_output)) {
 				// Add tag for collapse panel
@@ -394,12 +394,12 @@ class Banner extends Model
 			$output .= '<li class="dd-item" data-id="' . $item->id . '">';
 			$output .= '<div class="pull-right item_actions">';
 			$output .= '<div class="btn-sm btn-danger pull-right delete" data-id="' . $item->id . '"><i class="voyager-trash"></i> Delete</div>';
-			$output .= '<div class="btn-sm btn-primary pull-right edit" data-id="' . $item->id . '" data-title="' . $item->title . '" data-url="' . $item->url . '" data-description="' . $item->description . '" data-image="' . Voyager::image($item->getOriginal('image')) . '" data-image_url="' . $item->image_url . '"><i class="voyager-edit"></i> Edit</div>';
+			$output .= '<div class="btn-sm btn-primary pull-right edit" data-id="' . $item->id . '" data-name="' . $item->name . '" data-url="' . $item->url . '" data-description="' . $item->description . '" data-image="' . Voyager::image($item->getOriginal('image')) . '" data-image_url="' . $item->image_url . '"><i class="voyager-edit"></i> Edit</div>';
 			$output .= '</div>';
 
 			$img = '<img src="' . $item->image . '" class="thumb">';
 
-			$output .= '<div class="dd-handle"><h4>' . $item->title . '</h4>' . $img . '</div>';
+			$output .= '<div class="dd-handle"><h4>' . $item->name . '</h4>' . $img . '</div>';
 
 			$children_banner_items = $bannerItems->filter(function ($value, $key) use ($item) {
 				return $value->parent_id == $item->id;

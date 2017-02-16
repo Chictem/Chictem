@@ -52,7 +52,14 @@ return [
         'database' => '数据库',
         'bread' => '增删改查',
         'edit' => '编辑',
-        'create' => '创建'
+        'create' => '创建',
+        'builder' => '构建',
+	    'data_types' => '数据类型',
+	    'password_resets' => '密码找回',
+        'permissions' => '权限',
+        'permission_role' => '权限对照',
+        'migration' => '迁移',
+        'data_rows' => '数据结构'
     ],
     
     'model' => [
@@ -62,7 +69,8 @@ return [
         'menu_item' => '菜单项',
         'database' => '数据库',
         'banner' => '图文',
-        'banner_item' => '图文项'
+        'banner_item' => '图文项',
+        'menu_items' => '菜单项',
     ]
     
     
