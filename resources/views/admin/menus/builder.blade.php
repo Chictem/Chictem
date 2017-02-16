@@ -52,11 +52,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"><i class="voyager-trash"></i>
-                    {{ trans('common.alert.delete', ['name' => '菜单项']) }}
+                        {{ trans('common.alert.delete', ['name' => '菜单项']) }}
                     </h4>
                 </div>
                 <div class="modal-footer">
-                    <form action="{{ route('voyager.menus.item.destroy', ['menu' => $menu->id, 'id' => '__id']) }}" id="delete_form"
+                    <form action="{{ route('voyager.menus.item.destroy', ['menu' => $menu->id, 'id' => '__id']) }}"
+                          id="delete_form"
                           method="POST">
                         {{ method_field("DELETE") }}
                         {{ csrf_field() }}
@@ -78,34 +79,40 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-plus"></i> Create a New Menu Item</h4>
+                    <h4 class="modal-title"><i
+                                class="voyager-plus"></i> {{ trans('admin.menu_builder.message.create') }}</h4>
                 </div>
-                <form action="{{ route('voyager.menus.item.add', ['menu' => $menu->id]) }}" id="delete_form" method="POST">
+                <form action="{{ route('voyager.menus.item.add', ['menu' => $menu->id]) }}" id="delete_form"
+                      method="POST">
                     <div class="modal-body">
-                        <label for="name">Title of the Menu Item</label>
-                        <input type="text" class="form-control" name="title" placeholder="Title"><br>
-                        <label for="url">URL for the Menu Item</label>
-                        <input type="text" class="form-control" name="url" placeholder="URL"><br>
-                        <label for="icon_class">Font Icon class for the Menu Item (Use a <a
+                        <label for="title">{{ trans('admin.menu_builder.attribute.title') }}</label>
+                        <input type="text" class="form-control" name="title"
+                               placeholder="{{ trans('admin.menu_builder.attribute.title') }}"><br>
+                        <label for="url">{{ trans('admin.menu_builder.attribute.url') }}</label>
+                        <input type="text" class="form-control" name="url"
+                               placeholder="{{ trans('admin.menu_builder.attribute.url') }}"><br>
+                        <label for="icon_class">{{ trans('admin.menu_builder.attribute.icon') }} (<a
                                     href="{{ config('voyager.assets_path') . '/fonts/voyager/icons-reference.html' }}"
-                                    target="_blank">Voyager Font Class</a>)</label>
+                                    target="_blank">{{ trans('admin.menu_builder.attribute.class') }}</a>) </label>
                         <input type="text" class="form-control" name="icon_class"
-                               placeholder="Icon Class (optional)"><br>
-                        <label for="color">Color in RGB or hex (optional)</label>
+                               placeholder="{{ trans('admin.menu_builder.attribute.icon') }}"><br>
+                        <label for="color">{{ trans('admin.menu_builder.attribute.color') }}</label>
                         <input type="color" class="form-control" name="color"
-                               placeholder="Color (ex. #ffffff or rgb(255, 255, 255)"><br>
-                        <label for="target">Open In</label>
+                               placeholder="{{ trans('admin.menu_builder.attribute.color') }}"><br>
+                        <label for="target">{{ trans('admin.menu_builder.attribute.open') }}</label>
                         <select id="edit_target" class="form-control" name="target">
-                            <option value="_self">Same Tab/Window</option>
-                            <option value="_blank">New Tab/Window</option>
+                            <option value="_self">{{ trans('admin.menu_builder.attribute.self') }}</option>
+                            <option value="_blank">{{ trans('admin.menu_builder.attribute.new') }}</option>
                         </select>
                         <input type="hidden" name="menu_id" value="{{ $menu->id }}">
                     </div>
                     {{ csrf_field() }}
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success pull-right delete-confirm" value="Add New Item">
-                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
+                        <input type="submit" class="btn btn-success pull-right delete-confirm"
+                               value="{{ trans('common.button.new') }}">
+                        <button type="button" class="btn btn-default pull-right"
+                                data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -118,33 +125,43 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-edit"></i> Edit Menu Item</h4>
+                    <h4 class="modal-title"><i class="voyager-edit"></i> {{ trans('admin.menu_builder.message.edit') }}
+                    </h4>
                 </div>
-                <form action="{{ route('voyager.menus.item.update', ['menu' => $menu->id]) }}" id="edit_form" method="POST">
+                <form action="{{ route('voyager.menus.item.update', ['menu' => $menu->id]) }}" id="edit_form"
+                      method="POST">
                     {{ method_field("PUT") }}
                     {{ csrf_field() }}
                     <div class="modal-body">
-                        <label for="name">Title of the Menu Item</label>
-                        <input type="text" class="form-control" id="edit_title" name="title" placeholder="Title"><br>
-                        <label for="url">URL for the Menu Item</label>
-                        <input type="text" class="form-control" id="edit_url" name="url" placeholder="URL"><br>
-                        <label for="icon_class">Font Icon class for the Menu Item</label>
+                        <label for="title">{{ trans('admin.menu_builder.attribute.title') }}</label>
+                        <input type="text" class="form-control" id="edit_title" name="title"
+                               placeholder="{{ trans('admin.menu_builder.attribute.title') }}"><br>
+                        <label for="url">{{ trans('admin.menu_builder.attribute.url') }}</label>
+                        <input type="text" class="form-control" id="edit_url" name="url"
+                               placeholder="{{ trans('admin.menu_builder.attribute.url') }}"><br>
+                        <label for="icon_class">{{ trans('admin.menu_builder.attribute.icon') }}
+                            (<a href="{{ config('voyager.assets_path') . '/fonts/voyager/icons-reference.html' }}"
+                                target="_blank">{{ trans('admin.menu_builder.attribute.class') }}</a>)
+                        </label>
                         <input type="text" class="form-control" id="edit_icon_class" name="icon_class"
-                               placeholder="Icon Class (optional)"><br>
-                        <label for="color">Color in RGB or hex (optional)</label>
+                               placeholder="{{ trans('admin.menu_builder.attribute.icon') }}"><br>
+                        <label for="color">{{ trans('admin.menu_builder.attribute.color') }}</label>
                         <input type="color" class="form-control" id="edit_color" name="color"
-                               placeholder="Color (ex. #ffffff or rgb(255, 255, 255)"><br>
-                        <label for="target">Open In</label>
+                               placeholder="{{ trans('admin.menu_builder.attribute.color') }}"><br>
+                        <label for="target">{{ trans('admin.menu_builder.attribute.open') }}</label>
                         <select id="edit_target" class="form-control" name="target">
-                            <option value="_self" selected="selected">Same Tab/Window</option>
-                            <option value="_blank">New Tab/Window</option>
+                            <option value="_self"
+                                    selected="selected">{{ trans('admin.menu_builder.attribute.self') }}</option>
+                            <option value="_blank">{{ trans('admin.menu_builder.attribute.new') }}</option>
                         </select>
                         <input type="hidden" name="id" id="edit_id" value="">
                     </div>
 
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success pull-right delete-confirm" value="Update">
-                        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
+                        <input type="submit" class="btn btn-success pull-right delete-confirm"
+                               value="{{ trans('common.button.update') }}">
+                        <button type="button" class="btn btn-default pull-right"
+                                data-dismiss="modal">{{ trans('common.button.cancel') }}</button>
                     </div>
                 </form>
             </div><!-- /.modal-content -->
@@ -157,15 +174,15 @@
 
     <script type="text/javascript" src="{{ config('voyager.assets_path') }}/js/jquery.nestable.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.dd').nestable({/* config options */});
-            $('.item_actions').on('click', '.delete', function (e) {
+            $('.item_actions').on('click', '.delete', function(e) {
                 id = $(e.currentTarget).data('id');
-                $('#delete_form')[0].action = $('#delete_form')[0].action.replace("__id",id);
+                $('#delete_form')[0].action = $('#delete_form')[0].action.replace("__id", id);
                 $('#delete_modal').modal('show');
             });
 
-            $('.item_actions').on('click', '.edit', function (e) {
+            $('.item_actions').on('click', '.edit', function(e) {
                 id = $(e.currentTarget).data('id');
                 console.log(id);
                 $('#edit_title').val($(e.currentTarget).data('title'));
@@ -184,15 +201,15 @@
                 $('#edit_modal').modal('show');
             });
 
-            $('.add_item').click(function () {
+            $('.add_item').click(function() {
                 $('#add_modal').modal('show');
             });
 
-            $('.dd').on('change', function (e) {
+            $('.dd').on('change', function(e) {
                 $.post('{{ route('voyager.menus.order',['menu' => $menu->id]) }}', {
                     order: JSON.stringify($('.dd').nestable('serialize')),
                     _token: '{{ csrf_token() }}'
-                }, function (data) {
+                }, function(data) {
                     toastr.success("Successfully updated menu order.");
                 });
 

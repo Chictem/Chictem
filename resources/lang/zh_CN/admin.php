@@ -69,15 +69,27 @@ return [
 
 	'menu_builder' => [
 		'name' => '菜单设置',
+		'attribute' => [
+			'title' => '标题',
+		    'url' => '链接',
+		    'icon' => '图标',
+		    'color' => '颜色',
+		    'open' => '打开方式',
+		    'self' => '当前页面',
+		    'new' => '新页面',
+		    'class' => '图标参考'
+		],
 		'message' => [
 			'arrange' => '拖拽菜单可以重新排序',
+			'create' => '创建菜单项',
+		    'edit' => '编辑菜单项'
 		]
 	],
 
 	'menu' => [
 		'message' => [
-			'use' => '你可以在程序中调用 :usage 来使用菜单'
-		]
+			'use' => '你可以在程序中调用 :usage 来使用菜单',
+ 		]
 	],
 
 	'banner_builder' => [

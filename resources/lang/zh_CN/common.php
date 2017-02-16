@@ -7,6 +7,8 @@ return [
 
 	'button' => [
 		'add' => '新增',
+		'new' => '新建',
+		'create' => '创建',
 		'edit' => '编辑',
 		'delete' => '删除',
 		'read' => '查看',
@@ -26,6 +28,7 @@ return [
 	    'rename' => '重命名',
 	    'close' => '关闭',
 	    'click' => '点击',
+	    'update' => '更新'
 	],
 	
 	'alert' => [
