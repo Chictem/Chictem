@@ -2,6 +2,7 @@
 
 namespace App\Utilities;
 
+use App\Models\DataType;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -54,7 +55,7 @@ class Voyager
 	}
 
 	/**
-	 * @param $key
+	 * @param      $key
 	 * @param null $default
 	 * @return null
 	 */
@@ -69,7 +70,7 @@ class Voyager
 	}
 
 	/**
-	 * @param $file
+	 * @param        $file
 	 * @param string $default
 	 * @return string
 	 */
@@ -101,9 +102,55 @@ class Voyager
 		if ($exist) {
 			$user = UserModal::find(Auth::id());
 			if (! $user->hasPermission($permission)) {
-				throw new UnauthorizedHttpException(null);
+				static::own();
 			}
 		}
+	}
+
+	/**
+	 * @param $path
+	 * @return null
+	 */
+	public static function getSlug($path)
+	{
+		$paths = explode('/', $path);
+		foreach ($paths as $key => $value) {
+			if (is_numeric($value)) {
+				return [$paths[$key - 1], $value];
+			}
+		}
+		return [null, null];
+	}
+
+	/**
+	 * Check own permission
+	 */
+	public static function own()
+	{
+		$path = request()->path();
+		list($slug, $id) = static::getSlug($path);
+		$dataType = DataType::where('slug', '=', $slug)->first();
+		$class = app($dataType->model_name);
+		$result = $class::find($id);
+
+		$exist = Permission::where('key', 'own_' . $slug)->first();
+
+		if ($exist) {
+			$user = UserModal::find(Auth::id());
+			if (! $user->hasPermission('own_' . $slug)) {
+				throw new UnauthorizedHttpException(null);
+			} else if ($slug == 'users') {
+				if ($result->id != $user->id) {
+					throw new UnauthorizedHttpException(null);
+				}
+			} else if (isset($result->user) && $result->user) {
+				if ($user->id != $result->user->id) {
+					throw new UnauthorizedHttpException(null);
+				}
+			}
+		}
+
+
 	}
 
 	/**
@@ -116,6 +163,7 @@ class Voyager
 
 	/**
 	 * find Version
+	 *
 	 * @return mixed
 	 */
 	protected function findVersion()
