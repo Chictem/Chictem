@@ -75,7 +75,7 @@
                         @if (isset($dataType->server_side) && $dataType->server_side)
                             <div class="pull-left">
                                 <div role="status" class="show-res" aria-live="polite">
-                                    {{ $dataTypeContent->firstItem() }}  {{ $dataTypeContent->lastItem() }}
+                                    {{ $dataTypeContent->firstItem() }} - {{ $dataTypeContent->lastItem() }}
                                     总 {{ $dataTypeContent->total() }} 条
                                 </div>
                             </div>
@@ -119,7 +119,9 @@
     <script>
         @if (!$dataType->server_side)
             $(document).ready(function() {
-            $('#dataTable').DataTable({"order": []});
+            $('#dataTable').DataTable({
+                "order": [],
+            });
         });
         @endif
 
