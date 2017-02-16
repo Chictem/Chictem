@@ -73,7 +73,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">
-                        <i class="voyager-trash"></i> {{ trans('common.alert.delete', ['name' => '菜单']) }}
+                        <i class="voyager-trash"></i> {{ trans('common.alert.delete', ['name' => trans('common.model.banner')]) }}
 
                     </h4>
                 </div>

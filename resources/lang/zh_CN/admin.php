@@ -63,7 +63,9 @@ return [
 	        'confirm' => '您确定吗？',
 	        'drag_upload' => '拖动至此上传文件',
 	        'loading' => '正在加载',
-	        'new_folder' => '新文件夹'
+	        'new_folder' => '新文件夹',
+	        'exist' => '文件或文件夹已存在',
+	        'permission' => '操作失败，请检查权限'
 	    ]
 	],
 
@@ -85,8 +87,9 @@ return [
 		    'edit' => '编辑菜单项'
 		]
 	],
-
+	
 	'menu' => [
+		'name' => '菜单',
 		'message' => [
 			'use' => '你可以在程序中调用 :usage 来使用菜单',
  		]

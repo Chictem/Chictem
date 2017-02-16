@@ -9,256 +9,221 @@ use App\Models\DataType;
 
 class VoyagerBreadController extends Controller
 {
-    //***************************************
-    //               ____
-    //              |  _ \
-    //              | |_) |
-    //              |  _ <
-    //              | |_) |
-    //              |____/
-    //
-    //      Browse our Data Type (B)READ
-    //
-    //****************************************
 
-    public function index(Request $request)
-    {
-        // GET THE SLUG, ex. 'posts', 'pages', etc.
-        $slug = $this->getSlug($request);
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function index(Request $request)
+	{
+		// GET THE SLUG, ex. 'posts', 'pages', etc.
+		$slug = $this->getSlug($request);
+
+		// GET THE DataType based on the slug
+		$dataType = DataType::where('slug', '=', $slug)->first();
+
+		// Check permission
+		Voyager::can('browse_' . $dataType->name);
+
+		$getter = $dataType->server_side ? 'paginate' : 'get';
+
+		// Next Get or Paginate the actual content from the MODEL that corresponds to the slug DataType
+		if (strlen($dataType->model_name) != 0) {
+			$model = app($dataType->model_name);
+
+			if ($model->timestamps) {
+				$dataTypeContent = call_user_func([$model->latest(), $getter]);
+			} else {
+				$dataTypeContent = call_user_func([$model->orderBy('id', 'DESC'), $getter]);
+			}
+		} else {
+			// If Model doesn't exist, get data from table name
+			$dataTypeContent = call_user_func([DB::table($dataType->name), $getter]);
+		}
+
+		$view = 'voyager::bread.browse';
+
+		if (view()->exists("voyager::$slug.browse")) {
+			$view = "voyager::$slug.browse";
+		}
+
+		return view($view, compact('dataType', 'dataTypeContent'));
+	}
+
+	/**
+	 * @param Request $request
+	 * @param         $id
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function show(Request $request, $id)
+	{
+		$slug = $this->getSlug($request);
+
+		$dataType = DataType::where('slug', '=', $slug)->first();
+
+		// Check permission
+		Voyager::can('read_' . $dataType->name);
+
+		$dataTypeContent = (strlen($dataType->model_name) != 0) ? call_user_func([
+			$dataType->model_name,
+			'findOrFail'
+		], $id) : DB::table($dataType->name)->where('id', $id)->first(); // If Model doest exist, get data from table name
+
+		$view = 'voyager::bread.read';
+
+		if (view()->exists("voyager::$slug.read")) {
+			$view = "voyager::$slug.read";
+		}
+
+		return view($view, compact('dataType', 'dataTypeContent'));
+	}
+
+	/**
+	 * @param Request $request
+	 * @param         $id
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function edit(Request $request, $id)
+	{
+		$slug = $this->getSlug($request);
+
+		$dataType = DataType::where('slug', '=', $slug)->first();
+
+		// Check permission
+		Voyager::can('edit_' . $dataType->name);
+
+		$dataTypeContent = (strlen($dataType->model_name) != 0) ? call_user_func([
+			$dataType->model_name,
+			'findOrFail'
+		], $id) : DB::table($dataType->name)->where('id', $id)->first(); // If Model doest exist, get data from table name
+
+		$view = 'voyager::bread.edit-add';
+
+		if (view()->exists("voyager::$slug.edit-add")) {
+			$view = "voyager::$slug.edit-add";
+		}
+
+		return view($view, compact('dataType', 'dataTypeContent'));
+	}
+
+	/**
+	 * @param Request $request
+	 * @param         $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function update(Request $request, $id)
+	{
+		$slug = $this->getSlug($request);
+
+		$dataType = DataType::where('slug', '=', $slug)->first();
+
+		// Check permission
+		Voyager::can('edit_' . $dataType->name);
+
+		$data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
+		$this->insertUpdateData($request, $slug, $dataType->editRows, $data);
+
+		return redirect()->back()->with([
+			'message' => trans('flash.edit', ['name' => $dataType->display_name_singular]),
+			'alert-type' => 'success',
+		]);
+	}
 
 
-        // GET THE DataType based on the slug
-        $dataType = DataType::where('slug', '=', $slug)->first();
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function create(Request $request)
+	{
+		$slug = $this->getSlug($request);
 
-        // Check permission
-        Voyager::can('browse_'.$dataType->name);
+		$dataType = DataType::where('slug', '=', $slug)->first();
 
+		// Check permission
+		Voyager::can('add_' . $dataType->name);
 
-        $getter = $dataType->server_side ? 'paginate' : 'get';
+		$view = 'voyager::bread.edit-add';
 
-        // Next Get or Paginate the actual content from the MODEL that corresponds to the slug DataType
-        if (strlen($dataType->model_name) != 0) {
-            $model = app($dataType->model_name);
+		if (view()->exists("voyager::$slug.edit-add")) {
+			$view = "voyager::$slug.edit-add";
+		}
 
-            if ($model->timestamps) {
-                $dataTypeContent = call_user_func([$model->latest(), $getter]);
-            } else {
-                $dataTypeContent = call_user_func([$model->orderBy('id', 'DESC'), $getter]);
-            }
-        } else {
-            // If Model doesn't exist, get data from table name
-            $dataTypeContent = call_user_func([DB::table($dataType->name), $getter]);
-        }
-	    
-        $view = 'voyager::bread.browse';
+		return view($view, compact('dataType'));
+	}
 
-        if (view()->exists("voyager::$slug.browse")) {
-            $view = "voyager::$slug.browse";
-        }
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function store(Request $request)
+	{
+		$slug = $this->getSlug($request);
 
-        return view($view, compact('dataType', 'dataTypeContent'));
-    }
+		$dataType = DataType::where('slug', '=', $slug)->first();
 
-    //***************************************
-    //                _____
-    //               |  __ \
-    //               | |__) |
-    //               |  _  /
-    //               | | \ \
-    //               |_|  \_\
-    //
-    //  Read an item of our Data Type B(R)EAD
-    //
-    //****************************************
+		// Check permission
+		Voyager::can('add_' . $dataType->name);
 
-    public function show(Request $request, $id)
-    {
-        $slug = $this->getSlug($request);
+		if (function_exists('voyager_add_post')) {
+			$url = $request->url();
+			voyager_add_post($request);
+		}
 
-        $dataType = DataType::where('slug', '=', $slug)->first();
+		$data = new $dataType->model_name();
+		$this->insertUpdateData($request, $slug, $dataType->addRows, $data);
 
-        // Check permission
-        Voyager::can('read_'.$dataType->name);
+		return redirect()->route("voyager.{$dataType->slug}.index")->with([
+			'message' => trans('flash.add', ['name' => $dataType->display_name_singular]),
+			'alert-type' => 'success',
+		]);
+	}
 
-        $dataTypeContent = (strlen($dataType->model_name) != 0)
-            ? call_user_func([$dataType->model_name, 'findOrFail'], $id)
-            : DB::table($dataType->name)->where('id', $id)->first(); // If Model doest exist, get data from table name
+	/**
+	 * @param Request $request
+	 * @param         $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function destroy(Request $request, $id)
+	{
+		$slug = $this->getSlug($request);
 
-        $view = 'voyager::bread.read';
+		$dataType = DataType::where('slug', '=', $slug)->first();
 
-        if (view()->exists("voyager::$slug.read")) {
-            $view = "voyager::$slug.read";
-        }
+		// Check permission
+		Voyager::can('delete_' . $dataType->name);
 
-        return view($view, compact('dataType', 'dataTypeContent'));
-    }
+		$data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
 
-    //***************************************
-    //                ______
-    //               |  ____|
-    //               | |__
-    //               |  __|
-    //               | |____
-    //               |______|
-    //
-    //  Edit an item of our Data Type BR(E)AD
-    //
-    //****************************************
+		foreach ($dataType->deleteRows as $row) {
+			if ($row->type == 'image') {
+				$this->deleteFileIfExists('/uploads/' . $data->{$row->field});
 
-    public function edit(Request $request, $id)
-    {
-        $slug = $this->getSlug($request);
+				$options = json_decode($row->details);
 
-        $dataType = DataType::where('slug', '=', $slug)->first();
+				if (isset($options->thumbnails)) {
+					foreach ($options->thumbnails as $thumbnail) {
+						$ext = explode('.', $data->{$row->field});
+						$extension = '.' . $ext[count($ext) - 1];
 
-        // Check permission
-        Voyager::can('edit_'.$dataType->name);
+						$path = str_replace($extension, '', $data->{$row->field});
 
-        $dataTypeContent = (strlen($dataType->model_name) != 0)
-            ? call_user_func([$dataType->model_name, 'findOrFail'], $id)
-            : DB::table($dataType->name)->where('id', $id)->first(); // If Model doest exist, get data from table name
+						$thumb_name = $thumbnail->name;
 
-        $view = 'voyager::bread.edit-add';
+						$this->deleteFileIfExists('/uploads/' . $path . '-' . $thumb_name . $extension);
+					}
+				}
+			}
+		}
 
-        if (view()->exists("voyager::$slug.edit-add")) {
-            $view = "voyager::$slug.edit-add";
-        }
+		$data = $data->destroy($id) ? [
+			'message' => trans('flash.delete', ['name' => $dataType->display_name_singular]),
+			'alert-type' => 'success',
+		] : [
+			'message' => trans('flash.error'),
+			'alert-type' => 'error',
+		];
 
-        return view($view, compact('dataType', 'dataTypeContent'));
-    }
-
-    // POST BR(E)AD
-    public function update(Request $request, $id)
-    {
-        $slug = $this->getSlug($request);
-
-        $dataType = DataType::where('slug', '=', $slug)->first();
-
-        // Check permission
-        Voyager::can('edit_'.$dataType->name);
-
-        $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
-        $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
-
-        return redirect()
-            ->back()
-            ->with([
-                'message'    => "Successfully Updated {$dataType->display_name_singular}",
-                'alert-type' => 'success',
-            ]);
-    }
-
-    //***************************************
-    //
-    //                   /\
-    //                  /  \
-    //                 / /\ \
-    //                / ____ \
-    //               /_/    \_\
-    //
-    //
-    // Add a new item of our Data Type BRE(A)D
-    //
-    //****************************************
-
-    public function create(Request $request)
-    {
-        $slug = $this->getSlug($request);
-
-        $dataType = DataType::where('slug', '=', $slug)->first();
-
-        // Check permission
-        Voyager::can('add_'.$dataType->name);
-
-        $view = 'voyager::bread.edit-add';
-
-        if (view()->exists("voyager::$slug.edit-add")) {
-            $view = "voyager::$slug.edit-add";
-        }
-
-        return view($view, compact('dataType'));
-    }
-
-    // POST BRE(A)D
-    public function store(Request $request)
-    {
-        $slug = $this->getSlug($request);
-
-        $dataType = DataType::where('slug', '=', $slug)->first();
-
-        // Check permission
-        Voyager::can('add_'.$dataType->name);
-
-        if (function_exists('voyager_add_post')) {
-            $url = $request->url();
-            voyager_add_post($request);
-        }
-
-        $data = new $dataType->model_name();
-        $this->insertUpdateData($request, $slug, $dataType->addRows, $data);
-
-        return redirect()
-            ->route("voyager.{$dataType->slug}.index")
-            ->with([
-                'message'    => "Successfully Added New {$dataType->display_name_singular}",
-                'alert-type' => 'success',
-            ]);
-    }
-
-    //***************************************
-    //                _____
-    //               |  __ \
-    //               | |  | |
-    //               | |  | |
-    //               | |__| |
-    //               |_____/
-    //
-    //         Delete an item BREA(D)
-    //
-    //****************************************
-
-    public function destroy(Request $request, $id)
-    {
-        $slug = $this->getSlug($request);
-
-        $dataType = DataType::where('slug', '=', $slug)->first();
-
-        // Check permission
-        Voyager::can('delete_'.$dataType->name);
-
-        $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
-
-        foreach ($dataType->deleteRows as $row) {
-            if ($row->type == 'image') {
-                $this->deleteFileIfExists('/uploads/'.$data->{$row->field});
-
-                $options = json_decode($row->details);
-
-                if (isset($options->thumbnails)) {
-                    foreach ($options->thumbnails as $thumbnail) {
-                        $ext = explode('.', $data->{$row->field});
-                        $extension = '.'.$ext[count($ext) - 1];
-
-                        $path = str_replace($extension, '', $data->{$row->field});
-
-                        $thumb_name = $thumbnail->name;
-
-                        $this->deleteFileIfExists('/uploads/'.$path.'-'.$thumb_name.$extension);
-                    }
-                }
-            }
-        }
-
-        $data = $data->destroy($id)
-            ? [
-                'message'    => "Successfully Deleted {$dataType->display_name_singular}",
-                'alert-type' => 'success',
-            ]
-            : [
-                'message'    => "Sorry it appears there was a problem deleting this {$dataType->display_name_singular}",
-                'alert-type' => 'error',
-            ];
-
-        return redirect()->route("voyager.{$dataType->slug}.index")->with($data);
-    }
+		return redirect()->route("voyager.{$dataType->slug}.index")->with($data);
+	}
 }

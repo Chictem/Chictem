@@ -8,8 +8,12 @@ use App\Models\DataType;
 
 class VoyagerRoleController extends VoyagerBreadController
 {
-    // POST BR(E)AD
-    public function update(Request $request, $id)
+	/**
+	 * @param Request $request
+	 * @param         $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function update(Request $request, $id)
     {
         Voyager::can('edit_roles');
 
@@ -25,13 +29,16 @@ class VoyagerRoleController extends VoyagerBreadController
         return redirect()
             ->back()
             ->with([
-                'message'    => "Successfully Updated {$dataType->display_name_singular}",
+                'message'    => trans('flash.edit', ['name' => $dataType->display_name_singular]),
                 'alert-type' => 'success',
             ]);
     }
 
-    // POST BRE(A)D
-    public function store(Request $request)
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function store(Request $request)
     {
         Voyager::can('add_roles');
 
@@ -51,7 +58,7 @@ class VoyagerRoleController extends VoyagerBreadController
         return redirect()
             ->route("voyager.{$dataType->slug}.index")
             ->with([
-                'message'    => "Successfully Added New {$dataType->display_name_singular}",
+                'message'    => trans('flash.add', ['name' => $dataType->display_name_singular]),
                 'alert-type' => 'success',
             ]);
     }

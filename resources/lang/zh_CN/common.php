@@ -51,6 +51,18 @@ return [
         'media' => '媒体库',
         'database' => '数据库',
         'bread' => '增删改查',
+        'edit' => '编辑',
+        'create' => '创建'
+    ],
+    
+    'model' => [
+	    'file' => '文件',
+        'setting' => '设置',
+        'menu' => '菜单',
+        'menu_item' => '菜单项',
+        'database' => '数据库',
+        'banner' => '图文',
+        'banner_item' => '图文项'
     ]
     
     

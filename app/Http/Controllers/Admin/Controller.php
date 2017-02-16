@@ -18,7 +18,11 @@ abstract class Controller extends BaseController
         ValidatesRequests,
         AuthorizesRequests;
 
-    public function getSlug(Request $request)
+	/**
+	 * @param Request $request
+	 * @return mixed
+	 */
+	public function getSlug(Request $request)
     {
         if (isset($this->slug)) {
             $slug = $this->slug;
@@ -29,7 +33,14 @@ abstract class Controller extends BaseController
         return $slug;
     }
 
-    public function insertUpdateData($request, $slug, $rows, $data)
+	/**
+	 * @param $request
+	 * @param $slug
+	 * @param $rows
+	 * @param $data
+	 * @return mixed
+	 */
+	public function insertUpdateData($request, $slug, $rows, $data)
     {
         $rules = [];
         $messages = [];
@@ -74,7 +85,13 @@ abstract class Controller extends BaseController
         return $data;
     }
 
-    public function getContentBasedOnType(Request $request, $slug, $row)
+	/**
+	 * @param Request $request
+	 * @param         $slug
+	 * @param         $row
+	 * @return array|int|null|string
+	 */
+	public function getContentBasedOnType(Request $request, $slug, $row)
     {
         $content = null;
         switch ($row->type) {
@@ -194,7 +211,10 @@ abstract class Controller extends BaseController
         return $content;
     }
 
-    public function deleteFileIfExists($path)
+	/**
+	 * @param $path
+	 */
+	public function deleteFileIfExists($path)
     {
         if (Storage::exists($path)) {
             Storage::delete($path);

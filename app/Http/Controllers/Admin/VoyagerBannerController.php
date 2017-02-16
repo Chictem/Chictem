@@ -37,7 +37,7 @@ class VoyagerBannerController extends Controller
 		$item->destroy($id);
 
 		return redirect()->route('voyager.banners.builder', [$banner])->with([
-			'message' => 'Successfully Deleted Banner Item.',
+			'message' => trans('alert.delete', ['name' => trans('common.model.banner_item')]),
 			'alert-type' => 'success',
 		]);
 	}
@@ -65,7 +65,7 @@ class VoyagerBannerController extends Controller
 		$result = $this->insertUpdateData($request, $slug, $dataType->addRows, $data);
 
 		return redirect()->route('voyager.banners.builder', [$result->banner_id])->with([
-			'message' => 'Successfully Created New Banner Item.',
+			'message' => trans('alert.add', ['name' => trans('common.model.banner_item')]),
 			'alert-type' => 'success',
 		]);
 	}
@@ -89,7 +89,7 @@ class VoyagerBannerController extends Controller
 		$bannerItem = $this->insertUpdateData($request, $slug, $dataType->editRows, $data);
 
 		return redirect()->route('voyager.banners.builder', [$bannerItem->banner_id])->with([
-			'message' => 'Successfully Updated Banner Item.',
+			'message' => trans('alert.edit', ['name' => trans('common.model.banner_item')]),
 			'alert-type' => 'success',
 		]);
 	}

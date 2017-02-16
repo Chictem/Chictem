@@ -116,13 +116,13 @@ Route::group(['as' => 'voyager.'], function () {
 		], function () {
 			Route::post('bread/create', ['uses' => 'VoyagerDatabaseController@addBread', 'as' => 'create_bread']);
 			Route::post('bread/', ['uses' => 'VoyagerDatabaseController@storeBread', 'as' => 'store_bread']);
+			Route::get('bread/', ['uses' => 'VoyagerDatabaseController@index', 'as' => 'browse_bread']);
 			Route::get('bread/{id}/edit', ['uses' => 'VoyagerDatabaseController@addEditBread', 'as' => 'edit_bread']);
 			Route::put('bread/{id}', ['uses' => 'VoyagerDatabaseController@updateBread', 'as' => 'update_bread']);
 			Route::delete('bread/{id}', ['uses' => 'VoyagerDatabaseController@deleteBread', 'as' => 'delete_bread']);
 		});
 
 		Route::resource('database', 'VoyagerDatabaseController');
-
-
+		
 	});
 });

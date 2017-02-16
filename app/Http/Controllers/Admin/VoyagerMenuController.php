@@ -18,7 +18,12 @@ class VoyagerMenuController extends Controller
         return view('voyager::menus.builder', compact('menu'));
     }
 
-    public function delete_menu($menu, $id)
+	/**
+	 * @param $menu
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function delete_menu($menu, $id)
     {
         Voyager::can('delete_menus');
 
@@ -29,12 +34,16 @@ class VoyagerMenuController extends Controller
         return redirect()
             ->route('voyager.menus.builder', [$menu])
             ->with([
-                'message'    => 'Successfully Deleted Menu Item.',
+                'message'    => trans('flash.delete', ['name' => trans('common.model.menu_item')]),
                 'alert-type' => 'success',
             ]);
     }
 
-    public function add_item(Request $request)
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function add_item(Request $request)
     {
         Voyager::can('add_menus');
 
@@ -54,12 +63,16 @@ class VoyagerMenuController extends Controller
         return redirect()
             ->route('voyager.menus.builder', [$data['menu_id']])
             ->with([
-                'message'    => 'Successfully Created New Menu Item.',
+                'message'    => trans('flash.add', ['name' => trans('common.model.menu_item')]),
                 'alert-type' => 'success',
             ]);
     }
 
-    public function update_item(Request $request)
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function update_item(Request $request)
     {
         Voyager::can('edit_menus');
 
@@ -72,19 +85,26 @@ class VoyagerMenuController extends Controller
         return redirect()
             ->route('voyager.menus.builder', [$menuItem->menu_id])
             ->with([
-                'message'    => 'Successfully Updated Menu Item.',
+                'message'    => trans('flash.edit', ['name' => trans('common.model.menu_item')]),
                 'alert-type' => 'success',
             ]);
     }
 
-    public function order_item(Request $request)
+	/**
+	 * @param Request $request
+	 */
+	public function order_item(Request $request)
     {
         $menuItemOrder = json_decode($request->input('order'));
 
         $this->orderMenu($menuItemOrder, null);
     }
 
-    private function orderMenu(array $menuItems, $parentId)
+	/**
+	 * @param array $menuItems
+	 * @param       $parentId
+	 */
+	private function orderMenu(array $menuItems, $parentId)
     {
         foreach ($menuItems as $index => $menuItem) {
             $item = MenuItem::findOrFail($menuItem->id);

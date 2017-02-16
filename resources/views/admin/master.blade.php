@@ -96,18 +96,17 @@ $menuExpanded = isset($_COOKIE['expandedMenu']) && $_COOKIE['expandedMenu'] == 1
                                 @if($i < count(Request::segments()) & $i > 0)
                                     <li class="active">
                                         <a href="{{ $breadcrumb_url }}">
-                                            {{ $type?$type->display_name_singular: (trans('common.path.'.Request::segment($i))?trans('common.path.'.Request::segment($i)):ucwords(camel_case(Request::segment($i)))) }}
+                                            {{ $type?$type->display_name_singular: trans('common.path.'.Request::segment($i)) }}
                                         </a>
                                     </li>
                                 @else
                                     <li>
-                                        {{ $type?$type->display_name_singular: (trans('common.path.'.Request::segment($i))?trans('common.path.'.Request::segment($i)):ucwords(camel_case(Request::segment($i)))) }}
+                                        {{ $type?$type->display_name_singular: trans('common.path.'.Request::segment($i)) }}
                                     </li>
                                 @endif
                             @endif
                         @endfor
                     </ol>
-
 
                     <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
                         <i class="voyager-list icon"></i>

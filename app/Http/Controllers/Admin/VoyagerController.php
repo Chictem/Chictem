@@ -12,19 +12,29 @@ use App\Facades\Voyager;
 
 class VoyagerController extends Controller
 {
-    public function index()
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function index()
     {
         return view('voyager::index');
     }
 
-    public function logout()
+	/**
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function logout()
     {
         Auth::logout();
 
         return redirect()->route('voyager.logout');
     }
 
-    public function upload(Request $request)
+	/**
+	 * @param Request $request
+	 * @return string
+	 */
+	public function upload(Request $request)
     {
         $fullFilename = null;
         $resizeWidth = 1800;
@@ -59,7 +69,10 @@ class VoyagerController extends Controller
         return "<script> parent.setImageValue('".Voyager::image($fullFilename)."'); </script>";
     }
 
-    public function profile()
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function profile()
     {
         return view('voyager::profile');
     }
