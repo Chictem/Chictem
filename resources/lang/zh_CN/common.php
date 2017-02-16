@@ -44,6 +44,13 @@ return [
         'select_dropdown' => '下拉选择',
         'file' => '文件',
         'image' => '图片'
+    ],
+
+    'path' => [
+	    'dashboard' => '控制台',
+        'media' => '媒体库',
+        'database' => '数据库',
+        'bread' => '增删改查',
     ]
     
     

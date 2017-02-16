@@ -78,25 +78,32 @@ $menuExpanded = isset($_COOKIE['expandedMenu']) && $_COOKIE['expandedMenu'] == 1
 
                     <ol class="breadcrumb">
                         @if(count(Request::segments()) == 1)
-                            <li class="active"><i class="voyager-boat"></i> Dashboard</li>
+                            <li class="active"><i class="voyager-boat"></i> {{ trans('common.path.dashboard') }}</li>
                         @else
                             <li class="active">
-                                <a href="{{ route('voyager.dashboard')}}"><i class="voyager-boat"></i> Dashboard</a>
+                                <a href="{{ route('voyager.dashboard')}}"><i
+                                            class="voyager-boat"></i> {{ trans('common.path.dashboard') }}</a>
                             </li>
                         @endif
                         @php $breadcrumb_url = ''; @endphp
                         @for($i = 1; $i <= count(Request::segments()); $i++)
-                            @php $breadcrumb_url .= '/' . Request::segment($i); @endphp
-                            @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
+                            @php
+                                $breadcrumb_url .= '/' . Request::segment($i);
+                                $type = DataType::where('slug', Request::segment($i))->first();
+                            @endphp
 
+                            @if(Request::segment($i) != ltrim(route('voyager.dashboard', [], false), '/') && !is_numeric(Request::segment($i)))
                                 @if($i < count(Request::segments()) & $i > 0)
-                                    <li class="active"><a
-                                                href="{{ $breadcrumb_url }}">{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</a>
+                                    <li class="active">
+                                        <a href="{{ $breadcrumb_url }}">
+                                            {{ $type?$type->display_name_singular: (trans('common.path.'.Request::segment($i))?trans('common.path.'.Request::segment($i)):ucwords(camel_case(Request::segment($i)))) }}
+                                        </a>
                                     </li>
                                 @else
-                                    <li>{{ ucwords(str_replace('-', ' ', str_replace('_', ' ', Request::segment($i)))) }}</li>
+                                    <li>
+                                        {{ $type?$type->display_name_singular: (trans('common.path.'.Request::segment($i))?trans('common.path.'.Request::segment($i)):ucwords(camel_case(Request::segment($i)))) }}
+                                    </li>
                                 @endif
-
                             @endif
                         @endfor
                     </ol>
@@ -231,35 +238,35 @@ $menuExpanded = isset($_COOKIE['expandedMenu']) && $_COOKIE['expandedMenu'] == 1
     @endif
 </script>
 @if(config('app.locale') == 'zh_CN')
-<script>
-var oLanguage={
-    "oAria": {
-        "sSortAscending": ": 升序排列",
-        "sSortDescending": ": 降序排列"
-    },
-    "oPaginate": {
-        "sFirst": "首页",
-        "sLast": "末页",
-        "sNext": "下一页",
-        "sPrevious": "上一页"
-    },
-    "sEmptyTable": "没有相关记录",
-    "sInfo": "第 _START_ 到 _END_ 条记录，共 _TOTAL_ 条",
-    "sInfoEmpty": "第 0 到 0 条记录，共 0 条",
-    "sInfoFiltered": "(从 _MAX_ 条记录中检索)",
-    "sInfoPostFix": "",
-    "sDecimal": "",
-    "sThousands": ",",
-    "sLengthMenu": "每页条数 _MENU_",
-    "sLoadingRecords": "正在载入...",
-    "sProcessing": "正在载入...",
-    "sSearch": "搜索:",
-    "sSearchPlaceholder": "",
-    "sUrl": "",
-    "sZeroRecords": "没有相关记录"
-}
-$.fn.DataTable.defaults.oLanguage=oLanguage;
-</script>
+    <script>
+        var oLanguage = {
+            "oAria": {
+                "sSortAscending": ": 升序排列",
+                "sSortDescending": ": 降序排列"
+            },
+            "oPaginate": {
+                "sFirst": "首页",
+                "sLast": "末页",
+                "sNext": "下一页",
+                "sPrevious": "上一页"
+            },
+            "sEmptyTable": "没有相关记录",
+            "sInfo": "第 _START_ 到 _END_ 条记录，共 _TOTAL_ 条",
+            "sInfoEmpty": "第 0 到 0 条记录，共 0 条",
+            "sInfoFiltered": "(从 _MAX_ 条记录中检索)",
+            "sInfoPostFix": "",
+            "sDecimal": "",
+            "sThousands": ",",
+            "sLengthMenu": "每页条数 _MENU_",
+            "sLoadingRecords": "正在载入...",
+            "sProcessing": "正在载入...",
+            "sSearch": "搜索:",
+            "sSearchPlaceholder": "",
+            "sUrl": "",
+            "sZeroRecords": "没有相关记录"
+        }
+        $.fn.DataTable.defaults.oLanguage = oLanguage;
+    </script>
 @endif
 @yield('javascript')
 </body>
