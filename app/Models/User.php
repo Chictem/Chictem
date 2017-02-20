@@ -5,10 +5,11 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Traits\VoyagerUser;
+use App\Traits\ModelFilter;
 
 class User extends AuthUser
 {
-	use VoyagerUser;
+	use VoyagerUser, ModelFilter;
 
 	/**
 	 * @var array
@@ -23,6 +24,10 @@ class User extends AuthUser
 	protected $hidden = [
 		'password',
 		'remember_token',
+	];
+
+	protected $filters = [
+		'role_id'
 	];
 
 	/**

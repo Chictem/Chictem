@@ -19,6 +19,8 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
+                        @include('voyager::bread.filter')
+
                         <table id="dataTable" class="table table-hover">
                             <thead>
                                 <tr>

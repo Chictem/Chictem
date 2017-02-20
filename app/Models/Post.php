@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ModelFilter;
 
-class Post extends BaseModel
+class Post extends Model
 {
+	use ModelFilter;
+	
 	const PUBLISHED = 'PUBLISHED';
 
 	protected $guarded = [];
@@ -53,5 +56,5 @@ class Post extends BaseModel
 	{
 		return $query->where('status', '=', static::PUBLISHED);
 	}
-	
+
 }

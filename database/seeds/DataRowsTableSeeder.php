@@ -957,7 +957,7 @@ class DataRowsTableSeeder extends Seeder
 		]);
 		if (! $dataRow->exists) {
 			$dataRow->fill([
-				'type' => 'text',
+				'type' => 'select_dropdown',
 				'display_name' => '角色',
 				'required' => 1,
 				'browse' => 0,
@@ -969,7 +969,7 @@ class DataRowsTableSeeder extends Seeder
 				'details' => '{
 					"relationship": {
 						"key": "id",
-						"label": "name"
+						"label": "display_name"
 					}
 				}'
 			])->save();
