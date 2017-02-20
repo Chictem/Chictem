@@ -16,3 +16,49 @@
         }
     }
 }
+
+.filters {
+    margin: 20px 0;
+    .filter {
+        margin: 10px 0;
+        a {
+            color: #76838f;
+            margin: 0 5px;
+            &.active {
+                background-color: #1ABC9C;
+                color: #FFF;
+                padding: 3px 6px;
+                border-radius: 2px;
+            }
+        }
+
+    }
+}
+
+.sort-items {
+    overflow: hidden;
+    .sort-item {
+        margin-right: 5px;
+        float: left;
+        display: block;
+        padding: 3px 10px;
+        line-height: 20px;
+        text-decoration: none;
+        color: #76838f;
+        &:after {
+            float: right;
+            font-family: fontawesome;
+            color: rgba(50, 50, 50, 0.5);
+            margin-left: 10px;
+        }
+        &.sorting:after {
+            content: "\f0dc";
+        }
+        &.sorting-asc:after {
+            content: "\f0de";
+        }
+        &.sorting-desc:after {
+            content: "\f0dd";
+        }
+    }
+}

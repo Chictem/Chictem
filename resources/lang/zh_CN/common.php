@@ -71,6 +71,10 @@ return [
         'banner' => '图文',
         'banner_item' => '图文项',
         'menu_items' => '菜单项',
+    ],
+    
+    'filter' => [
+	    'any' => '不限'
     ]
     
     

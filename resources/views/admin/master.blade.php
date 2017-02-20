@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ config('voyager.assets_path') }}/lib/css/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="{{ config('voyager.assets_path') }}/css/bootstrap-toggle.min.css">
     <link rel="stylesheet" type="text/css" href="{{ config('voyager.assets_path') }}/js/icheck/icheck.css">
+    <link rel="stylesheet" type="text/css" href="{{ config('voyager.assets_path') }}/css/font-awesome.min.css">
     <!-- CSS App -->
     <link rel="stylesheet" type="text/css" href="{{ config('voyager.assets_path') }}/css/style.css">
     <link rel="stylesheet" type="text/css" href="{{ config('voyager.assets_path') }}/css/themes/flat-blue.css">

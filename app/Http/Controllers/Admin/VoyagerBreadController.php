@@ -31,15 +31,25 @@ class VoyagerBreadController extends Controller
 		if (strlen($dataType->model_name) != 0) {
 			$model = app($dataType->model_name);
 
-			if ($model->timestamps) {
-				$dataTypeContent = call_user_func([$model->latest(), $getter]);
+			if ($orderBy = $request->query('order_by')) {
+				$query = $model->orderBy($orderBy, $request->query('order_mode', 'desc'));
+			} else if ($model->timestamps) {
+				$query = $model->latest();
 			} else {
-				$dataTypeContent = call_user_func([$model->orderBy('id', 'DESC'), $getter]);
+				$query = $model->orderBy('id', 'DESC');
 			}
+
 		} else {
-			// If Model doesn't exist, get data from table name
-			$dataTypeContent = call_user_func([DB::table($dataType->name), $getter]);
+			$query = DB::table($dataType->name);
 		}
+
+		$queries = array_except($request->query(), ['order_by', 'order_mode']);
+		foreach ($queries as $key => $value) {
+			$query = $query->where($key, $value);
+		}
+
+		$dataTypeContent = call_user_func([$query, $getter]);
+
 
 		$view = 'voyager::bread.browse';
 

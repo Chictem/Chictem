@@ -22,9 +22,21 @@
                         @include('voyager::bread.filter')
                         <table id="dataTable" class="table table-hover">
                             <thead>
-                            <tr>
+                            <tr class="sort-items">
                                 @foreach($dataType->browseRows as $rows)
-                                    <th>{{ $rows->display_name }}</th>
+                                    @if ($dataType->server_side)
+                                        @php
+                                            $para = array_merge(array_except(request()->query(), ['order_by', 'order_mode']), ['order_by' => $rows->field, 'order_mode' => (request()->query('order_mode') =='desc'? 'asc':'desc')])
+                                        @endphp
+                                        <th>
+                                            <a class="sort-item sorting{{ (request()->query('order_by') == $rows->field)?('-'.request()->query('order_mode')):'' }}"
+                                               href="{{ route('voyager.'.$dataType->slug.'.index', $para) }}">{{ $rows->display_name }}</a>
+                                        </th>
+                                    @else
+                                        <th>
+                                            {{ $rows->display_name }}
+                                        </th>
+                                    @endif
                                 @endforeach
                                 <th class="actions">{{ trans('common.button.action') }}</th>
                             </tr>
