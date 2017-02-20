@@ -92,6 +92,10 @@
                                                id="field_delete_{{ $data->Field }}"
                                                name="field_delete_{{ $data->Field }}" @if(isset($dataRow->delete) && $dataRow->delete){{ 'checked="checked"' }}@elseif($data->Key == 'PRI')@elseif($data->Type == 'timestamp' && $data->Field == 'updated_at')@elseif(!isset($dataRow->delete)){{ 'checked="checked"' }}@endif>
                                                 <label for="field_delete_{{ $data->Field }}">Delete</label><br/>
+                                        <input type="checkbox"
+                                               id="field_show_{{ $data->Field }}"
+                                               name="field_show_{{ $data->Field }}" @if(isset($dataRow->show) && $dataRow->show){{ 'checked="checked"' }}@elseif($data->Key == 'PRI')@elseif($data->Type == 'timestamp' && $data->Field == 'updated_at')@elseif(!isset($dataRow->show)){{ 'checked="checked"' }}@endif>
+                                        <label for="field_show_{{ $data->Field }}">Show</label><br/>
                                     </td>
                                     <input type="hidden" name="field_{{ $data->Field }}" value="{{ $data->Field }}">
                                     <td>

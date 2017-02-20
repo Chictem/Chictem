@@ -65,7 +65,6 @@ class Voyager
 		if (isset($setting->id)) {
 			return $setting->value;
 		}
-
 		return $default;
 	}
 
@@ -79,7 +78,6 @@ class Voyager
 		if (! empty($file) && Storage::exists(config('voyager.storage.subfolder') . $file)) {
 			return Storage::url(config('voyager.storage.subfolder') . $file);
 		}
-
 		return $default;
 	}
 

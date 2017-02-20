@@ -13,8 +13,19 @@ a {
     }
 }
 
-.content-wrapper {
-    margin: auto;
-    width: $main-with;
+.hr-line-dashed {
+    border-top: 1px dashed #e7eaec;
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+    margin: 20px 0
+}
+
+.hr-line-solid {
+    border-bottom: 1px solid #e7eaec;
+    background-color: rgba(0, 0, 0, 0);
+    border-style: solid !important;
+    margin-top: 15px;
+    margin-bottom: 15px
 }
 

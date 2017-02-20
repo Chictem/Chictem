@@ -18,20 +18,3 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 
-Route::resource('courses', 'CourseAPIController');
-
-Route::resource('tags', 'TagAPIController');
-
-
-
-Route::resource('experts', 'ExpertAPIController');
-
-Route::resource('teachers', 'TeacherAPIController');
-
-Route::resource('settings', 'SettingAPIController');
-
-Route::resource('menus', 'MenuAPIController');
-
-Route::resource('banners', 'BannerAPIController');
-
-Route::resource('banner_items', 'BannerItemAPIController');

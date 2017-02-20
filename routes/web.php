@@ -28,19 +28,19 @@ try {
 	// do nothing, might just be because table not yet migrated.
 }
 
-Route::resource('tags', 'TagController');
+//Route::resource('tags', 'TagController');
 
 //Route::resource('experts', 'ExpertController');
 
 //Route::resource('teachers', 'TeacherController');
 
-Route::resource('settings', 'SettingController');
+//Route::resource('settings', 'SettingController');
 
-Route::resource('menus', 'MenuController');
+//Route::resource('menus', 'MenuController');
 
-Route::resource('banners', 'BannerController');
+//Route::resource('banners', 'BannerController');
 
-Route::resource('bannerItems', 'BannerItemController');
+//Route::resource('bannerItems', 'BannerItemController');
 
 //Route::resource('courses', 'CourseController');
 

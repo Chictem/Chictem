@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Post extends Model
+class Post extends BaseModel
 {
 	const PUBLISHED = 'PUBLISHED';
 
 	protected $guarded = [];
+
+	protected $filters = ['category_id', 'status'];
 
 	/**
 	 * @param array $options
@@ -51,4 +53,5 @@ class Post extends Model
 	{
 		return $query->where('status', '=', static::PUBLISHED);
 	}
+	
 }

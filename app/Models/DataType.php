@@ -66,6 +66,15 @@ class DataType extends Model
 	}
 
 	/**
+	 * @param $field
+	 * @return mixed
+	 */
+	public function row($field)
+	{
+		return $this->hasMany(DataRow::class)->where('field', $field)->first();
+	}
+
+	/**
 	 * @param $value
 	 */
 	public function setGeneratePermissionsAttribute($value)
@@ -100,7 +109,7 @@ class DataType extends Model
 			$dataRow->data_type_id = $this->id;
 			$dataRow->required = $requestData['field_required_' . $field];
 
-			foreach (['browse', 'read', 'edit', 'add', 'delete'] as $check) {
+			foreach (['browse', 'read', 'edit', 'add', 'delete', 'show'] as $check) {
 				if (isset($requestData["field_{$check}_{$field}"])) {
 					$dataRow->{$check} = 1;
 				} else {

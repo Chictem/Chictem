@@ -67,7 +67,7 @@ if (! function_exists('in_str')) {
 if (! function_exists('is_active')) {
 	/**
 	 * @param Request $request
-	 * @param $target
+	 * @param         $target
 	 * @return string
 	 */
 	function is_active($target, $except = null)
@@ -79,5 +79,19 @@ if (! function_exists('is_active')) {
 		if (in_str($path_info, $target)) {
 			return 'active';
 		}
+	}
+}
+
+if (! function_exists('contains_tags')) {
+	/**
+	 * @param $string
+	 * @return bool
+	 */
+	function contains_tags($string)
+	{
+		if ($string != strip_tags($string)) {
+			return true;
+		}
+		return false;
 	}
 }
