@@ -2,8 +2,8 @@
     @php
         $model = app($dataType->model_name);
     @endphp
-    @if(($firstModel = $dataTypeContent->first()) && method_exists($dataType->model_name, 'getFilters') && $firstModel->getFilters())
-        @foreach($firstModel->getFilters() as $filter)
+    @if(method_exists($dataType->model_name, 'getFilters') && $model->getFilters())
+        @foreach($model->getFilters() as $filter)
             <div class="filter">
                 @if($row = $dataType->row($filter))
                     {{ $row->display_name }}:
