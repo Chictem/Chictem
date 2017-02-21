@@ -163,6 +163,9 @@ return [
 		Illuminate\Validation\ValidationServiceProvider::class,
 		Illuminate\View\ViewServiceProvider::class,
 
+		Laravel\Scout\ScoutServiceProvider::class,
+
+
 		/*
 		 * Package Service Providers...
 		 */

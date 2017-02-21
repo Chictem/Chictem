@@ -28,7 +28,8 @@ return [
 	    'rename' => '重命名',
 	    'close' => '关闭',
 	    'click' => '点击',
-	    'update' => '更新'
+	    'update' => '更新',
+	    'search' => '搜索'
 	],
 	
 	'alert' => [
@@ -75,7 +76,7 @@ return [
     
     'filter' => [
 	    'any' => '不限'
-    ]
+    ],
     
     
     

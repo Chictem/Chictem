@@ -96,6 +96,10 @@
                                                id="field_show_{{ $data->Field }}"
                                                name="field_show_{{ $data->Field }}" @if(isset($dataRow->show) && $dataRow->show){{ 'checked="checked"' }}@elseif($data->Key == 'PRI')@elseif($data->Type == 'timestamp' && $data->Field == 'updated_at')@elseif(!isset($dataRow->show)){{ 'checked="checked"' }}@endif>
                                         <label for="field_show_{{ $data->Field }}">Show</label><br/>
+                                        <input type="checkbox"
+                                               id="field_search_{{ $data->Field }}"
+                                               name="field_search_{{ $data->Field }}" @if(isset($dataRow->search) && $dataRow->search){{ 'checked="checked"' }}@elseif($data->Key == 'PRI')@elseif($data->Type == 'timestamp' && $data->Field == 'updated_at')@elseif(!isset($dataRow->search)){{ 'checked="checked"' }}@endif>
+                                        <label for="field_search_{{ $data->Field }}">Search</label><br/>
                                     </td>
                                     <input type="hidden" name="field_{{ $data->Field }}" value="{{ $data->Field }}">
                                     <td>

@@ -95,3 +95,17 @@ if (! function_exists('contains_tags')) {
 		return false;
 	}
 }
+
+if (! function_exists('searchable')) {
+	/**
+	 * @param $model_name
+	 */
+	function searchable($model_name)
+	{
+		try {
+			return app($model_name)->search('');
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+}

@@ -20,6 +20,7 @@
                 <div class="panel panel-bordered">
                     <div class="panel-body">
                         @include('voyager::bread.filter')
+                        @include('voyager::bread.search')
                         <table id="dataTable" class="table table-hover">
                             <thead>
                             <tr class="sort-items">

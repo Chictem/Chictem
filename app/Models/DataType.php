@@ -66,6 +66,14 @@ class DataType extends Model
 	}
 
 	/**
+	 * @return mixed
+	 */
+	public function searchRows()
+	{
+		return $this->rows()->where('search', '=', 1);
+	}
+
+	/**
 	 * @param $field
 	 * @return mixed
 	 */
@@ -109,7 +117,7 @@ class DataType extends Model
 			$dataRow->data_type_id = $this->id;
 			$dataRow->required = $requestData['field_required_' . $field];
 
-			foreach (['browse', 'read', 'edit', 'add', 'delete', 'show'] as $check) {
+			foreach (['browse', 'read', 'edit', 'add', 'delete', 'show', 'search'] as $check) {
 				if (isset($requestData["field_{$check}_{$field}"])) {
 					$dataRow->{$check} = 1;
 				} else {

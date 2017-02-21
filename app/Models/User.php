@@ -6,10 +6,11 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use App\Traits\VoyagerUser;
 use App\Traits\ModelFilter;
+use App\Traits\Searchable;
 
 class User extends AuthUser
 {
-	use VoyagerUser, ModelFilter;
+	use VoyagerUser, ModelFilter, Searchable;
 
 	/**
 	 * @var array

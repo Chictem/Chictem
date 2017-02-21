@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\ModelFilter;
+use App\Traits\Searchable;
+
 
 class Post extends Model
 {
-	use ModelFilter;
+	use ModelFilter, Searchable;
 	
 	const PUBLISHED = 'PUBLISHED';
 
 	protected $guarded = [];
 
 	protected $filters = ['category_id', 'status'];
-
+	
 	/**
 	 * @param array $options
 	 */

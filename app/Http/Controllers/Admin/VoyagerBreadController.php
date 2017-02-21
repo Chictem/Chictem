@@ -6,6 +6,7 @@ use App\Facades\Voyager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\DataType;
+use Illuminate\Support\Facades\Schema;
 
 class VoyagerBreadController extends Controller
 {
@@ -30,7 +31,6 @@ class VoyagerBreadController extends Controller
 		// Next Get or Paginate the actual content from the MODEL that corresponds to the slug DataType
 		if (strlen($dataType->model_name) != 0) {
 			$model = app($dataType->model_name);
-
 			if ($orderBy = $request->query('order_by')) {
 				$query = $model->orderBy($orderBy, $request->query('order_mode', 'desc'));
 			} else if ($model->timestamps) {
@@ -38,14 +38,19 @@ class VoyagerBreadController extends Controller
 			} else {
 				$query = $model->orderBy('id', 'DESC');
 			}
-
 		} else {
 			$query = DB::table($dataType->name);
 		}
 
-		$queries = array_except($request->query(), ['order_by', 'order_mode']);
+		$queries = $request->query();
 		foreach ($queries as $key => $value) {
-			$query = $query->where($key, $value);
+			if (Schema::hasColumn($slug, $key)) {
+				$query = $query->where($key, $value);
+			}
+		}
+
+		if (searchable($dataType->model_name)) {
+			$query = $query->search($request->get('search', ''));
 		}
 
 		$dataTypeContent = call_user_func([$query, $getter]);

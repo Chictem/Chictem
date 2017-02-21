@@ -1886,6 +1886,32 @@ class DataRowsTableSeeder extends Seeder
 
 		$dataRow = DataRow::firstOrNew([
 			'data_type_id' => $dataRowDataType->id,
+			'field' => 'search',
+		]);
+		if (! $dataRow->exists) {
+			$dataRow->fill([
+				'type' => 'radio_btn',
+				'display_name' => '是否可查询',
+				'required' => 0,
+				'browse' => 1,
+				'read' => 1,
+				'edit' => 1,
+				'add' => 1,
+				'delete' => 1,
+				'show' => 0,
+				'details' => '{ 
+					"options" : {
+						"1": "是",
+						"0": "否"
+					},
+					"default": "0",
+				    "checked" : "true"
+	            }'
+			])->save();
+		}
+
+		$dataRow = DataRow::firstOrNew([
+			'data_type_id' => $dataRowDataType->id,
 			'field' => 'details',
 		]);
 		if (! $dataRow->exists) {

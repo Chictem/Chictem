@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Page extends Model
 {
 	protected $guarded = [];
-
+	
 	/**
 	 * @param array $options
 	 */
