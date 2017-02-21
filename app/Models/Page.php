@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
+use App\Traits\ModelFilter;
+use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Page extends Model
 {
+	use Searchable, ModelFilter;
+
 	protected $guarded = [];
-	
+
+	protected $filters = ['user_id', 'status'];
+
 	/**
 	 * @param array $options
 	 */

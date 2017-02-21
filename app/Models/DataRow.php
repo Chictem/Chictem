@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class DataRow extends Model
 {
+	use Searchable;
+	
 	protected $table = 'data_rows';
 
 	protected $guarded = [];

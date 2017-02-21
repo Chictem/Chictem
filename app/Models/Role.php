@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\ModelFilter;
+use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-	protected $guarded = [];
+	use Searchable, ModelFilter;
 
+	protected $guarded = [];
+	
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */

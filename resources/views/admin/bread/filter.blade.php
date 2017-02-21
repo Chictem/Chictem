@@ -35,6 +35,11 @@
                                     {{ $options->options->{$item} }}
                                 </a>
                             @endif
+                        @else
+                            <a href="{{ route('voyager.'.$dataType->slug.'.index',array_add(array_except(request()->query(), [$filter]), $filter, $item)) }}"
+                               class="{{ request()->query($filter) == $item?'active':'' }}">
+                                {{ $item }}
+                            </a>
                         @endif
                     @endforeach
                 @endif

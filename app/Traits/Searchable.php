@@ -12,7 +12,27 @@ trait Searchable
 		$columns = $this->toSearchableArray();
 		return $query->where(function ($query) use ($search, $columns) {
 			foreach ($columns as $column) {
-				$query = $query->orWhere($column->field, 'like', '%' . $search . '%');
+				$details = json_decode($column->details);
+				if ($column->type == 'select_dropdown' && isset($details->relationship)) {
+					$label = $details->relationship->label;
+					// Has relationship
+					$query = $query->orWhereHas(camel_case(str_replace('_id', '', $column->field)), function ($query) use ($label, $search, $column) {
+						// If text, ignore case
+//						if (in_array($column->type, ['text', 'text_area', 'rich_text_box'])) {
+//							return $query->where('LOWER(' . $label . ')', 'like', '%' . strtolower($search) . '%');
+//						} else {
+							return $query->where($label, 'like', '%' . $search . '%');
+//						}
+					});
+					// Not has relationship
+				} else {
+					// If text, ignore case
+//					if (in_array($column->type, ['text', 'text_area', 'rich_text_box'])) {
+//						$query = $query->orWhere('LOWER(' . $column->field . ')', 'like', '%' . strtolower($search) . '%');
+//					} else {
+						$query = $query->orWhere($column->field, 'like', '%' . $search . '%');
+//					}
+				}
 			}
 			return $query;
 		});

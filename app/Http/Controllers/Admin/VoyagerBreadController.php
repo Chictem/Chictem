@@ -44,12 +44,12 @@ class VoyagerBreadController extends Controller
 
 		$queries = $request->query();
 		foreach ($queries as $key => $value) {
-			if (Schema::hasColumn($slug, $key)) {
+			if (Schema::hasColumn($slug, $key) && !in_array($key, ['search'])) {
 				$query = $query->where($key, $value);
 			}
 		}
-
-		if (searchable($dataType->model_name)) {
+		
+		if (searchable($dataType->model_name) && $request->get('search', '')) {
 			$query = $query->search($request->get('search', ''));
 		}
 
