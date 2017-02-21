@@ -132,6 +132,17 @@ class DataType extends Model
 		$requestData = array_filter($requestData, function ($value, $key) {
 			return strpos($key, 'field_') !== 0;
 		}, ARRAY_FILTER_USE_BOTH);
+
+
+		if (!array_has($requestData, 'server_side')) {
+			$requestData['server_side'] = 0;
+		}
+
+		if (!array_has($requestData, 'generate_permissions')) {
+			$requestData['generate_permissions'] = 0;
+			Permission::removeFrom($this->name);
+		}
+
 		$success = $success && $this->fill($requestData)->save();
 
 		if ($this->generate_permissions) {
