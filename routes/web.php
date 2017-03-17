@@ -22,9 +22,9 @@ try {
 			'as' => '',
 		]);
 	}
-} catch (\InvalidArgumentException $e) {
-	throw new \InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
-} catch (\Exception $e) {
+} catch (InvalidArgumentException $e) {
+	throw new InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
+} catch (Exception $e) {
 	// do nothing, might just be because table not yet migrated.
 }
 
@@ -50,9 +50,8 @@ try {
 			Route::get($page->slug, ['as' => 'page.' . $page->slug, 'use' => 'PageController@index']);
 		}
 	}
-} catch (\InvalidArgumentException $e) {
-	throw new \InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
-} catch (\Exception $e) {
-
+} catch (InvalidArgumentException $e) {
+	throw new InvalidArgumentException("Custom routes hasn't been configured because: " . $e->getMessage(), 1);
+} catch (Exception $e) {
 	// do nothing, might just be because table not yet migrated.
 }

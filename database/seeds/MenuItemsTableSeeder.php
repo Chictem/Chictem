@@ -232,7 +232,7 @@ class MenuItemsTableSeeder extends Seeder
 		$menuItem = MenuItem::firstOrNew([
 			'menu_id' => $menu->id,
 			'title' => '内容',
-			'url' => route('posts.index', [], false),
+			'url' => url('/posts'),
 		]);
 		if (! $menuItem->exists) {
 			$menuItem->fill([
@@ -247,7 +247,7 @@ class MenuItemsTableSeeder extends Seeder
 		$menuItem = MenuItem::firstOrNew([
 			'menu_id' => $menu->id,
 			'title' => '用户',
-			'url' => route('users.index', [], false),
+			'url' => url('/users'),
 		]);
 		if (! $menuItem->exists) {
 			$menuItem->fill([
@@ -262,7 +262,7 @@ class MenuItemsTableSeeder extends Seeder
 		$menuItem = MenuItem::firstOrNew([
 			'menu_id' => $menu->id,
 			'title' => '关于',
-			'url' => route('page.about', [], false),
+			'url' => url('/about'),
 		]);
 		if (! $menuItem->exists) {
 			$menuItem->fill([
