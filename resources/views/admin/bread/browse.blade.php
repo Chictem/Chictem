@@ -19,8 +19,10 @@
             <div class="col-md-12">
                 <div class="panel panel-bordered">
                     <div class="panel-body">
-                        @include('voyager::bread.filter')
-                        @include('voyager::bread.search')
+                        @if ($dataType->server_side)
+                            @include('voyager::bread.filter')
+                            @include('voyager::bread.search')
+                        @endif
                         <table id="dataTable" class="table table-hover">
                             <thead>
                             <tr class="sort-items">
