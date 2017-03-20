@@ -21,7 +21,7 @@ trait Searchable
 //						if (in_array($column->type, ['text', 'text_area', 'rich_text_box'])) {
 //							return $query->where('LOWER(' . $label . ')', 'like', '%' . strtolower($search) . '%');
 //						} else {
-							return $query->where($label, 'like', '%' . $search . '%');
+							return $query->where($label, 'like binary', '%' . $search . '%');
 //						}
 					});
 					// Not has relationship
@@ -30,7 +30,7 @@ trait Searchable
 //					if (in_array($column->type, ['text', 'text_area', 'rich_text_box'])) {
 //						$query = $query->orWhere('LOWER(' . $column->field . ')', 'like', '%' . strtolower($search) . '%');
 //					} else {
-						$query = $query->orWhere($column->field, 'like', '%' . $search . '%');
+						$query = $query->orWhere($column->field, 'like binary', '%' . $search . '%');
 //					}
 				}
 			}

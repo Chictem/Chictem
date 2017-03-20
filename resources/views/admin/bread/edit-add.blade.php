@@ -155,7 +155,7 @@
                                     @elseif($row->type == "radio_btn")
                                         @php $options = json_decode($row->details); @endphp
                                         @php //$selected_value = (isset($dataTypeContent->{$row->field}) && ! empty(old($row->field, $dataTypeContent->{$row->field}))) ? old($row->field, $dataTypeContent->{$row->field}) : old($$row->field); @endphp
-                                        @php $selected_value = $dataTypeContent->{$row->field}; @endphp
+                                        @php $selected_value = isset($dataTypeContent)?$dataTypeContent->{$row->field}:null; @endphp
                                         @php $default = (isset($options->default) && ! isset($dataTypeContent->{$row->field})) ? $options->default : NULL; @endphp
                                         <ul class="radio">
                                             @if(isset($options->options))

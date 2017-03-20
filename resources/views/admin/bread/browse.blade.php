@@ -53,18 +53,18 @@
                                                      style="width:100px">
                                             @elseif($row->type == 'select_multiple')
                                                 @if ($data->{$row->field} && isset($options->relationship))
-                                                    {{ $data->{$row->field}->{implode(', ', $options->relationship->label)} }}
+                                                    {{ @$data->{$row->field}->{implode(', ', $options->relationship->label)} }}
                                                 @endif
                                             @elseif($row->type == 'select_dropdown')
                                                 @if ($data->{$row->field} && isset($options->relationship) && $field = str_replace('_id', '', $row->field))
-                                                    {{ $data->{camel_case($field)}->{$options->relationship->label} }}
+                                                    {{ @$data->{camel_case($field)}->{$options->relationship->label} }}
                                                 @elseif($data->{$row->field} && isset($options->options))
-                                                    {{ $options->options->{($data->{$row->field})} }}
+                                                    {{ @$options->options->{($data->{$row->field})} }}
                                                 @endif
                                             @elseif($row->type=='radio_btn')
-                                                {{ $options->options->{($data->{$row->field})} }}
+                                                {{ @$options->options->{($data->{$row->field})} }}
                                             @else
-                                                {{ $data->{$row->field} }}
+                                                {{ @$data->{$row->field} }}
                                             @endif
                                         </td>
                                     @endforeach
